@@ -9,7 +9,7 @@
 import Foundation
 import MessageUI
 
-public typealias TextClosure                           = ()->()
+public typealias TextClosure                           = (Bool)->()
 
 public struct TextInfo {
     let messageString:String
@@ -47,15 +47,22 @@ public class TextDelegate: NSObject, MFMessageComposeViewControllerDelegate  {
     public func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         switch result.rawValue {
         case MessageComposeResultCancelled.rawValue:
-            print("Mail cancelled");
+            superVC.dismissViewControllerAnimated(true) { [weak self] in
+                self?.complete(false)
+            }
         case MessageComposeResultSent.rawValue:
-            print("Mail sent");
+            superVC.dismissViewControllerAnimated(true) { [weak self] in
+                self?.complete(true)
+            }
         case MessageComposeResultFailed.rawValue:
-            print("Mail sent failure");
+            superVC.dismissViewControllerAnimated(true) { [weak self] in
+                self?.complete(false)
+            }
         default:
-            break
+            superVC.dismissViewControllerAnimated(true) { [weak self] in
+                self?.complete(false)
+            }
         }
-        superVC.dismissViewControllerAnimated(true, completion:self.complete)
     }
     
 }

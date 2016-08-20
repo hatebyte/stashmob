@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class MapView: UIView {
     
     @IBOutlet weak var findPlaceButton:UIButton?
     @IBOutlet weak var seePeopleButton:UIButton?
     @IBOutlet weak var seePlacesButton:UIButton?
+    @IBOutlet weak var mapView:GMSMapView?
     
     func didload() {
         let findButtonText = NSLocalizedString("Find Places", comment: "MapView : findPlaceButton : titleText")

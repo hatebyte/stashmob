@@ -14,7 +14,7 @@ import StashMobModel
 class ContactPickerViewController: UIViewController, ManagedObjectContextSettable {
         
     weak var managedObjectContext: NSManagedObjectContext!
-    private var contactManager = ContactManager()
+    weak var contactManager: Contactable!
     private var gmController:GMCenteredController!
     var remotePlace:RemotePlace!
     var remoteContact:RemoteContact!
@@ -26,6 +26,13 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
         return v
     }
     
+    deinit {
+        print("deinit : ContactPickerViewController")
+        gmController = nil
+        emailDelegate = nil
+        textDelegate = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,9 +40,9 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
         theView.populatePlace(remotePlace)
         gmController                = GMCenteredController(mapView: theView.mapView!, coordinate:remotePlace.coordinate, image: UIImage(named:"event_pin"))
         
-        let picker = ABPeoplePickerNavigationController()
+        let picker                  = ABPeoplePickerNavigationController()
         picker.peoplePickerDelegate = self
-        picker.displayedProperties = [NSNumber(int: kABPersonPhoneProperty)]
+        picker.displayedProperties  = [NSNumber(int: kABPersonPhoneProperty)]
         
         var error: Unmanaged<CFError>?
         guard let addressBook: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue() else {
@@ -55,7 +62,9 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        if #available(iOS 8.3, *) {
+            managedObjectContext.refreshAllObjects()
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -172,18 +181,24 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
     func sendEmail() {
         emailDelegate = EmailDelegate()
         let info = remoteContact.emailInfo(remotePlace.placeId)
-        emailDelegate?.email(self, info: info) { [weak self] in
-            self?.emailDelegate = nil
-            self?.pop()
+        emailDelegate?.email(self, info: info) { [unowned self] isSent in
+            if isSent {
+                self.managedObjectContext.send(self.remotePlace, toContact:self.remoteContact)
+            }
+            self.emailDelegate = nil
+            self.pop()
         }
     }
     
     func sendTextMessage() {
         textDelegate = TextDelegate()
         let info = remoteContact.textInfo(remotePlace.placeId)
-        textDelegate?.text(self, info: info) { [weak self] in
-            self?.textDelegate = nil
-            self?.pop()
+        textDelegate?.text(self, info: info) { [unowned self] isSent in
+            if isSent {
+                self.managedObjectContext.send(self.remotePlace, toContact:self.remoteContact)
+            }
+            self.textDelegate = nil
+            self.pop()
         }
     }
     

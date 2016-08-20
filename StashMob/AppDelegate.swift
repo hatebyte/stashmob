@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var context:NSManagedObjectContext!
     var navController:FMNavigationController!
+    var contactManager = ContactManager()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -30,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navController                               = UIStoryboard.navigationViewController()
         let rootVC                                  = UIStoryboard.rootController()
         rootVC.managedObjectContext                 = context
+        rootVC.contactManager                       = contactManager
         navController.viewControllers               = [rootVC]
         
         self.window                                 = UIWindow(frame:UIScreen.mainScreen().bounds)

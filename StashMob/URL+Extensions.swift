@@ -12,8 +12,9 @@ import UIKit
 
 
 enum UrlParam : String {
-    case Event                      = "event"
-    case NilParam                   = "nil_param"
+    case PhoneNumber     = "n"
+    case Email           = "e"
+    case PlaceId         = "p"
 }
 
 enum ParamValues {
@@ -35,41 +36,33 @@ extension NSURL {
         }
     }
     
-    func deepLinkHash()->String? {
-        let absString               =  (absoluteString as NSString)
-        if absString.pathComponents.count > 2 {
-            let c                   = absString.pathComponents.count
-            let r                   = absString.pathComponents[c - 2]
-            if r == "r" {
-                return absString.pathComponents.last
-            }
-        }
-        return nil
-    }
-    
-    func safariHash()->String? {
-        let absString               =  (absoluteString as NSString)
-        if absString.pathComponents.count > 2 {
-            let c                   = absString.pathComponents.count
-            let r                   = absString.pathComponents[c - 2]
-            if r == "contracts" {
-                return absString.pathComponents.last
-            }
-        }
-        return nil
-    }
-    
-    func eventParam()->UInt64 {
-        let e = self.paramFor(key:.Event)
+    func placeParam()->String? {
+        let e = self.paramFor(key:.PlaceId)
         switch e {
         case ParamValues.KeyFound(let value):
-            if let v = Int(value) {
-                return UInt64(v)
-            } else {
-                return 0
-            }
+            return value
         case ParamValues.NoKey:
-            return 0
+            return nil
+        }
+    }
+    
+    func emailParam()->String? {
+        let e = self.paramFor(key:.Email)
+        switch e {
+        case ParamValues.KeyFound(let value):
+            return value
+        case ParamValues.NoKey:
+            return nil
+        }
+    }
+    
+    func numberParam()->String? {
+        let e = self.paramFor(key:.PhoneNumber)
+        switch e {
+        case ParamValues.KeyFound(let value):
+            return value
+        case ParamValues.NoKey:
+            return nil
         }
     }
     

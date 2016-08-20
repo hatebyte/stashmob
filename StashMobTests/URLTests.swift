@@ -13,29 +13,79 @@ import CoreData
 
 class URLTests: XCTestCase {
     
-    let deepLink = "https://stashmob.com/asdfadsfdsa?e=hashofemail&n=hashofphonenumber&f=hashofname&l=hashoflastname"
-    
     override func setUp() {
         super.setUp()
-
     }
     
     override func tearDown() {
         super.tearDown()
     }
 
+    func testNSURLCanReturnReturnsNullPlaceId() {
+        // given
+        let url = NSURL(string: "stashmob://?e=hashofemail&n=hashofphonenumber")!
+        
+        // when
+        let placeId = url.placeParam()
+        
+        // then
+        XCTAssertNil(placeId)
+    }
     
-//    func testContactCanBeRetrieveViaEmailOrPhoneNumber_Number(){
-//        // given
-//        let remoteContact             = testContact
-//        moc.performChanges {
-//            remoteContact.insertIntoContext(moc)
-//        }
-//        waitForManagedObjectContextToBeDone(moc)
-//        
-//        // when
-//        let mContract = Contact.fetchContactForKey(key:remoteContact.email)
-//        
-//    }
+    func testNSURLCanReturnPlaceId() {
+        // given
+        let url = NSURL(string: "stashmob://?p=asdfadsfdsa&e=hashofemail&n=hashofphonenumber")!
+        
+        // when
+        let placeId = url.placeParam()
+        
+        // then
+        XCTAssertEqual("asdfadsfdsa", placeId!)
+    }
 
+    func testNSURLCanReturnReturnsNullPhoneNumber() {
+        // given
+        let url = NSURL(string: "stashmob://?e=hashofemail")!
+        
+        // when
+        let phoneNumber = url.numberParam()
+        
+        // then
+        XCTAssertNil(phoneNumber)
+    }
+    
+    func testNSURLCanReturnPhoneNumber() {
+        // given
+        let url = NSURL(string: "stashmob://?p=asdfadsfdsa&e=hashofemail&n=hashofphonenumber")!
+        
+        // when
+        let phoneNumber = url.numberParam()
+        
+        // then
+        XCTAssertEqual("hashofphonenumber", phoneNumber!)
+    }
+   
+    
+    func testNSURLCanReturnReturnsNullEmail() {
+        // given
+        let url = NSURL(string: "stashmob://?p=asdfadsfdsa&n=hashofphonenumber")!
+        
+        // when
+        let email = url.emailParam()
+        
+        // then
+        XCTAssertNil(email)
+    }
+    
+    func testNSURLCanReturnPhoneEmail() {
+        // given
+        let url = NSURL(string: "stashmob://?p=asdfadsfdsa&e=hashofemail&n=hashofphonenumber")!
+        
+        // when
+        let email = url.emailParam()
+        
+        // then
+        XCTAssertEqual("hashofemail", email!)
+    }
+    
 }

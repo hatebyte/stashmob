@@ -13,28 +13,34 @@ import GoogleMaps
 class GMCenteredController:NSObject {
     
     var marker:GMSMarker?
-    var image:UIImage?
-    var coordinate:CLLocationCoordinate2D!
     weak var mapView:GMSMapView!
-    
+    var coordinate:CLLocationCoordinate2D!
+ 
     init(mapView:GMSMapView, coordinate:CLLocationCoordinate2D, image:UIImage?) {
         self.mapView                        = mapView
-        self.image                          = image
         self.coordinate                     = coordinate
         super.init()
-        setup()
+        setup(image)
     }
     
-    internal func setup() {
-        mapView.mapType                    = kGMSTypeNormal
-        update()
+    deinit {
+        clearPins()
     }
     
-    func update() {
+    private func clearPins() {
+        marker?.map                         = nil
+    }
+
+    internal func setup(image:UIImage?) {
+        mapView.mapType                     = kGMSTypeNormal
         marker                              = GMSMarker(position:self.coordinate)
         marker?.map                         = mapView
         marker?.icon                        = image
         marker?.appearAnimation             = kGMSMarkerAnimationPop;
+        update()
+    }
+    
+    func update() {
         mapView.animateWithCameraUpdate(GMSCameraUpdate.setTarget(self.coordinate, zoom:14))
     }
     

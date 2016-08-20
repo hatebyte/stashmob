@@ -11,12 +11,15 @@ import CoreData
 import GooglePlacePicker
 import StashMobModel
 
-class MapViewController: UIViewController, ManagedObjectContextSettable, SegueHandlerType {
+class MapViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable, SegueHandlerType {
 
     weak var managedObjectContext: NSManagedObjectContext!
+    weak var contactManager: Contactable!
+    
     private var placePicker: GMSPlacePicker?
     private var locationManager = UserLocationManager()
     private var locationPermissions:LocationPermissionsManager!
+    private var gmController:GMMultiMarkerController!
     
     var remotePlace:RemotePlace?
     
@@ -34,11 +37,20 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, SegueHa
        
         locationPermissions = LocationPermissionsManager(locationManager: locationManager)
         theView.didload()
+        gmController = GMMultiMarkerController(mapView: theView.mapView!)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         addHandlers()
+        
+        // For some reason, the GMCamera does not update on first launch
+        let pandp                                   = managedObjectContext.mapContactsToPersonAndPlaces()
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] in
+            self?.gmController.update(pandp.sent, received: pandp.received)
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -60,7 +72,9 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, SegueHa
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        if #available(iOS 8.3, *) {
+            managedObjectContext.refreshAllObjects()
+        }
     }
     
     
@@ -135,8 +149,10 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, SegueHa
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
         case .PushToContactPicker:
-            guard let vc                             = segue.destinationViewController as? ContactPickerViewController else { fatalError("DestinationViewController \(segue.destinationViewController.self) does not conform to ManagedObjectContextSettable") }
+            guard let vc                             = segue.destinationViewController as? ContactPickerViewController else { fatalError("DestinationViewController \(segue.destinationViewController.self) is not ContactPickerViewController") }
             vc.managedObjectContext                  = managedObjectContext
+            vc.contactManager                        = contactManager
+
             guard let rp                             = remotePlace else { fatalError("We lost our remote place") }
             vc.remotePlace                           = rp
         }

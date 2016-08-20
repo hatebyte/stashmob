@@ -10,7 +10,7 @@ import Foundation
 
 import MessageUI
 
-public typealias EmailClosure                           = ()->()
+public typealias EmailClosure                           = (Bool)->()
 
 public struct EmailInfo {
     let titleString:String
@@ -53,22 +53,24 @@ public class EmailDelegate: NSObject, MFMailComposeViewControllerDelegate  {
     public func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         switch result.rawValue {
         case MFMailComposeResultCancelled.rawValue:
-            print("Mail cancelled");
-            
+            superVC.dismissViewControllerAnimated(true) { [weak self] in
+                self?.complete(false)
+            }
         case MFMailComposeResultSaved.rawValue:
-            print("Mail saved");
-            
+            superVC.dismissViewControllerAnimated(true) { [weak self] in
+                self?.complete(false)
+            }
         case MFMailComposeResultSent.rawValue:
-            print("Mail sent");
-            
+            superVC.dismissViewControllerAnimated(true) { [weak self] in
+                self?.complete(true)
+            }
         case MFMailComposeResultFailed.rawValue:
-            print("Mail sent failure: \(error!.localizedDescription)");
-            
+            superVC.dismissViewControllerAnimated(true) { [weak self] in
+                self?.complete(false)
+            }
         default:
-            print("Mail cancelled");
-            
+           break
         }
-        superVC.dismissViewControllerAnimated(true, completion:self.complete)
     }
     
 }

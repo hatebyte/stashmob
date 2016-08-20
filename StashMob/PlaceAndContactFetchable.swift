@@ -22,6 +22,10 @@ protocol ContactAndPlaceFetchable {
     func sentPlacesTo(contact:RemoteContact)->[RemotePlace]
     func contactsWhoSentMePlace(place:RemotePlace)->[RemoteContact]
     func contactsWhoWereSentPlace(place:RemotePlace)->[RemoteContact]
+    func sentAndReceivedFor(contact:Contact)->(sent:PersonAndPlaces, received:PersonAndPlaces)
+    func mapContactsToPersonAndPlaces()->(sent:[PersonAndPlaces], received:[PersonAndPlaces])
+    func send(place:RemotePlace, toContact contact:RemoteContact)
+    func recieve(place:RemotePlace, fromContact contact:RemoteContact)
 }
 
 extension NSManagedObjectContext : ContactAndPlaceFetchable {
@@ -29,7 +33,7 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
     func fetchAllContacts()->[RemoteContact] {
         let contacts = Contact.fetchInContext(self) { request in
             request.predicate = Contact.defaultPredicate
-            request.fetchBatchSize = 100
+            request.fetchBatchSize = 500
             request.returnsObjectsAsFaults = false
         }
         return contacts.map { RemoteContact(managedContact:$0) }
@@ -38,7 +42,7 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
     func fetchAllSentPlaces()->[RemotePlace] {
         let places = Place.fetchInContext(self) { request in
             request.predicate = Place.allSentLocationsPredicate
-            request.fetchBatchSize = 100
+            request.fetchBatchSize = 500
             request.returnsObjectsAsFaults = false
         }
         print(places)
@@ -48,7 +52,7 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
     func fetchAllRecievedPlaces()->[RemotePlace] {
         let contacts = Place.fetchInContext(self) { request in
             request.predicate = Place.allReceivedLocationsPredicate
-            request.fetchBatchSize = 100
+            request.fetchBatchSize = 500
             request.returnsObjectsAsFaults = false
         }
         return contacts.map { RemotePlace(managedPlace:$0) }
@@ -64,7 +68,7 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
         return Contact.findOrFetchInContext(self, matchingPredicate: predicate)
     }
 
-    private func contactForEmailOrNumber(rcontact:RemoteContact)->Contact? {
+    func contactForEmailOrNumber(rcontact:RemoteContact)->Contact? {
         var key:String!
         if let number = rcontact.phoneNumber {
             key = number
@@ -109,6 +113,44 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
             return []
         }
         return place.sentToRemoteContacts
+    }
+    
+    func sentAndReceivedFor(contact:Contact)->(sent:PersonAndPlaces, received:PersonAndPlaces) {
+        let c = RemoteContact(managedContact: contact)
+        let s = PersonAndPlaces(person: c, places: contact.sentRemotePlaces)
+        let r = PersonAndPlaces(person: c, places: contact.recievedRemotePlaces)
+        return (sent:s , received:r)
+    }
+    
+    func mapContactsToPersonAndPlaces()->(sent:[PersonAndPlaces], received:[PersonAndPlaces]) {
+        let contacts = Contact.fetchInContext(self) { request in
+            request.predicate = Contact.defaultPredicate
+            request.fetchBatchSize = 500
+            request.returnsObjectsAsFaults = false
+        }
+        let s:[PersonAndPlaces] = []
+        let r:[PersonAndPlaces] = []
+        let c = contacts.reduce((sent:s, received:r)) { total, next in
+            let t = sentAndReceivedFor(next)
+            return (sent:total.sent + [t.sent], received:total.received + [t.received])
+        }
+        return c
+    }
+    
+    func send(place:RemotePlace, toContact contact:RemoteContact) {
+        performChangesAndWait {
+            let c = contact.insertIntoContext(self)
+            let p = place.insertIntoContext(self)
+            c.addToSentPlaces(p)
+        }
+    }
+    
+    func recieve(place:RemotePlace, fromContact contact:RemoteContact) {
+        performChangesAndWait {
+            let c = contact.insertIntoContext(self)
+            let p = place.insertIntoContext(self)
+            c.addToRecievedPlaces(p)
+        }
     }
 
 }

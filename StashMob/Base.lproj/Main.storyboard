@@ -36,8 +36,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZz-ZP-zeH">
-                                <rect key="frame" x="0.0" y="66" width="600" height="334"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZz-ZP-zeH" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D3g-ho-c7g">
@@ -115,6 +115,7 @@
                             <constraint firstItem="2Qm-TX-gRT" firstAttribute="leading" secondItem="FEe-Hz-HiD" secondAttribute="trailing" id="M7M-mD-YWp"/>
                             <constraint firstItem="D3g-ho-c7g" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="N0K-PC-yaW"/>
                             <constraint firstAttribute="trailing" secondItem="D3g-ho-c7g" secondAttribute="trailing" id="OD5-Bh-gIy"/>
+                            <constraint firstItem="fZz-ZP-zeH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="OTn-3G-Kfc"/>
                             <constraint firstAttribute="trailing" secondItem="2Qm-TX-gRT" secondAttribute="trailing" constant="43" id="Psk-Wh-jT7"/>
                             <constraint firstItem="FEe-Hz-HiD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="PwP-8g-vbO"/>
                             <constraint firstItem="FEe-Hz-HiD" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="UZh-fB-7pz"/>
@@ -124,8 +125,14 @@
                             <constraint firstAttribute="trailing" secondItem="fZz-ZP-zeH" secondAttribute="trailing" id="ky2-gU-wvf"/>
                             <constraint firstItem="fZz-ZP-zeH" firstAttribute="top" secondItem="2Qm-TX-gRT" secondAttribute="bottom" id="u2r-mw-bQt"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="u2r-mw-bQt"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outlet property="findPlaceButton" destination="ZLP-ex-QMx" id="RiU-Gu-lwU"/>
+                            <outlet property="mapView" destination="fZz-ZP-zeH" id="Yxy-tI-uw9"/>
                             <outlet property="seePeopleButton" destination="shc-id-x6Z" id="Vm1-aV-KMj"/>
                             <outlet property="seePlacesButton" destination="Rau-Us-phb" id="CJw-JB-nHb"/>
                         </connections>
