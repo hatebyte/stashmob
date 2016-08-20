@@ -53,6 +53,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
 
-
+    //MARK: Open URL
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        print("LAUNCHED FROM TEXT : \(url.absoluteString)")
+        return false
+    }
+    
+    //MARK: Deep Linking
+    @available(iOS 8.0, *)
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+                let webpageURL = userActivity.webpageURL! // Always exists
+                print("LAUNCHED FROM TEXT ioS8 : \(webpageURL.absoluteString)")
+        }
+        return false
+    }
 }
 

@@ -17,6 +17,8 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, SegueHa
     private var placePicker: GMSPlacePicker?
     private var locationManager:UserMovementManager?
     
+    var remotePlace:RemotePlace?
+    
     enum SegueIdentifier:String {
         case PushToContactPicker                   = "pushToContactPicker"
     }
@@ -89,10 +91,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, SegueHa
         placePicker?.pickPlaceWithCallback { [weak self] (place, error) in
             
             if let place = place {
-                print(place)
-                let remotePlace = place.toRemotePlace()
-                
-                print(remotePlace)
+                self?.remotePlace = place.toRemotePlace()
                 self?.performSegue(.PushToContactPicker)
                 
             } else if error != nil {
@@ -109,8 +108,10 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, SegueHa
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
         case .PushToContactPicker:
-            guard let vc                             = segue.destinationViewController as? ManagedObjectContextSettable else { fatalError("DestinationViewController \(segue.destinationViewController.self) does not conform to ManagedObjectContextSettable") }
-            vc.managedObjectContext = managedObjectContext
+            guard let vc                             = segue.destinationViewController as? ContactPickerViewController else { fatalError("DestinationViewController \(segue.destinationViewController.self) does not conform to ManagedObjectContextSettable") }
+            vc.managedObjectContext                  = managedObjectContext
+            guard let rp                             = remotePlace else { fatalError("We lost our remote place") }
+            vc.remotePlace                           = rp
         }
         
     }

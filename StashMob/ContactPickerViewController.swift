@@ -9,15 +9,48 @@
 import UIKit
 import AddressBookUI
 import CoreData
+import StashMobModel
 
 class ContactPickerViewController: UIViewController, ManagedObjectContextSettable {
         
     weak var managedObjectContext: NSManagedObjectContext!
-
+    private var contactManager = ContactManager()
+    private var gmController:GMCenteredController!
+    var remotePlace:RemotePlace!
+    var remoteContact:RemoteContact!
+    var emailDelegate:EmailDelegate?
+    var textDelegate:TextDelegate?
+    
+    var theView:ContactPickerView {
+        guard let v = view as? ContactPickerView else { fatalError("The view is not a ContactPickerView") }
+        return v
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+        
+        theView.didload()
+        theView.populatePlace(remotePlace)
+        gmController                = GMCenteredController(mapView: theView.mapView!, coordinate:remotePlace.coordinate, image: UIImage(named:"event_pin"))
+        
+        let picker = ABPeoplePickerNavigationController()
+        picker.peoplePickerDelegate = self
+        picker.displayedProperties = [NSNumber(int: kABPersonPhoneProperty)]
+        
+        var error: Unmanaged<CFError>?
+        guard let addressBook: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue() else {
+            self.showNoSettingsAlert()
+            return
+        }
+        ABAddressBookRequestAccessWithCompletion(addressBook) { [unowned self] granted, error in
+            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                if granted {
+                    self.presentViewController(picker, animated:false, completion: nil)
+                } else {
+                    self.showNoSettingsAlert()
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,41 +60,101 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        
-        let picker = ABPeoplePickerNavigationController()
-        picker.peoplePickerDelegate = self
-        
-        var error: Unmanaged<CFError>?
-        let addressBook: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()
-        if addressBook == nil {
-            print(error?.takeRetainedValue())
-            
-            return
-        }
-        
-        ABAddressBookRequestAccessWithCompletion(addressBook) { granted, error in
-            if !granted {
-                print("Not authorized: Go to settings and authorize this app: \(error)")
-                return
-            }
-        }
-        
-        presentViewController(picker, animated: true, completion: nil)
+    }
+   
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        addHandlers()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeHandlers()
+    }
+    
+    func addHandlers() {
+        theView.sendButton?.addTarget(self, action: #selector(send), forControlEvents: .TouchUpInside)
+        theView.dontSendButton?.addTarget(self, action: #selector(pop), forControlEvents: .TouchUpInside)
+    }
+    
+    func removeHandlers() {
+        theView.sendButton?.removeTarget(self, action: #selector(send), forControlEvents: .TouchUpInside)
+        theView.dontSendButton?.removeTarget(self, action: #selector(pop), forControlEvents: .TouchUpInside)
     }
     
     func pop() {
-    
+        navigationController?.popViewControllerAnimated(true)
     }
 
+    func send() {
+        switch remoteContact.options {
+        case .Both:
+            let titleText = NSLocalizedString("How do you want to message \(remoteContact.fullName)", comment: "ContactPickerViewController : actionSheetTitle : titleText")
+
+            let actionController = UIAlertController(title:titleText, message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            let emailText = NSLocalizedString("EMAIL", comment: "ContactPickerViewController : actionSheet : emailButton")
+            let textText = NSLocalizedString("TEXT", comment: "ContactPickerViewController : actionSheet : textButton")
+
+            let emailAction = UIAlertAction(title: emailText, style: .Default)  { [unowned self] action in
+                self.sendEmail()
+            }
+            let textAction = UIAlertAction(title: textText, style: .Default)  { [unowned self] action in
+                self.sendTextMessage()
+            }
+            actionController.addAction(emailAction)
+            actionController.addAction(textAction)
+            presentViewController(actionController, animated: true, completion: nil)
+
+        case .Email:
+            sendEmail()
+        case .Text:
+            sendTextMessage()
+        }
+    }
+    
     //MARK: Alert error
-    func showAlert(title:String, message:String? = nil) {
+    func showAlert(title:String, message:String? = nil, block:()->()) {
         let alertController = UIAlertController(title:title, message:message, preferredStyle: UIAlertControllerStyle.Alert)
         let dismissText = NSLocalizedString("Dismiss", comment: "ContactPickerViewController : dismissButton : titleText")
-        alertController.addAction(UIAlertAction(title: dismissText, style: UIAlertActionStyle.Default, handler: nil))
+        alertController.addAction(UIAlertAction(title: dismissText, style: .Default) { action in
+                block()
+        })
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func showNoSettingsAlert(){
+        let alertMessage            = NSLocalizedString("Well Hmm, we do need permission to your Contacts to get this done.", comment: "ContactPickerViewController : alertTile : noAddresBook")
+        let dismissText             = NSLocalizedString("Dismiss", comment: "ContactPickerViewController : dismissButton : titleText")
+        let settingsText            = NSLocalizedString("Go To Settings", comment: "ContactPickerViewController : dismissButton : titleText")
         
-        presentViewController(alertController, animated: true) { [unowned self] in
+        let alertController = UIAlertController(title:alertMessage, message:nil, preferredStyle: UIAlertControllerStyle.Alert)
+        let settingsAction = UIAlertAction(title: settingsText, style: .Default)  { [unowned self] action in
+            UIApplication.sharedApplication().navigateToSettings()
             self.pop()
+        }
+        let dismissAction = UIAlertAction(title: dismissText, style: .Default)  { [unowned self] action in
+            self.pop()
+        }
+        alertController.addAction(dismissAction)
+        alertController.addAction(settingsAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func didSelectPerson(person: ABRecordRef) {
+        if let rc = contactManager.remoteUserForPerson(person) {
+            remoteContact = rc
+            theView.populateContact(remoteContact)
+        } else {
+            theView.hideContact()
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] in
+                let aTitle = NSLocalizedString("Well, that contact does have email or a phone number", comment: "ContactPickerViewController : alertTile : no email or phone")
+                let mess = NSLocalizedString("Try again.", comment: "ContactPickerViewController : alertMessage : tryagain")
+                self?.showAlert(aTitle, message:mess) { [weak self] in
+                    self?.pop()
+                }
+            }
         }
     }
     
@@ -75,33 +168,36 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
     }
     */
 
-}
-
-extension ContactPickerViewController : ABPeoplePickerNavigationControllerDelegate {
     
-    func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController, didSelectPerson person: ABRecordRef) {
-        let emails: ABMultiValueRef = ABRecordCopyValue(person, kABPersonEmailProperty).takeRetainedValue()
-        if (ABMultiValueGetCount(emails) > 0) {
-            let index = 0 as CFIndex
-            let email = ABMultiValueCopyValueAtIndex(emails, index).takeRetainedValue() as! String
-            print("first email for selected contact = \(email)")
-        } else {
-            print("No email address")
-        }
-        if let phoneNumbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
-            for index in 0 ..< ABMultiValueGetCount(phoneNumbers) {
-                let number = ABMultiValueCopyValueAtIndex(phoneNumbers, index)?.takeRetainedValue() as? String
-                print("first number for selected contact = \(number)")
-            }
+    func sendEmail() {
+        emailDelegate = EmailDelegate()
+        let info = remoteContact.emailInfo(remotePlace.placeId)
+        emailDelegate?.email(self, info: info) { [weak self] in
+            self?.emailDelegate = nil
+            self?.pop()
         }
     }
     
-    func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController, shouldContinueAfterSelectingPerson person: ABRecordRef) -> Bool {
-        
-        peoplePickerNavigationController(peoplePicker, didSelectPerson: person)
-        
+    func sendTextMessage() {
+        textDelegate = TextDelegate()
+        let info = remoteContact.textInfo(remotePlace.placeId)
+        textDelegate?.text(self, info: info) { [weak self] in
+            self?.textDelegate = nil
+            self?.pop()
+        }
+    }
+    
+}
+
+extension ContactPickerViewController : ABPeoplePickerNavigationControllerDelegate {
+   
+    func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController, didSelectPerson person: ABRecordRef) {
+        didSelectPerson(person)
         peoplePicker.dismissViewControllerAnimated(true, completion: nil)
-        
+    }
+
+    func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController, shouldContinueAfterSelectingPerson person: ABRecordRef) -> Bool {
+        peoplePicker.dismissViewControllerAnimated(true, completion: nil)
         return false;
     }
     

@@ -63,37 +63,33 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
         let predicate = Contact.contactForEmailPredicate(string)
         return Contact.findOrFetchInContext(self, matchingPredicate: predicate)
     }
+
+    private func contactForEmailOrNumber(rcontact:RemoteContact)->Contact? {
+        var key:String!
+        if let number = rcontact.phoneNumber {
+            key = number
+        } else if let email = rcontact.email {
+            key = email
+        }
+        guard key != nil else {
+            return nil
+        }
+        let predicate = Contact.contactForNumberOrEmailPredicate(key)
+        return Contact.findOrFetchInContext(self, matchingPredicate: predicate)
+    }
     
     func receivedPlacesFrom(rcontact:RemoteContact)->[RemotePlace] {
-        if let number = rcontact.phoneNumber {
-            guard let contact = contactForNumber(number) else {
-                return []
-            }
-            return contact.recievedRemotePlaces
+        guard let contact = contactForEmailOrNumber(rcontact) else {
+            return []
         }
-        if let email = rcontact.email {
-            guard let contact = contactForEmail(email) else {
-                return []
-            }
-            return contact.recievedRemotePlaces
-        }
-        return []
+        return contact.recievedRemotePlaces
     }
     
     func sentPlacesTo(rcontact:RemoteContact)->[RemotePlace] {
-        if let number = rcontact.phoneNumber {
-            guard let contact = contactForNumber(number) else {
-                return []
-            }
-            return contact.sentRemotePlaces
+        guard let contact = contactForEmailOrNumber(rcontact) else {
+            return []
         }
-        if let email = rcontact.email {
-            guard let contact = contactForEmail(email) else {
-                return []
-            }
-            return contact.sentRemotePlaces
-        }
-        return []
+        return contact.sentRemotePlaces
    }
     
     private func placeForId(placeid:String)->Place? {

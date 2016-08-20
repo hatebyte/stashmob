@@ -16,6 +16,7 @@ public class Contact: ManagedObject {
     @NSManaged var lastName: String?
     @NSManaged var phoneNumber: String?
     @NSManaged var email: String?
+    @NSManaged var imageName: String?
     @NSManaged var sentPlaces: Set<Place>?
     @NSManaged var recievedPlaces: Set<Place>?
 
@@ -54,6 +55,12 @@ public class Contact: ManagedObject {
         return NSPredicate(format: "%K == %@", Keys.Email.rawValue, email)
     }
     
+    public static func contactForNumberOrEmailPredicate(key:String)->NSPredicate {
+        print(key)
+        return NSPredicate(format: "%K == %@ OR %K == %@ ", Keys.PhoneNumber.rawValue, key, Keys.Email.rawValue, key)
+    }
+ 
+    
 }
 
 extension Contact : KeyCodable {
@@ -90,6 +97,8 @@ extension RemoteContact : RemoteMappable {
         contact.phoneNumber            = phoneNumber
         contact.firstName              = firstName ?? ""
         contact.lastName               = lastName ?? ""
+        contact.email                  = email
+        contact.imageName              = imageName
     }
     
 }

@@ -4,6 +4,7 @@
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="-978289200" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="recievedPlaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="receivedFromContacts" inverseEntity="Place" syncable="YES"/>
@@ -33,7 +34,7 @@
         <attribute name="phoneNumber" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="-54" positionY="72" width="128" height="150"/>
+        <element name="Contact" positionX="-54" positionY="72" width="128" height="165"/>
         <element name="Place" positionX="-63" positionY="-18" width="128" height="270"/>
         <element name="User" positionX="-54" positionY="99" width="128" height="105"/>
     </elements>

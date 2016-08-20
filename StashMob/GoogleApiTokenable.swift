@@ -33,3 +33,15 @@ extension NSBundle:GoogleApiTokenable {
     }
     
 }
+
+public protocol DeepLinkable {
+    var deepLinkUrl:String { get }
+}
+
+extension NSBundle:DeepLinkable {
+    
+    public var deepLinkUrl:String {
+        return stringValue("UrlScheme")
+    }
+    
+}
