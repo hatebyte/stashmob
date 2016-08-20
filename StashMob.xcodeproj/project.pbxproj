@@ -1,0 +1,1241 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		41001AE43B8D5C0576CCAC0E /* Pods_StashMobTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B125E87518C7FFD3AB014D1 /* Pods_StashMobTests.framework */; };
+		42EFB28223EE38A0AC163D4F /* Pods_StashMob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F43308FE7F866AA8158613B4 /* Pods_StashMob.framework */; };
+		6D35C1591D67B4FD0000D1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1581D67B4FD0000D1D9 /* AppDelegate.swift */; };
+		6D35C15B1D67B4FD0000D1D9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C15A1D67B4FD0000D1D9 /* MapViewController.swift */; };
+		6D35C15E1D67B4FD0000D1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D35C15C1D67B4FD0000D1D9 /* Main.storyboard */; };
+		6D35C1631D67B4FD0000D1D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D35C1621D67B4FD0000D1D9 /* Assets.xcassets */; };
+		6D35C1661D67B4FD0000D1D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D35C1641D67B4FD0000D1D9 /* LaunchScreen.storyboard */; };
+		6D35C1711D67B4FD0000D1D9 /* EncrytionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1701D67B4FD0000D1D9 /* EncrytionTests.swift */; };
+		6D35C1831D67B6630000D1D9 /* StashMobModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D35C1821D67B6630000D1D9 /* StashMobModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D35C18A1D67B6630000D1D9 /* StashMobModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D35C1801D67B6630000D1D9 /* StashMobModel.framework */; };
+		6D35C1911D67B6630000D1D9 /* PlaceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1901D67B6630000D1D9 /* PlaceModelTests.swift */; };
+		6D35C1951D67B6630000D1D9 /* StashMobModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D35C1801D67B6630000D1D9 /* StashMobModel.framework */; };
+		6D35C1961D67B6630000D1D9 /* StashMobModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6D35C1801D67B6630000D1D9 /* StashMobModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6D35C1A01D67B6840000D1D9 /* StashMob.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C19E1D67B6840000D1D9 /* StashMob.xcdatamodeld */; };
+		6D35C1AF1D67B75B0000D1D9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1A31D67B75B0000D1D9 /* Date+Extensions.swift */; };
+		6D35C1B01D67B75B0000D1D9 /* KeyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1A41D67B75B0000D1D9 /* KeyCodable.swift */; };
+		6D35C1B11D67B75B0000D1D9 /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1A51D67B75B0000D1D9 /* ManagedObject.swift */; };
+		6D35C1B21D67B75B0000D1D9 /* ManagedObjectObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1A61D67B75B0000D1D9 /* ManagedObjectObserver.swift */; };
+		6D35C1B31D67B75B0000D1D9 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1A71D67B75B0000D1D9 /* Migration.swift */; };
+		6D35C1B41D67B75B0000D1D9 /* ModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1A81D67B75B0000D1D9 /* ModelBuilder.swift */; };
+		6D35C1B51D67B75B0000D1D9 /* ModelVersionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1A91D67B75B0000D1D9 /* ModelVersionType.swift */; };
+		6D35C1B61D67B75B0000D1D9 /* NSFileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1AA1D67B75B0000D1D9 /* NSFileManager+Extensions.swift */; };
+		6D35C1B71D67B75B0000D1D9 /* NSManagedObjectContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1AB1D67B75B0000D1D9 /* NSManagedObjectContext+Extensions.swift */; };
+		6D35C1B81D67B75B0000D1D9 /* NSManagedObjectContext+Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1AC1D67B75B0000D1D9 /* NSManagedObjectContext+Observers.swift */; };
+		6D35C1B91D67B75B0000D1D9 /* NSPersistentStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1AD1D67B75B0000D1D9 /* NSPersistentStore+Extensions.swift */; };
+		6D35C1BA1D67B75B0000D1D9 /* ValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1AE1D67B75B0000D1D9 /* ValueTransformer.swift */; };
+		6D35C1BC1D67B7660000D1D9 /* StashMobStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1BB1D67B7660000D1D9 /* StashMobStack.swift */; };
+		6D35C1BE1D67B76F0000D1D9 /* StashMobModelVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1BD1D67B76F0000D1D9 /* StashMobModelVersion.swift */; };
+		6D35C1D11D67B9DA0000D1D9 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1CD1D67B9DA0000D1D9 /* Place.swift */; };
+		6D35C1D31D67B9DA0000D1D9 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1CF1D67B9DA0000D1D9 /* Contact.swift */; };
+		6D35C1D61D67BA290000D1D9 /* RemotePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1D51D67BA290000D1D9 /* RemotePlace.swift */; };
+		6D35C1D81D67BA2F0000D1D9 /* RemoteContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1D71D67BA2F0000D1D9 /* RemoteContact.swift */; };
+		6D35C1DC1D67BEE90000D1D9 /* Crypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1DB1D67BEE90000D1D9 /* Crypt.swift */; };
+		6D35C1DF1D67C08E0000D1D9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1DE1D67C08E0000D1D9 /* Utilities.swift */; };
+		6D4179491D67C9560080AC3E /* ContactProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179481D67C9560080AC3E /* ContactProtocol.swift */; };
+		6D41794C1D67C9BF0080AC3E /* ContactProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41794B1D67C9BF0080AC3E /* ContactProtocol.swift */; };
+		6D4179511D67CBCF0080AC3E /* GMSPlace+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179501D67CBCF0080AC3E /* GMSPlace+Extensions.swift */; };
+		6D4179561D67CD6C0080AC3E /* PrivatePhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179551D67CD6C0080AC3E /* PrivatePhone.m */; };
+		6D4179581D67D0C40080AC3E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4179571D67D0C40080AC3E /* CoreTelephony.framework */; };
+		6D41795B1D67D2170080AC3E /* PlaceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41795A1D67D2170080AC3E /* PlaceHelpers.swift */; };
+		6D41795E1D67D4BE0080AC3E /* CoreDataTestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41795D1D67D4BE0080AC3E /* CoreDataTestUtilities.swift */; };
+		6D4179601D67D5320080AC3E /* Binaryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41795F1D67D5320080AC3E /* Binaryable.swift */; };
+		6D4179621D67D7450080AC3E /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179611D67D7450080AC3E /* Mappable.swift */; };
+		6D4179651D67E8F50080AC3E /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179641D67E8F50080AC3E /* ContactModel.swift */; };
+		6D4179681D67EF7F0080AC3E /* ContactHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179671D67EF7F0080AC3E /* ContactHelpers.swift */; };
+		6D4179721D67FCE10080AC3E /* PlaceAndContactFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179711D67FCE10080AC3E /* PlaceAndContactFetchable.swift */; };
+		6D4179741D67FE570080AC3E /* ContactAndPlaceFetchableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179731D67FE570080AC3E /* ContactAndPlaceFetchableTests.swift */; };
+		6D4179781D67FE7A0080AC3E /* ContactHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179751D67FE7A0080AC3E /* ContactHelpers.swift */; };
+		6D4179791D67FE7A0080AC3E /* CoreDataTestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179761D67FE7A0080AC3E /* CoreDataTestUtilities.swift */; };
+		6D41797A1D67FE7A0080AC3E /* PlaceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179771D67FE7A0080AC3E /* PlaceHelpers.swift */; };
+		6D41797F1D6814110080AC3E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41797D1D6814110080AC3E /* User.swift */; };
+		6D4179811D6814740080AC3E /* UserLoggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179801D6814740080AC3E /* UserLoggable.swift */; };
+		6D4179841D6816210080AC3E /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179831D6816210080AC3E /* UserTests.swift */; };
+		6D4179861D68162B0080AC3E /* UserHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179851D68162B0080AC3E /* UserHelpers.swift */; };
+		6D4179891D681AA00080AC3E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179881D681AA00080AC3E /* MapView.swift */; };
+		6D41798C1D6822FB0080AC3E /* GoogleApiTokenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41798B1D6822FB0080AC3E /* GoogleApiTokenable.swift */; };
+		6D41798F1D6827240080AC3E /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41798E1D6827240080AC3E /* UserLocationManager.swift */; };
+		6D4179931D682BB10080AC3E /* ContactPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179921D682BB10080AC3E /* ContactPickerViewController.swift */; };
+		6D4179971D682E870080AC3E /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179961D682E870080AC3E /* SegueHandlerType.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6D35C16D1D67B4FD0000D1D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D35C14D1D67B4FD0000D1D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D35C1541D67B4FD0000D1D9;
+			remoteInfo = StashMob;
+		};
+		6D35C18B1D67B6630000D1D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D35C14D1D67B4FD0000D1D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D35C17F1D67B6630000D1D9;
+			remoteInfo = StashMobModel;
+		};
+		6D35C18D1D67B6630000D1D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D35C14D1D67B4FD0000D1D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D35C1541D67B4FD0000D1D9;
+			remoteInfo = StashMob;
+		};
+		6D35C1931D67B6630000D1D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D35C14D1D67B4FD0000D1D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D35C17F1D67B6630000D1D9;
+			remoteInfo = StashMobModel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6D35C19A1D67B6630000D1D9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6D35C1961D67B6630000D1D9 /* StashMobModel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1D652939D51EEA5CC84B5A65 /* Pods-StashMobTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMobTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StashMobTests/Pods-StashMobTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B125E87518C7FFD3AB014D1 /* Pods_StashMobTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StashMobTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E7D436A78872345497188B2 /* Pods-StashMobTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMobTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StashMobTests/Pods-StashMobTests.release.xcconfig"; sourceTree = "<group>"; };
+		6D35C1551D67B4FD0000D1D9 /* StashMob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StashMob.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D35C1581D67B4FD0000D1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6D35C15A1D67B4FD0000D1D9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		6D35C15D1D67B4FD0000D1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6D35C1621D67B4FD0000D1D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6D35C1651D67B4FD0000D1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6D35C1671D67B4FD0000D1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D35C16C1D67B4FD0000D1D9 /* StashMobTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StashMobTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D35C1701D67B4FD0000D1D9 /* EncrytionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncrytionTests.swift; sourceTree = "<group>"; };
+		6D35C1721D67B4FD0000D1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D35C1801D67B6630000D1D9 /* StashMobModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StashMobModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D35C1821D67B6630000D1D9 /* StashMobModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StashMobModel.h; sourceTree = "<group>"; };
+		6D35C1841D67B6630000D1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D35C1891D67B6630000D1D9 /* StashMobModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StashMobModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D35C1901D67B6630000D1D9 /* PlaceModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModelTests.swift; sourceTree = "<group>"; };
+		6D35C1921D67B6630000D1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D35C19F1D67B6840000D1D9 /* StashMob.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StashMob.xcdatamodel; sourceTree = "<group>"; };
+		6D35C1A31D67B75B0000D1D9 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		6D35C1A41D67B75B0000D1D9 /* KeyCodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyCodable.swift; sourceTree = "<group>"; };
+		6D35C1A51D67B75B0000D1D9 /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObject.swift; sourceTree = "<group>"; };
+		6D35C1A61D67B75B0000D1D9 /* ManagedObjectObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectObserver.swift; sourceTree = "<group>"; };
+		6D35C1A71D67B75B0000D1D9 /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
+		6D35C1A81D67B75B0000D1D9 /* ModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBuilder.swift; sourceTree = "<group>"; };
+		6D35C1A91D67B75B0000D1D9 /* ModelVersionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelVersionType.swift; sourceTree = "<group>"; };
+		6D35C1AA1D67B75B0000D1D9 /* NSFileManager+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Extensions.swift"; sourceTree = "<group>"; };
+		6D35C1AB1D67B75B0000D1D9 /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
+		6D35C1AC1D67B75B0000D1D9 /* NSManagedObjectContext+Observers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Observers.swift"; sourceTree = "<group>"; };
+		6D35C1AD1D67B75B0000D1D9 /* NSPersistentStore+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPersistentStore+Extensions.swift"; sourceTree = "<group>"; };
+		6D35C1AE1D67B75B0000D1D9 /* ValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueTransformer.swift; sourceTree = "<group>"; };
+		6D35C1BB1D67B7660000D1D9 /* StashMobStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StashMobStack.swift; sourceTree = "<group>"; };
+		6D35C1BD1D67B76F0000D1D9 /* StashMobModelVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StashMobModelVersion.swift; sourceTree = "<group>"; };
+		6D35C1CD1D67B9DA0000D1D9 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		6D35C1CF1D67B9DA0000D1D9 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		6D35C1D51D67BA290000D1D9 /* RemotePlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemotePlace.swift; sourceTree = "<group>"; };
+		6D35C1D71D67BA2F0000D1D9 /* RemoteContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteContact.swift; sourceTree = "<group>"; };
+		6D35C1DB1D67BEE90000D1D9 /* Crypt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypt.swift; sourceTree = "<group>"; };
+		6D35C1DE1D67C08E0000D1D9 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		6D4179481D67C9560080AC3E /* ContactProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactProtocol.swift; sourceTree = "<group>"; };
+		6D41794B1D67C9BF0080AC3E /* ContactProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactProtocol.swift; sourceTree = "<group>"; };
+		6D4179501D67CBCF0080AC3E /* GMSPlace+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GMSPlace+Extensions.swift"; sourceTree = "<group>"; };
+		6D4179531D67CD6B0080AC3E /* StashMob-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StashMob-Bridging-Header.h"; sourceTree = "<group>"; };
+		6D4179541D67CD6C0080AC3E /* PrivatePhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivatePhone.h; sourceTree = "<group>"; };
+		6D4179551D67CD6C0080AC3E /* PrivatePhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivatePhone.m; sourceTree = "<group>"; };
+		6D4179571D67D0C40080AC3E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6D41795A1D67D2170080AC3E /* PlaceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceHelpers.swift; sourceTree = "<group>"; };
+		6D41795D1D67D4BE0080AC3E /* CoreDataTestUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestUtilities.swift; sourceTree = "<group>"; };
+		6D41795F1D67D5320080AC3E /* Binaryable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binaryable.swift; sourceTree = "<group>"; };
+		6D4179611D67D7450080AC3E /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		6D4179641D67E8F50080AC3E /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		6D4179671D67EF7F0080AC3E /* ContactHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactHelpers.swift; sourceTree = "<group>"; };
+		6D4179711D67FCE10080AC3E /* PlaceAndContactFetchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAndContactFetchable.swift; sourceTree = "<group>"; };
+		6D4179731D67FE570080AC3E /* ContactAndPlaceFetchableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactAndPlaceFetchableTests.swift; sourceTree = "<group>"; };
+		6D4179751D67FE7A0080AC3E /* ContactHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactHelpers.swift; path = StashMobModelTests/ContactHelpers.swift; sourceTree = SOURCE_ROOT; };
+		6D4179761D67FE7A0080AC3E /* CoreDataTestUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataTestUtilities.swift; path = StashMobModelTests/CoreDataTestUtilities.swift; sourceTree = SOURCE_ROOT; };
+		6D4179771D67FE7A0080AC3E /* PlaceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceHelpers.swift; path = StashMobModelTests/PlaceHelpers.swift; sourceTree = SOURCE_ROOT; };
+		6D41797D1D6814110080AC3E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6D4179801D6814740080AC3E /* UserLoggable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoggable.swift; sourceTree = "<group>"; };
+		6D4179831D6816210080AC3E /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		6D4179851D68162B0080AC3E /* UserHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelpers.swift; sourceTree = "<group>"; };
+		6D4179881D681AA00080AC3E /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		6D41798B1D6822FB0080AC3E /* GoogleApiTokenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleApiTokenable.swift; sourceTree = "<group>"; };
+		6D41798E1D6827240080AC3E /* UserLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
+		6D4179921D682BB10080AC3E /* ContactPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPickerViewController.swift; sourceTree = "<group>"; };
+		6D4179961D682E870080AC3E /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
+		EE2E4EB45330CE834B5F7D43 /* Pods-StashMob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.debug.xcconfig"; sourceTree = "<group>"; };
+		F43308FE7F866AA8158613B4 /* Pods_StashMob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StashMob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB7F45913F545E11AC3C17E7 /* Pods-StashMob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.release.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6D35C1521D67B4FD0000D1D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D4179581D67D0C40080AC3E /* CoreTelephony.framework in Frameworks */,
+				6D35C1951D67B6630000D1D9 /* StashMobModel.framework in Frameworks */,
+				42EFB28223EE38A0AC163D4F /* Pods_StashMob.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D35C1691D67B4FD0000D1D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41001AE43B8D5C0576CCAC0E /* Pods_StashMobTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D35C17C1D67B6630000D1D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D35C1861D67B6630000D1D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D35C18A1D67B6630000D1D9 /* StashMobModel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6817AC84BF751C74633C57CD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE2E4EB45330CE834B5F7D43 /* Pods-StashMob.debug.xcconfig */,
+				FB7F45913F545E11AC3C17E7 /* Pods-StashMob.release.xcconfig */,
+				1D652939D51EEA5CC84B5A65 /* Pods-StashMobTests.debug.xcconfig */,
+				5E7D436A78872345497188B2 /* Pods-StashMobTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6D35C14C1D67B4FD0000D1D9 = {
+			isa = PBXGroup;
+			children = (
+				6D35C1571D67B4FD0000D1D9 /* StashMob */,
+				6D35C16F1D67B4FD0000D1D9 /* StashMobTests */,
+				6D35C1811D67B6630000D1D9 /* StashMobModel */,
+				6D35C18F1D67B6630000D1D9 /* StashMobModelTests */,
+				6D35C1561D67B4FD0000D1D9 /* Products */,
+				A051F15F11FFC5C1ED464C23 /* Frameworks */,
+				6817AC84BF751C74633C57CD /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		6D35C1561D67B4FD0000D1D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6D35C1551D67B4FD0000D1D9 /* StashMob.app */,
+				6D35C16C1D67B4FD0000D1D9 /* StashMobTests.xctest */,
+				6D35C1801D67B6630000D1D9 /* StashMobModel.framework */,
+				6D35C1891D67B6630000D1D9 /* StashMobModelTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6D35C1571D67B4FD0000D1D9 /* StashMob */ = {
+			isa = PBXGroup;
+			children = (
+				6D41796A1D67F7DB0080AC3E /* places */,
+				6D4179471D67C94A0080AC3E /* contacts */,
+				6D35C1D91D67BED50000D1D9 /* tools */,
+				6D35C1581D67B4FD0000D1D9 /* AppDelegate.swift */,
+				6D4179871D681A8E0080AC3E /* screens */,
+				6D35C15C1D67B4FD0000D1D9 /* Main.storyboard */,
+				6D35C1621D67B4FD0000D1D9 /* Assets.xcassets */,
+				6D35C1641D67B4FD0000D1D9 /* LaunchScreen.storyboard */,
+				6D4179531D67CD6B0080AC3E /* StashMob-Bridging-Header.h */,
+				6D35C1671D67B4FD0000D1D9 /* Info.plist */,
+			);
+			path = StashMob;
+			sourceTree = "<group>";
+		};
+		6D35C16F1D67B4FD0000D1D9 /* StashMobTests */ = {
+			isa = PBXGroup;
+			children = (
+				6D41797B1D67FE7D0080AC3E /* helpers */,
+				6D35C1701D67B4FD0000D1D9 /* EncrytionTests.swift */,
+				6D35C1721D67B4FD0000D1D9 /* Info.plist */,
+				6D4179731D67FE570080AC3E /* ContactAndPlaceFetchableTests.swift */,
+			);
+			path = StashMobTests;
+			sourceTree = "<group>";
+		};
+		6D35C1811D67B6630000D1D9 /* StashMobModel */ = {
+			isa = PBXGroup;
+			children = (
+				6D35C19E1D67B6840000D1D9 /* StashMob.xcdatamodeld */,
+				6D4179661D67ECB70080AC3E /* stack */,
+				6D41794A1D67C9B10080AC3E /* protocol */,
+				6D35C1D41D67BA210000D1D9 /* remote */,
+				6D35C1C71D67B7F90000D1D9 /* model */,
+				6D35C1A21D67B75B0000D1D9 /* coredatahelpers */,
+			);
+			path = StashMobModel;
+			sourceTree = "<group>";
+		};
+		6D35C18F1D67B6630000D1D9 /* StashMobModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179821D68160A0080AC3E /* user */,
+				6D4179631D67E8CF0080AC3E /* contact */,
+				6D4179591D67D1FC0080AC3E /* place */,
+				6D41795C1D67D49E0080AC3E /* helpers */,
+				6D35C1921D67B6630000D1D9 /* Info.plist */,
+			);
+			path = StashMobModelTests;
+			sourceTree = "<group>";
+		};
+		6D35C1A21D67B75B0000D1D9 /* coredatahelpers */ = {
+			isa = PBXGroup;
+			children = (
+				6D35C1DE1D67C08E0000D1D9 /* Utilities.swift */,
+				6D35C1A31D67B75B0000D1D9 /* Date+Extensions.swift */,
+				6D35C1A41D67B75B0000D1D9 /* KeyCodable.swift */,
+				6D35C1A51D67B75B0000D1D9 /* ManagedObject.swift */,
+				6D35C1A61D67B75B0000D1D9 /* ManagedObjectObserver.swift */,
+				6D35C1A71D67B75B0000D1D9 /* Migration.swift */,
+				6D35C1A81D67B75B0000D1D9 /* ModelBuilder.swift */,
+				6D35C1A91D67B75B0000D1D9 /* ModelVersionType.swift */,
+				6D35C1AA1D67B75B0000D1D9 /* NSFileManager+Extensions.swift */,
+				6D35C1AB1D67B75B0000D1D9 /* NSManagedObjectContext+Extensions.swift */,
+				6D35C1AC1D67B75B0000D1D9 /* NSManagedObjectContext+Observers.swift */,
+				6D35C1AD1D67B75B0000D1D9 /* NSPersistentStore+Extensions.swift */,
+				6D35C1AE1D67B75B0000D1D9 /* ValueTransformer.swift */,
+			);
+			path = coredatahelpers;
+			sourceTree = "<group>";
+		};
+		6D35C1C71D67B7F90000D1D9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				6D41797D1D6814110080AC3E /* User.swift */,
+				6D35C1CD1D67B9DA0000D1D9 /* Place.swift */,
+				6D35C1CF1D67B9DA0000D1D9 /* Contact.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		6D35C1D41D67BA210000D1D9 /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				6D35C1D51D67BA290000D1D9 /* RemotePlace.swift */,
+				6D35C1D71D67BA2F0000D1D9 /* RemoteContact.swift */,
+			);
+			name = remote;
+			sourceTree = "<group>";
+		};
+		6D35C1D91D67BED50000D1D9 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179941D682E740080AC3E /* protocols */,
+				6D4179521D67CD4C0080AC3E /* telephone */,
+				6D41794F1D67CBBB0080AC3E /* conversions */,
+				6D35C1DA1D67BEDC0000D1D9 /* crypt */,
+			);
+			name = tools;
+			sourceTree = "<group>";
+		};
+		6D35C1DA1D67BEDC0000D1D9 /* crypt */ = {
+			isa = PBXGroup;
+			children = (
+				6D35C1DB1D67BEE90000D1D9 /* Crypt.swift */,
+			);
+			name = crypt;
+			sourceTree = "<group>";
+		};
+		6D4179471D67C94A0080AC3E /* contacts */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179691D67F7D30080AC3E /* implementation */,
+				6D4179481D67C9560080AC3E /* ContactProtocol.swift */,
+			);
+			name = contacts;
+			sourceTree = "<group>";
+		};
+		6D41794A1D67C9B10080AC3E /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6D41794B1D67C9BF0080AC3E /* ContactProtocol.swift */,
+				6D41795F1D67D5320080AC3E /* Binaryable.swift */,
+				6D4179611D67D7450080AC3E /* Mappable.swift */,
+				6D4179801D6814740080AC3E /* UserLoggable.swift */,
+			);
+			name = protocol;
+			sourceTree = "<group>";
+		};
+		6D41794F1D67CBBB0080AC3E /* conversions */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179501D67CBCF0080AC3E /* GMSPlace+Extensions.swift */,
+			);
+			name = conversions;
+			sourceTree = "<group>";
+		};
+		6D4179521D67CD4C0080AC3E /* telephone */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179541D67CD6C0080AC3E /* PrivatePhone.h */,
+				6D4179551D67CD6C0080AC3E /* PrivatePhone.m */,
+			);
+			name = telephone;
+			sourceTree = "<group>";
+		};
+		6D4179591D67D1FC0080AC3E /* place */ = {
+			isa = PBXGroup;
+			children = (
+				6D35C1901D67B6630000D1D9 /* PlaceModelTests.swift */,
+				6D41795A1D67D2170080AC3E /* PlaceHelpers.swift */,
+			);
+			name = place;
+			sourceTree = "<group>";
+		};
+		6D41795C1D67D49E0080AC3E /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6D41795D1D67D4BE0080AC3E /* CoreDataTestUtilities.swift */,
+			);
+			name = helpers;
+			sourceTree = "<group>";
+		};
+		6D4179631D67E8CF0080AC3E /* contact */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179641D67E8F50080AC3E /* ContactModel.swift */,
+				6D4179671D67EF7F0080AC3E /* ContactHelpers.swift */,
+			);
+			name = contact;
+			sourceTree = "<group>";
+		};
+		6D4179661D67ECB70080AC3E /* stack */ = {
+			isa = PBXGroup;
+			children = (
+				6D35C1821D67B6630000D1D9 /* StashMobModel.h */,
+				6D35C1841D67B6630000D1D9 /* Info.plist */,
+				6D35C1BB1D67B7660000D1D9 /* StashMobStack.swift */,
+				6D35C1BD1D67B76F0000D1D9 /* StashMobModelVersion.swift */,
+			);
+			name = stack;
+			sourceTree = "<group>";
+		};
+		6D4179691D67F7D30080AC3E /* implementation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = implementation;
+			sourceTree = "<group>";
+		};
+		6D41796A1D67F7DB0080AC3E /* places */ = {
+			isa = PBXGroup;
+			children = (
+				6D41798D1D6827120080AC3E /* location */,
+			);
+			name = places;
+			sourceTree = "<group>";
+		};
+		6D4179701D67FCC80080AC3E /* fetchable */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179711D67FCE10080AC3E /* PlaceAndContactFetchable.swift */,
+			);
+			name = fetchable;
+			sourceTree = "<group>";
+		};
+		6D41797B1D67FE7D0080AC3E /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179751D67FE7A0080AC3E /* ContactHelpers.swift */,
+				6D4179761D67FE7A0080AC3E /* CoreDataTestUtilities.swift */,
+				6D4179771D67FE7A0080AC3E /* PlaceHelpers.swift */,
+			);
+			name = helpers;
+			sourceTree = "<group>";
+		};
+		6D4179821D68160A0080AC3E /* user */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179831D6816210080AC3E /* UserTests.swift */,
+				6D4179851D68162B0080AC3E /* UserHelpers.swift */,
+			);
+			name = user;
+			sourceTree = "<group>";
+		};
+		6D4179871D681A8E0080AC3E /* screens */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179901D682B6E0080AC3E /* mainmap */,
+			);
+			name = screens;
+			sourceTree = "<group>";
+		};
+		6D41798A1D6822B30080AC3E /* apiable */ = {
+			isa = PBXGroup;
+			children = (
+				6D41798B1D6822FB0080AC3E /* GoogleApiTokenable.swift */,
+			);
+			name = apiable;
+			sourceTree = "<group>";
+		};
+		6D41798D1D6827120080AC3E /* location */ = {
+			isa = PBXGroup;
+			children = (
+				6D41798E1D6827240080AC3E /* UserLocationManager.swift */,
+			);
+			name = location;
+			sourceTree = "<group>";
+		};
+		6D4179901D682B6E0080AC3E /* mainmap */ = {
+			isa = PBXGroup;
+			children = (
+				6D35C15A1D67B4FD0000D1D9 /* MapViewController.swift */,
+				6D4179881D681AA00080AC3E /* MapView.swift */,
+				6D4179911D682B7C0080AC3E /* pickcontact */,
+			);
+			name = mainmap;
+			sourceTree = "<group>";
+		};
+		6D4179911D682B7C0080AC3E /* pickcontact */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179921D682BB10080AC3E /* ContactPickerViewController.swift */,
+			);
+			name = pickcontact;
+			sourceTree = "<group>";
+		};
+		6D4179941D682E740080AC3E /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179951D682E7D0080AC3E /* segue */,
+				6D41798A1D6822B30080AC3E /* apiable */,
+				6D4179701D67FCC80080AC3E /* fetchable */,
+			);
+			name = protocols;
+			sourceTree = "<group>";
+		};
+		6D4179951D682E7D0080AC3E /* segue */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179961D682E870080AC3E /* SegueHandlerType.swift */,
+			);
+			name = segue;
+			sourceTree = "<group>";
+		};
+		A051F15F11FFC5C1ED464C23 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D4179571D67D0C40080AC3E /* CoreTelephony.framework */,
+				F43308FE7F866AA8158613B4 /* Pods_StashMob.framework */,
+				4B125E87518C7FFD3AB014D1 /* Pods_StashMobTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6D35C17D1D67B6630000D1D9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D35C1831D67B6630000D1D9 /* StashMobModel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		6D35C1541D67B4FD0000D1D9 /* StashMob */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D35C1751D67B4FD0000D1D9 /* Build configuration list for PBXNativeTarget "StashMob" */;
+			buildPhases = (
+				3053ACD9070935C9631E8B8A /* [CP] Check Pods Manifest.lock */,
+				6D35C1511D67B4FD0000D1D9 /* Sources */,
+				6D35C1521D67B4FD0000D1D9 /* Frameworks */,
+				6D35C1531D67B4FD0000D1D9 /* Resources */,
+				6D35C19A1D67B6630000D1D9 /* Embed Frameworks */,
+				610513619D7971BFF17D685B /* [CP] Embed Pods Frameworks */,
+				595F9B811F939D9F7B4798D5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D35C1941D67B6630000D1D9 /* PBXTargetDependency */,
+			);
+			name = StashMob;
+			productName = StashMob;
+			productReference = 6D35C1551D67B4FD0000D1D9 /* StashMob.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6D35C16B1D67B4FD0000D1D9 /* StashMobTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D35C1781D67B4FD0000D1D9 /* Build configuration list for PBXNativeTarget "StashMobTests" */;
+			buildPhases = (
+				4F494C5B854B97EDD7D82F40 /* [CP] Check Pods Manifest.lock */,
+				6D35C1681D67B4FD0000D1D9 /* Sources */,
+				6D35C1691D67B4FD0000D1D9 /* Frameworks */,
+				6D35C16A1D67B4FD0000D1D9 /* Resources */,
+				2D1B380507E1B2683B846BB8 /* [CP] Embed Pods Frameworks */,
+				CB2D1A9D42727141D8BF1C29 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D35C16E1D67B4FD0000D1D9 /* PBXTargetDependency */,
+			);
+			name = StashMobTests;
+			productName = StashMobTests;
+			productReference = 6D35C16C1D67B4FD0000D1D9 /* StashMobTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6D35C17F1D67B6630000D1D9 /* StashMobModel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D35C1971D67B6630000D1D9 /* Build configuration list for PBXNativeTarget "StashMobModel" */;
+			buildPhases = (
+				6D35C17B1D67B6630000D1D9 /* Sources */,
+				6D35C17C1D67B6630000D1D9 /* Frameworks */,
+				6D35C17D1D67B6630000D1D9 /* Headers */,
+				6D35C17E1D67B6630000D1D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StashMobModel;
+			productName = StashMobModel;
+			productReference = 6D35C1801D67B6630000D1D9 /* StashMobModel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6D35C1881D67B6630000D1D9 /* StashMobModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D35C19B1D67B6630000D1D9 /* Build configuration list for PBXNativeTarget "StashMobModelTests" */;
+			buildPhases = (
+				6D35C1851D67B6630000D1D9 /* Sources */,
+				6D35C1861D67B6630000D1D9 /* Frameworks */,
+				6D35C1871D67B6630000D1D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D35C18C1D67B6630000D1D9 /* PBXTargetDependency */,
+				6D35C18E1D67B6630000D1D9 /* PBXTargetDependency */,
+			);
+			name = StashMobModelTests;
+			productName = StashMobModelTests;
+			productReference = 6D35C1891D67B6630000D1D9 /* StashMobModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6D35C14D1D67B4FD0000D1D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Scott Jones";
+				TargetAttributes = {
+					6D35C1541D67B4FD0000D1D9 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					6D35C16B1D67B4FD0000D1D9 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 6D35C1541D67B4FD0000D1D9;
+					};
+					6D35C17F1D67B6630000D1D9 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					6D35C1881D67B6630000D1D9 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 6D35C1541D67B4FD0000D1D9;
+					};
+				};
+			};
+			buildConfigurationList = 6D35C1501D67B4FD0000D1D9 /* Build configuration list for PBXProject "StashMob" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6D35C14C1D67B4FD0000D1D9;
+			productRefGroup = 6D35C1561D67B4FD0000D1D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6D35C1541D67B4FD0000D1D9 /* StashMob */,
+				6D35C16B1D67B4FD0000D1D9 /* StashMobTests */,
+				6D35C17F1D67B6630000D1D9 /* StashMobModel */,
+				6D35C1881D67B6630000D1D9 /* StashMobModelTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6D35C1531D67B4FD0000D1D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D35C1661D67B4FD0000D1D9 /* LaunchScreen.storyboard in Resources */,
+				6D35C1631D67B4FD0000D1D9 /* Assets.xcassets in Resources */,
+				6D35C15E1D67B4FD0000D1D9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D35C16A1D67B4FD0000D1D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D35C17E1D67B6630000D1D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D35C1871D67B6630000D1D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D1B380507E1B2683B846BB8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StashMobTests/Pods-StashMobTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3053ACD9070935C9631E8B8A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4F494C5B854B97EDD7D82F40 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		595F9B811F939D9F7B4798D5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StashMob/Pods-StashMob-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		610513619D7971BFF17D685B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StashMob/Pods-StashMob-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB2D1A9D42727141D8BF1C29 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StashMobTests/Pods-StashMobTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6D35C1511D67B4FD0000D1D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D4179511D67CBCF0080AC3E /* GMSPlace+Extensions.swift in Sources */,
+				6D4179891D681AA00080AC3E /* MapView.swift in Sources */,
+				6D41798C1D6822FB0080AC3E /* GoogleApiTokenable.swift in Sources */,
+				6D35C15B1D67B4FD0000D1D9 /* MapViewController.swift in Sources */,
+				6D4179561D67CD6C0080AC3E /* PrivatePhone.m in Sources */,
+				6D41798F1D6827240080AC3E /* UserLocationManager.swift in Sources */,
+				6D4179931D682BB10080AC3E /* ContactPickerViewController.swift in Sources */,
+				6D35C1591D67B4FD0000D1D9 /* AppDelegate.swift in Sources */,
+				6D4179491D67C9560080AC3E /* ContactProtocol.swift in Sources */,
+				6D35C1DC1D67BEE90000D1D9 /* Crypt.swift in Sources */,
+				6D4179971D682E870080AC3E /* SegueHandlerType.swift in Sources */,
+				6D4179721D67FCE10080AC3E /* PlaceAndContactFetchable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D35C1681D67B4FD0000D1D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D35C1711D67B4FD0000D1D9 /* EncrytionTests.swift in Sources */,
+				6D4179791D67FE7A0080AC3E /* CoreDataTestUtilities.swift in Sources */,
+				6D41797A1D67FE7A0080AC3E /* PlaceHelpers.swift in Sources */,
+				6D4179781D67FE7A0080AC3E /* ContactHelpers.swift in Sources */,
+				6D4179741D67FE570080AC3E /* ContactAndPlaceFetchableTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D35C17B1D67B6630000D1D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D35C1B61D67B75B0000D1D9 /* NSFileManager+Extensions.swift in Sources */,
+				6D41794C1D67C9BF0080AC3E /* ContactProtocol.swift in Sources */,
+				6D41797F1D6814110080AC3E /* User.swift in Sources */,
+				6D35C1D31D67B9DA0000D1D9 /* Contact.swift in Sources */,
+				6D35C1B01D67B75B0000D1D9 /* KeyCodable.swift in Sources */,
+				6D35C1A01D67B6840000D1D9 /* StashMob.xcdatamodeld in Sources */,
+				6D35C1BC1D67B7660000D1D9 /* StashMobStack.swift in Sources */,
+				6D4179601D67D5320080AC3E /* Binaryable.swift in Sources */,
+				6D35C1B91D67B75B0000D1D9 /* NSPersistentStore+Extensions.swift in Sources */,
+				6D35C1B51D67B75B0000D1D9 /* ModelVersionType.swift in Sources */,
+				6D35C1B31D67B75B0000D1D9 /* Migration.swift in Sources */,
+				6D35C1B41D67B75B0000D1D9 /* ModelBuilder.swift in Sources */,
+				6D35C1D61D67BA290000D1D9 /* RemotePlace.swift in Sources */,
+				6D35C1B11D67B75B0000D1D9 /* ManagedObject.swift in Sources */,
+				6D35C1D81D67BA2F0000D1D9 /* RemoteContact.swift in Sources */,
+				6D35C1D11D67B9DA0000D1D9 /* Place.swift in Sources */,
+				6D35C1AF1D67B75B0000D1D9 /* Date+Extensions.swift in Sources */,
+				6D35C1B21D67B75B0000D1D9 /* ManagedObjectObserver.swift in Sources */,
+				6D35C1B81D67B75B0000D1D9 /* NSManagedObjectContext+Observers.swift in Sources */,
+				6D35C1B71D67B75B0000D1D9 /* NSManagedObjectContext+Extensions.swift in Sources */,
+				6D35C1BE1D67B76F0000D1D9 /* StashMobModelVersion.swift in Sources */,
+				6D35C1DF1D67C08E0000D1D9 /* Utilities.swift in Sources */,
+				6D35C1BA1D67B75B0000D1D9 /* ValueTransformer.swift in Sources */,
+				6D4179811D6814740080AC3E /* UserLoggable.swift in Sources */,
+				6D4179621D67D7450080AC3E /* Mappable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D35C1851D67B6630000D1D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D4179841D6816210080AC3E /* UserTests.swift in Sources */,
+				6D41795E1D67D4BE0080AC3E /* CoreDataTestUtilities.swift in Sources */,
+				6D4179681D67EF7F0080AC3E /* ContactHelpers.swift in Sources */,
+				6D4179861D68162B0080AC3E /* UserHelpers.swift in Sources */,
+				6D35C1911D67B6630000D1D9 /* PlaceModelTests.swift in Sources */,
+				6D4179651D67E8F50080AC3E /* ContactModel.swift in Sources */,
+				6D41795B1D67D2170080AC3E /* PlaceHelpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D35C16E1D67B4FD0000D1D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D35C1541D67B4FD0000D1D9 /* StashMob */;
+			targetProxy = 6D35C16D1D67B4FD0000D1D9 /* PBXContainerItemProxy */;
+		};
+		6D35C18C1D67B6630000D1D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D35C17F1D67B6630000D1D9 /* StashMobModel */;
+			targetProxy = 6D35C18B1D67B6630000D1D9 /* PBXContainerItemProxy */;
+		};
+		6D35C18E1D67B6630000D1D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D35C1541D67B4FD0000D1D9 /* StashMob */;
+			targetProxy = 6D35C18D1D67B6630000D1D9 /* PBXContainerItemProxy */;
+		};
+		6D35C1941D67B6630000D1D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D35C17F1D67B6630000D1D9 /* StashMobModel */;
+			targetProxy = 6D35C1931D67B6630000D1D9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6D35C15C1D67B4FD0000D1D9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D35C15D1D67B4FD0000D1D9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6D35C1641D67B4FD0000D1D9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D35C1651D67B4FD0000D1D9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6D35C1731D67B4FD0000D1D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6D35C1741D67B4FD0000D1D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6D35C1761D67B4FD0000D1D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE2E4EB45330CE834B5F7D43 /* Pods-StashMob.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Base/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Maps/Frameworks\"",
+					"\"${PODS_ROOT}/GooglePlacePicker/Frameworks\"",
+					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
+					"$(PROJECT_DIR)/**",
+				);
+				GoogleMapsApiKey = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
+				GooglePlacesApiKey = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
+				INFOPLIST_FILE = StashMob/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.stash.places;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StashMob/StashMob-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6D35C1771D67B4FD0000D1D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB7F45913F545E11AC3C17E7 /* Pods-StashMob.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Base/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Subspecs/Maps/Frameworks\"",
+					"\"${PODS_ROOT}/GooglePlacePicker/Frameworks\"",
+					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
+					"$(PROJECT_DIR)/**",
+				);
+				GoogleMapsApiKey = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
+				GooglePlacesApiKey = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
+				INFOPLIST_FILE = StashMob/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.stash.places;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StashMob/StashMob-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		6D35C1791D67B4FD0000D1D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D652939D51EEA5CC84B5A65 /* Pods-StashMobTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = StashMobTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.stash.places.StashMobTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StashMob.app/StashMob";
+			};
+			name = Debug;
+		};
+		6D35C17A1D67B4FD0000D1D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E7D436A78872345497188B2 /* Pods-StashMobTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = StashMobTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.stash.places.StashMobTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StashMob.app/StashMob";
+			};
+			name = Release;
+		};
+		6D35C1981D67B6630000D1D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = StashMobModel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.stash.places.StashMobModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6D35C1991D67B6630000D1D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = StashMobModel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.stash.places.StashMobModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6D35C19C1D67B6630000D1D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = StashMobModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.stash.places.StashMobModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StashMob.app/StashMob";
+			};
+			name = Debug;
+		};
+		6D35C19D1D67B6630000D1D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = StashMobModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.stash.places.StashMobModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StashMob.app/StashMob";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6D35C1501D67B4FD0000D1D9 /* Build configuration list for PBXProject "StashMob" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D35C1731D67B4FD0000D1D9 /* Debug */,
+				6D35C1741D67B4FD0000D1D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D35C1751D67B4FD0000D1D9 /* Build configuration list for PBXNativeTarget "StashMob" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D35C1761D67B4FD0000D1D9 /* Debug */,
+				6D35C1771D67B4FD0000D1D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D35C1781D67B4FD0000D1D9 /* Build configuration list for PBXNativeTarget "StashMobTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D35C1791D67B4FD0000D1D9 /* Debug */,
+				6D35C17A1D67B4FD0000D1D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D35C1971D67B6630000D1D9 /* Build configuration list for PBXNativeTarget "StashMobModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D35C1981D67B6630000D1D9 /* Debug */,
+				6D35C1991D67B6630000D1D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D35C19B1D67B6630000D1D9 /* Build configuration list for PBXNativeTarget "StashMobModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D35C19C1D67B6630000D1D9 /* Debug */,
+				6D35C19D1D67B6630000D1D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6D35C19E1D67B6840000D1D9 /* StashMob.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6D35C19F1D67B6840000D1D9 /* StashMob.xcdatamodel */,
+			);
+			currentVersion = 6D35C19F1D67B6840000D1D9 /* StashMob.xcdatamodel */;
+			path = StashMob.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 6D35C14D1D67B4FD0000D1D9 /* Project object */;
+}
