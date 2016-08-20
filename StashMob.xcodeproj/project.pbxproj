@@ -86,6 +86,9 @@
 		6D4E0FFE1D68D3A200292208 /* PhoneNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E0FFD1D68D3A200292208 /* PhoneNumberTests.swift */; };
 		6D4E10011D68D47A00292208 /* CMValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10001D68D47A00292208 /* CMValidator.m */; };
 		6D4E10041D68D5BB00292208 /* TextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10031D68D5BB00292208 /* TextDelegate.swift */; };
+		6D4E10081D68DE8000292208 /* LocationPermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10071D68DE8000292208 /* LocationPermissionManager.swift */; };
+		6D4E100A1D68E10800292208 /* NSManagedObjectContext+LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10091D68E10800292208 /* NSManagedObjectContext+LocationPermission.swift */; };
+		6D4E100C1D68E3CE00292208 /* StoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E100B1D68E3CE00292208 /* StoryBoard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +226,9 @@
 		6D4E10001D68D47A00292208 /* CMValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMValidator.m; sourceTree = "<group>"; };
 		6D4E10031D68D5BB00292208 /* TextDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDelegate.swift; sourceTree = "<group>"; };
 		6D4E10051D68DA1A00292208 /* StashMob.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = StashMob.entitlements; sourceTree = "<group>"; };
+		6D4E10071D68DE8000292208 /* LocationPermissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPermissionManager.swift; sourceTree = "<group>"; };
+		6D4E10091D68E10800292208 /* NSManagedObjectContext+LocationPermission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+LocationPermission.swift"; sourceTree = "<group>"; };
+		6D4E100B1D68E3CE00292208 /* StoryBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoard.swift; sourceTree = "<group>"; };
 		EE2E4EB45330CE834B5F7D43 /* Pods-StashMob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.debug.xcconfig"; sourceTree = "<group>"; };
 		F43308FE7F866AA8158613B4 /* Pods_StashMob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StashMob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB7F45913F545E11AC3C17E7 /* Pods-StashMob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.release.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.release.xcconfig"; sourceTree = "<group>"; };
@@ -303,19 +309,13 @@
 		6D35C1571D67B4FD0000D1D9 /* StashMob */ = {
 			isa = PBXGroup;
 			children = (
-				6D4E10051D68DA1A00292208 /* StashMob.entitlements */,
 				6D41799B1D6897B40080AC3E /* ui */,
 				6D41796A1D67F7DB0080AC3E /* places */,
 				6D4179471D67C94A0080AC3E /* contacts */,
 				6D35C1D91D67BED50000D1D9 /* tools */,
-				6D35C1581D67B4FD0000D1D9 /* AppDelegate.swift */,
 				6D4179871D681A8E0080AC3E /* screens */,
-				6D35C15C1D67B4FD0000D1D9 /* Main.storyboard */,
-				6D35C1621D67B4FD0000D1D9 /* Assets.xcassets */,
-				6D35C1641D67B4FD0000D1D9 /* LaunchScreen.storyboard */,
-				6D4179531D67CD6B0080AC3E /* StashMob-Bridging-Header.h */,
-				6D35C1671D67B4FD0000D1D9 /* Info.plist */,
-				6D4E0FEA1D68C01E00292208 /* assets */,
+				6D35C1581D67B4FD0000D1D9 /* AppDelegate.swift */,
+				6D4E100D1D68E69200292208 /* supportingfiles */,
 			);
 			path = StashMob;
 			sourceTree = "<group>";
@@ -446,6 +446,7 @@
 				6D4E0FDB1D68A3A000292208 /* RemoteContact.swift */,
 				6D4E0FE81D68BF9000292208 /* RemotePlace+Extensions.swift */,
 				6D4E0FFB1D68CA0000292208 /* URL+Extensions.swift */,
+				6D4E100B1D68E3CE00292208 /* StoryBoard.swift */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -507,6 +508,7 @@
 		6D41796A1D67F7DB0080AC3E /* places */ = {
 			isa = PBXGroup;
 			children = (
+				6D4E10061D68DE7500292208 /* permissions */,
 				6D4E0FE51D68BCEF00292208 /* map */,
 				6D41798D1D6827120080AC3E /* location */,
 			);
@@ -711,6 +713,29 @@
 				6D4E10031D68D5BB00292208 /* TextDelegate.swift */,
 			);
 			name = text;
+			sourceTree = "<group>";
+		};
+		6D4E10061D68DE7500292208 /* permissions */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E10071D68DE8000292208 /* LocationPermissionManager.swift */,
+				6D4E10091D68E10800292208 /* NSManagedObjectContext+LocationPermission.swift */,
+			);
+			name = permissions;
+			sourceTree = "<group>";
+		};
+		6D4E100D1D68E69200292208 /* supportingfiles */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E10051D68DA1A00292208 /* StashMob.entitlements */,
+				6D4E0FEA1D68C01E00292208 /* assets */,
+				6D35C15C1D67B4FD0000D1D9 /* Main.storyboard */,
+				6D35C1621D67B4FD0000D1D9 /* Assets.xcassets */,
+				6D35C1641D67B4FD0000D1D9 /* LaunchScreen.storyboard */,
+				6D4179531D67CD6B0080AC3E /* StashMob-Bridging-Header.h */,
+				6D35C1671D67B4FD0000D1D9 /* Info.plist */,
+			);
+			name = supportingfiles;
 			sourceTree = "<group>";
 		};
 		A051F15F11FFC5C1ED464C23 /* Frameworks */ = {
@@ -1015,12 +1040,15 @@
 				6D41799A1D68963F0080AC3E /* UIApplication+Extensions.swift in Sources */,
 				6D4E0FF51D68C41D00292208 /* ScreenSize.swift in Sources */,
 				6D4E0FDC1D68A3A000292208 /* RemoteContact.swift in Sources */,
+				6D4E100A1D68E10800292208 /* NSManagedObjectContext+LocationPermission.swift in Sources */,
 				6D4E10041D68D5BB00292208 /* TextDelegate.swift in Sources */,
 				6D4E0FE71D68BD0200292208 /* GMCenteredController.swift in Sources */,
+				6D4E100C1D68E3CE00292208 /* StoryBoard.swift in Sources */,
 				6D4E0FDA1D68A27100292208 /* NSFileManager+Avatar.swift in Sources */,
 				6D4179561D67CD6C0080AC3E /* PrivatePhone.m in Sources */,
 				6D41798F1D6827240080AC3E /* UserLocationManager.swift in Sources */,
 				6D4179A11D689BD80080AC3E /* Contactable.swift in Sources */,
+				6D4E10081D68DE8000292208 /* LocationPermissionManager.swift in Sources */,
 				6D4E0FFC1D68CA0000292208 /* URL+Extensions.swift in Sources */,
 				6D4E0FE01D68B6E200292208 /* ContactPickerView.swift in Sources */,
 				6D4E0FFA1D68C76700292208 /* EmailDelegate.swift in Sources */,

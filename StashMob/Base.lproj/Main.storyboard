@@ -11,7 +11,7 @@
         <!--Navigation Controller-->
         <scene sceneID="8Xo-Nl-eox">
             <objects>
-                <navigationController navigationBarHidden="YES" id="gi7-9v-arf" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="gi7-9v-arf" customClass="FMNavigationController" customModule="StashMob" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ibN-na-Xer">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -27,7 +27,7 @@
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="StashMob" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="BYZ-38-t0r" customClass="MapViewController" customModule="StashMob" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>

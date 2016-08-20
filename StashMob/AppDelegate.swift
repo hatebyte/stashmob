@@ -17,17 +17,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var context:NSManagedObjectContext!
-
+    var navController:FMNavigationController!
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         GMSPlacesClient.provideAPIKey(NSBundle.mainBundle().googlePlacesKey)
         GMSServices.provideAPIKey(NSBundle.mainBundle().googleMapsKey)
         
+        guard let mcontext = createMainContext() else { fatalError("BIG PROBLEMS OUT THE DOOR!!!") }
+        context                                     = mcontext
 
+        navController                               = UIStoryboard.navigationViewController()
+        let rootVC                                  = UIStoryboard.rootController()
+        rootVC.managedObjectContext                 = context
+        navController.viewControllers               = [rootVC]
         
-        guard let mcontext                           = createMainContext() else { fatalError("BIG PROBLEMS OUT THE DOOR!!!") }
-        context = mcontext
-        
+        self.window                                 = UIWindow(frame:UIScreen.mainScreen().bounds)
+        self.window?.rootViewController             = navController
+        self.window?.frame                          = UIScreen.mainScreen().bounds
+        self.window?.makeKeyAndVisible()
         return true
     }
 
