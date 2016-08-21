@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 import StashMobModel
 
-class PlaceView: UIView {
+class DetailPlaceView: UIView {
 
     @IBOutlet weak var exitButton:UIButton?
     @IBOutlet weak var placeNameLabel:UILabel?

@@ -1,5 +1,5 @@
 //
-//  ContactsViewController.swift
+//  ContactViewController.swift
 //  StashMob
 //
 //  Created by Scott Jones on 8/21/16.
@@ -10,31 +10,36 @@ import UIKit
 import CoreData
 import StashMobModel
 
-class ContactsViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable,SegueHandlerType {
+class ContactViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable, SegueHandlerType {
     
     weak var managedObjectContext: NSManagedObjectContext!
     weak var contactManager: Contactable!
     
-    private typealias Data = DefaultDataProvider<ContactsViewController>
-    private var dataSource:TableViewDataSource<ContactsViewController, Data, ContactTableViewCell>!
+    private typealias Data = DefaultDataProvider<ContactViewController>
+    private var dataSource:TableViewDataSource<ContactViewController, Data, PlaceTableViewCell>!
     private var dataProvider: Data!
-   
-    var remoteContactSelected:RemoteContact?
-    
-    enum SegueIdentifier:String {
-        case PushToContact                         = "pushToContact"
-    }
     
     var theView:TwoListViewable {
         guard let v = view as? TwoListViewable else { fatalError("The view is not a TwoListViewable") }
         return v
     }
     
+    var remoteContact : RemoteContact!
+    var sendPlaces:[RemotePlace]!
+    var recievedPlaces:[RemotePlace]!
+    var remotePlaceSelected:RemotePlace?
+    var selectedPlaceRelation:PlaceRelation = .Sent
+    
+    enum SegueIdentifier:String {
+        case PushToPlace                         = "pushToPlace"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let v = theView as? ContactsView
+        let v = theView as? ContactView
         v?.didload()
+        v?.populate(remoteContact)
         sentPicked()
     }
     
@@ -67,13 +72,17 @@ class ContactsViewController: UIViewController, ManagedObjectContextSettable, Ma
         theView.backButton?.removeTarget(self, action: #selector(pop), forControlEvents: .TouchUpInside)
     }
     
+    var wasSent:Bool {
+        return theView.leftButton?.backgroundColor == UIColor.blueColor()
+    }
+    
     // MARK: ButtonHandlers
     func pop() {
         navigationController?.popViewControllerAnimated(true)
     }
     
     func receivedPicked() {
-        let received                                = managedObjectContext.fetchAllRecievedContacts()
+        let received                                = managedObjectContext.receivedPlacesFrom(remoteContact)
         theView.highlightRecieved()
         
         if received.count == 0 {
@@ -87,7 +96,7 @@ class ContactsViewController: UIViewController, ManagedObjectContextSettable, Ma
     }
     
     func sentPicked() {
-        let sent                                    = managedObjectContext.fetchAllSentContacts()
+        let sent                                    = managedObjectContext.sentPlacesTo(remoteContact)
         theView.highlightSent()
         
         if sent.count == 0 {
@@ -100,46 +109,50 @@ class ContactsViewController: UIViewController, ManagedObjectContextSettable, Ma
         theView.tableView?.delegate                 = self
     }
     
-    
-    // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let mcs                               = segue.destinationViewController as? ManagedObjectContextSettable else { fatalError("DestinationViewController \(segue.destinationViewController.self) is not ManagedObjectContextSettable") }
         mcs.managedObjectContext                    = managedObjectContext
         
         switch segueIdentifierForSegue(segue) {
-        case .PushToContact:
-            guard let vc = mcs as? ContactViewController else {
-                fatalError("DestinationViewController \(segue.destinationViewController.self) is not ContactViewController")
+        case .PushToPlace:
+            guard let vc = mcs as? DetailPlaceViewController else {
+                fatalError("DestinationViewController \(segue.destinationViewController.self) is not DetailPlaceViewController")
             }
-            guard let rcs = remoteContactSelected else { fatalError("Contact selected with out remoteContactSelected") }
-            vc.remoteContact = rcs
+            guard let rps = remotePlaceSelected else { fatalError("Contact selected with out remoteContactSelected") }
+            print(remoteContact)
+            vc.remoteContact                        = remoteContact
+            vc.placeRelation                        = selectedPlaceRelation
+            vc.placeId                              = rps.placeId
+            vc.remotePlace                          = rps
         }
     }
     
 }
 
-extension ContactsViewController : UITableViewDelegate {
-    
+extension ContactViewController : UITableViewDelegate {
+   
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let contact = dataProvider.objectAtIndexPath(indexPath)
-        remoteContactSelected = contact
+        let place = dataProvider.objectAtIndexPath(indexPath)
+        remotePlaceSelected     = place
+        selectedPlaceRelation   = (wasSent) ? .Sent : .Received
         
-        performSegue(.PushToContact)
+        performSegue(.PushToPlace)
     }
+    
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return ContactTableViewCellHeight
+        return PlaceTableViewCellHeight
     }
     
 }
 
-extension ContactsViewController : DataProviderDelegate {
-    func dataProviderDidUpdate(updates:[DataProviderUpdate<RemoteContact>]?) {
+extension ContactViewController : DataProviderDelegate {
+    func dataProviderDidUpdate(updates:[DataProviderUpdate<RemotePlace>]?) {
     }
 }
 
-extension ContactsViewController : DataSourceDelegate {
-    func cellIdentifierForObject(object:RemoteContact) -> String {
-        return ContactTableViewCell.Identifier
+extension ContactViewController : DataSourceDelegate {
+    func cellIdentifierForObject(object:RemotePlace) -> String {
+        return PlaceTableViewCell.Identifier
     }
 }

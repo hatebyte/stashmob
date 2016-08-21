@@ -26,10 +26,9 @@ extension PlaceRelation {
     }
 }
 
-class PlaceViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable {
+class DetailPlaceViewController: UIViewController, ManagedObjectContextSettable {
         
     weak var managedObjectContext: NSManagedObjectContext!
-    weak var contactManager: Contactable!
     private var gmController:GMCenteredController!
     
     var remoteContact:RemoteContact!
@@ -40,12 +39,12 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
         }
     }
     var placeId:String?
-    private typealias Data = DefaultDataProvider<PlaceViewController>
-    private var dataSource:TableViewDataSource<PlaceViewController, Data, PlaceFeatureTableViewCell>!
+    private typealias Data = DefaultDataProvider<DetailPlaceViewController>
+    private var dataSource:TableViewDataSource<DetailPlaceViewController, Data, PlaceFeatureTableViewCell>!
     private var dataProvider: Data!
     
-    var theView:PlaceView {
-        guard let v = view as? PlaceView else { fatalError("The view is not a PlaceView") }
+    var theView:DetailPlaceView {
+        guard let v = view as? DetailPlaceView else { fatalError("The view is not a DetailPlaceView") }
         return v
     }
     
@@ -87,7 +86,11 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
     
     // MARK : Button handlers
     func dismiss() {
-        dismissViewControllerAnimated(true, completion: nil)
+        if let nav = navigationController {
+            nav.popViewControllerAnimated(true)
+        } else {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
     }
    
     func savePlace() {
@@ -161,7 +164,7 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
 }
 
 
-extension PlaceViewController : UITableViewDelegate {
+extension DetailPlaceViewController : UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return PlaceFeatureTableViewCellHeight
@@ -169,12 +172,12 @@ extension PlaceViewController : UITableViewDelegate {
     
 }
 
-extension PlaceViewController : DataProviderDelegate {
+extension DetailPlaceViewController : DataProviderDelegate {
     func dataProviderDidUpdate(updates:[DataProviderUpdate<PlaceFeature>]?) {
     }
 }
 
-extension PlaceViewController : DataSourceDelegate {
+extension DetailPlaceViewController : DataSourceDelegate {
     func cellIdentifierForObject(object:PlaceFeature) -> String {
         return PlaceFeatureTableViewCell.Identifier
     }

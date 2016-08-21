@@ -26,8 +26,8 @@ extension UIStoryboard {
         return navController
     }
     
-    static func receivedModal()->PlaceViewController {
-        guard let controller = mainStoryBoard.instantiateViewControllerWithIdentifier("PlaceViewController") as? PlaceViewController
+    static func receivedModal()->DetailPlaceViewController {
+        guard let controller = mainStoryBoard.instantiateViewControllerWithIdentifier("DetailPlaceViewController") as? DetailPlaceViewController
             else { fatalError("The storyboard has no RecievedPlaceViewController") }
         return controller
     }
