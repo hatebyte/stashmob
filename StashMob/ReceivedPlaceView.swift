@@ -21,7 +21,7 @@ class RecievedPlaceView: UIView {
     @IBOutlet weak var contactImageView:UIImageView?
     
     func didload() {
-        let sendText                        = NSLocalizedString("Close X", comment: "ReceivedPlaceView : close : text")
+        let sendText                        = NSLocalizedString("Close", comment: "ReceivedPlaceView : close : text")
         exitButton?.setTitle(sendText, forState: .Normal)
         
         sentYouLabel?.text                  = NSLocalizedString("sent you", comment: "ReceivedPlaceView : sentYouLabel : text")

@@ -46,4 +46,11 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         presentViewController(modalVC, animated: true, completion: nil)
     }
     
+    func showLoginModal() {
+        let modalVC = UIStoryboard.loginModal()
+        modalVC.managedObjectContext    = managedObjectContext
+        modalVC.contactManager          = contactManager
+        presentViewController(modalVC, animated: true, completion: nil)
+    }
+    
 }

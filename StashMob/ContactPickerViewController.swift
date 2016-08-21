@@ -99,8 +99,6 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
         guard let loggedInUser = User.loggedInUser(managedObjectContext) else {
             fatalError("FIX THIS, THE USER ISNT EVEN LOGGED IN")
         }
-        let einfo = loggedInUser.emailInfo(remotePlace.placeId)
-        let tinfo = loggedInUser.textInfo(remotePlace.placeId)
 
         switch remoteContact.options {
         case .Both:
@@ -111,9 +109,11 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
             let textText = NSLocalizedString("TEXT", comment: "ContactPickerViewController : actionSheet : textButton")
 
             let emailAction = UIAlertAction(title: emailText, style: .Default)  { [unowned self] action in
+                let einfo = loggedInUser.emailInfo(self.remotePlace.placeId)
                 self.sendEmail(einfo)
             }
             let textAction = UIAlertAction(title: textText, style: .Default)  { [unowned self] action in
+                let tinfo = loggedInUser.textInfo(self.remotePlace.placeId)
                 self.sendTextMessage(tinfo)
             }
             actionController.addAction(emailAction)
@@ -121,8 +121,10 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
             presentViewController(actionController, animated: true, completion: nil)
 
         case .Email:
+            let einfo = loggedInUser.emailInfo(remotePlace.placeId)
             sendEmail(einfo)
         case .Text:
+            let tinfo = loggedInUser.textInfo(remotePlace.placeId)
             sendTextMessage(tinfo)
         }
     }

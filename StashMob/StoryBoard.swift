@@ -31,4 +31,13 @@ extension UIStoryboard {
             else { fatalError("The storyboard has no RecievedPlaceViewController") }
         return controller
     }
+
+    static func loginModal()->LoginViewController {
+        guard let controller = mainStoryBoard.instantiateViewControllerWithIdentifier("LoginViewController") as? LoginViewController
+            else { fatalError("The storyboard has no LoginViewController") }
+        return controller
+    }
+
+    
+    
 }

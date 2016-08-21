@@ -57,10 +57,10 @@ extension RemoteContact {
             return .Both
         } else if let _ = email {
             return .Email
-        } else if let _ = phoneNumber{
+        } else if let _ = phoneNumber {
             return .Text
         }
-        fatalError("The Remote user needs something to contact you by")
+        fatalError("The RemoteContact has defied the logic of the app")
     }
     
 }

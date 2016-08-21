@@ -28,15 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let mcontext = createMainContext() else { fatalError("BIG PROBLEMS OUT THE DOOR!!!") }
         context                                     = mcontext
 
-        context.performChangesAndWait { [unowned self] in
-            let user:User = self.context.insertObject()
-            user.phoneNumber = "9085818600"
-            user.email = "hatebyte@gmail.com"
-            user.firstName = "Scott"
-            user.lastName = "Jones"
-            user.setAsLoggedInUser()
-        }
-        
         navController                               = UIStoryboard.navigationViewController()
         navController.managedObjectContext          = context
         navController.contactManager                = contactManager
@@ -50,6 +41,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController             = navController
         self.window?.frame                          = UIScreen.mainScreen().bounds
         self.window?.makeKeyAndVisible()
+        
+//        context.performChangesAndWait { [unowned self] in
+//            let user:User = self.context.insertObject()
+//            user.phoneNumber = "9085818600"
+//            user.email = "hatebyte@gmail.com"
+//            user.firstName = "Scott"
+//            user.lastName = "Jones"
+//            user.setAsLoggedInUser()
+//        }
+        
+        guard let _  = User.loggedInUser(context) else {
+            navController.showLoginModal()
+            return true
+        }
         return true
     }
 
