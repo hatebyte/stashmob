@@ -11,22 +11,41 @@ import CoreData
 import GooglePlaces
 import StashMobModel
 
-class RecievedPlaceViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable {
+enum PlaceRelation {
+    case Received
+    case Sent
+}
+extension PlaceRelation {
+    var asString:String {
+        switch self {
+        case .Received:
+            return NSLocalizedString("sent you", comment: "PlaceRelation : Recieved : text")
+        case .Sent:
+            return NSLocalizedString("was sent", comment: "PlaceRelation : Sent : text")
+        }
+    }
+}
+
+class PlaceViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable {
         
     weak var managedObjectContext: NSManagedObjectContext!
     weak var contactManager: Contactable!
     private var gmController:GMCenteredController!
     
     var remoteContact:RemoteContact!
+    var placeRelation:PlaceRelation!
     var remotePlace:RemotePlace? {
         didSet {
            updatePlaceAndMap()
         }
     }
     var placeId:String?
+    private typealias Data = DefaultDataProvider<PlaceViewController>
+    private var dataSource:TableViewDataSource<PlaceViewController, Data, PlaceFeatureTableViewCell>!
+    private var dataProvider: Data!
     
-    var theView:RecievedPlaceView {
-        guard let v = view as? RecievedPlaceView else { fatalError("The view is not a RecievedPlaceView") }
+    var theView:PlaceView {
+        guard let v = view as? PlaceView else { fatalError("The view is not a RecievedPlaceView") }
         return v
     }
     
@@ -34,10 +53,11 @@ class RecievedPlaceViewController: UIViewController, ManagedObjectContextSettabl
         super.viewDidLoad()
 
         theView.didload()
-        theView.populateContact(remoteContact)
+        theView.populateContact(remoteContact, placeRelation:placeRelation)
         if let pm = placeId {
             fetchPlace(pm)
-            return
+        } else if let pm = remotePlace?.placeId {
+            fetchPlace(pm)
         }
         updatePlaceAndMap()
     }
@@ -80,8 +100,7 @@ class RecievedPlaceViewController: UIViewController, ManagedObjectContextSettabl
     func fetchPlace(placeId:String) {
         let placeClient             = GMSPlacesClient()
         placeClient.lookUpPlaceID(placeId, callback: { [weak self] place, error in
-            if let error = error {
-                print("lookup place id query error: \(error.localizedDescription)")
+            if let _ = error {
                 self?.alertBadThingsWithRetryBlock {
                     self?.dismiss()
                 }
@@ -91,10 +110,6 @@ class RecievedPlaceViewController: UIViewController, ManagedObjectContextSettabl
             if let place = place {
                 self?.remotePlace = place.toRemotePlace()
                 self?.savePlace()
-                print("Place name \(place.name)")
-                print("Place address \(place.formattedAddress)")
-                print("Place placeID \(place.placeID)")
-                print("Place attributions \(place.attributions)")
             } else {
                 self?.alertBadThingsWithRetryBlock {
                     self?.dismiss()
@@ -109,7 +124,12 @@ class RecievedPlaceViewController: UIViewController, ManagedObjectContextSettabl
             return
         }
         theView.populatePlace(rp)
-        gmController                = GMCenteredController(mapView: theView.mapView!, coordinate:rp.coordinate, image:remoteContact.getPinImage() )
+        let image = (placeRelation == .Received) ? remoteContact.getPinImage() : UIImage(named:"event_pin")
+        gmController                                = GMCenteredController(mapView: theView.mapView!, coordinate:rp.coordinate, image:image)
+        
+        dataProvider                                = DefaultDataProvider(items:rp.tableData, delegate :self)
+        dataSource                                  = TableViewDataSource(tableView:theView.tableView!, dataProvider: dataProvider, delegate:self)
+        theView.tableView?.delegate                 = self
     }
     
     /*
@@ -127,7 +147,6 @@ class RecievedPlaceViewController: UIViewController, ManagedObjectContextSettabl
     func alertBadThingsWithRetryBlock(block:()->()) {
         let alertTitle              = NSLocalizedString("Whoa! Thats not a place", comment: "RecievedPlaceViewController : error : alertTitle  ")
         let alertMessage            = NSLocalizedString("Lets get outta here!", comment: "RecievedPlaceViewController : error : message")
-        
         let dismissText             = NSLocalizedString("Dismiss", comment: "RecievedPlaceViewController : error : forgetit")
         
         let alertController         = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
@@ -139,4 +158,24 @@ class RecievedPlaceViewController: UIViewController, ManagedObjectContextSettabl
         presentViewController(alertController, animated: true, completion: nil)
     }
     
+}
+
+
+extension PlaceViewController : UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return PlaceFeatureTableViewCellHeight
+    }
+    
+}
+
+extension PlaceViewController : DataProviderDelegate {
+    func dataProviderDidUpdate(updates:[DataProviderUpdate<PlaceFeature>]?) {
+    }
+}
+
+extension PlaceViewController : DataSourceDelegate {
+    func cellIdentifierForObject(object:PlaceFeature) -> String {
+        return PlaceFeatureTableViewCell.Identifier
+    }
 }

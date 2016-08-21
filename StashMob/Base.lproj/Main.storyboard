@@ -123,15 +123,15 @@
             </objects>
             <point key="canvasLocation" x="342" y="306"/>
         </scene>
-        <!--Recieved Place View Controller-->
+        <!--Place View Controller-->
         <scene sceneID="U7q-xa-Ydd">
             <objects>
-                <viewController storyboardIdentifier="RecievedPlaceViewController" id="jkF-PN-pGK" customClass="RecievedPlaceViewController" customModule="StashMob" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaceViewController" id="jkF-PN-pGK" customClass="PlaceViewController" customModule="StashMob" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8O0-q8-Yb7"/>
                         <viewControllerLayoutGuide type="bottom" id="pPo-fF-cbb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LMP-tj-2g5" customClass="RecievedPlaceView" customModule="StashMob" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="LMP-tj-2g5" customClass="PlaceView" customModule="StashMob" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -171,6 +171,44 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hS3-la-LI9">
                                         <rect key="frame" x="20" y="150" width="560" height="200"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaceFeatureTableViewCell" id="lAn-jj-mRH" customClass="PlaceFeatureTableViewCell" customModule="StashMob" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lAn-jj-mRH" id="VN2-wT-3ll">
+                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66S-Cw-kCQ">
+                                                            <rect key="frame" x="20" y="0.0" width="168" height="43.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLG-O8-Ghc">
+                                                            <rect key="frame" x="198" y="0.0" width="342" height="43.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="66S-Cw-kCQ" firstAttribute="top" secondItem="VN2-wT-3ll" secondAttribute="top" id="5zJ-Ij-Cqg"/>
+                                                        <constraint firstAttribute="bottom" secondItem="WLG-O8-Ghc" secondAttribute="bottom" id="Ijd-VU-Vxj"/>
+                                                        <constraint firstItem="66S-Cw-kCQ" firstAttribute="width" secondItem="VN2-wT-3ll" secondAttribute="width" multiplier="0.3" id="MWz-Q5-7ut"/>
+                                                        <constraint firstItem="66S-Cw-kCQ" firstAttribute="leading" secondItem="VN2-wT-3ll" secondAttribute="leading" constant="20" id="bAz-vi-rKs"/>
+                                                        <constraint firstAttribute="bottom" secondItem="66S-Cw-kCQ" secondAttribute="bottom" id="buv-W6-K32"/>
+                                                        <constraint firstAttribute="trailing" secondItem="WLG-O8-Ghc" secondAttribute="trailing" constant="20" id="sZC-rt-a7q"/>
+                                                        <constraint firstItem="WLG-O8-Ghc" firstAttribute="leading" secondItem="66S-Cw-kCQ" secondAttribute="trailing" constant="10" id="tUo-nC-TZs"/>
+                                                        <constraint firstItem="WLG-O8-Ghc" firstAttribute="top" secondItem="VN2-wT-3ll" secondAttribute="top" id="zdH-iT-yyL"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="keyLabel" destination="66S-Cw-kCQ" id="UCS-0X-7Bm"/>
+                                                    <outlet property="valueLabel" destination="WLG-O8-Ghc" id="LOc-7o-QJR"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKO-mR-2ba">
                                         <rect key="frame" x="20" y="10" width="560" height="50"/>
@@ -240,6 +278,7 @@
                             <outlet property="mapView" destination="3p3-2r-7KU" id="LoU-s5-Djt"/>
                             <outlet property="placeNameLabel" destination="Are-6F-pS8" id="v02-pu-MIg"/>
                             <outlet property="sentYouLabel" destination="Sd2-fd-mxL" id="oJb-Df-wtu"/>
+                            <outlet property="tableView" destination="hS3-la-LI9" id="lWV-6y-4tk"/>
                         </connections>
                     </view>
                 </viewController>

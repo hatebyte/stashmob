@@ -41,6 +41,7 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         let modalVC = UIStoryboard.receivedModal()
         modalVC.remoteContact           = remoteContact
         modalVC.placeId                 = placeId
+        modalVC.placeRelation           = .Received
         modalVC.managedObjectContext    = managedObjectContext
         modalVC.contactManager          = contactManager
         presentViewController(modalVC, animated: true, completion: nil)

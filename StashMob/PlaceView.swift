@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 import StashMobModel
 
-class RecievedPlaceView: UIView {
+class PlaceView: UIView {
 
     @IBOutlet weak var exitButton:UIButton?
     @IBOutlet weak var placeNameLabel:UILabel?
@@ -19,12 +19,11 @@ class RecievedPlaceView: UIView {
     @IBOutlet weak var mapView:GMSMapView?
     @IBOutlet weak var sentYouLabel:UILabel?
     @IBOutlet weak var contactImageView:UIImageView?
+    @IBOutlet weak var tableView:UITableView?
     
     func didload() {
         let sendText                        = NSLocalizedString("Close", comment: "ReceivedPlaceView : close : text")
         exitButton?.setTitle(sendText, forState: .Normal)
-        
-        sentYouLabel?.text                  = NSLocalizedString("sent you", comment: "ReceivedPlaceView : sentYouLabel : text")
         
         placeNameLabel?.numberOfLines       = 0
         placeNameLabel?.font                = UIFont.boldSystemFontOfSize(24)
@@ -34,7 +33,7 @@ class RecievedPlaceView: UIView {
         contactNameLabel?.font              = UIFont.boldSystemFontOfSize(24)
     }
     
-    func populateContact(contact:RemoteContact) {
+    func populateContact(contact:RemoteContact, placeRelation:PlaceRelation) {
         let fn                              = contact.fullName
         contactNameLabel?.text              = fn
         
@@ -43,6 +42,8 @@ class RecievedPlaceView: UIView {
         contactWidthConstraint?.constant    = min(w, max)
         
         contactImageView?.image             = contact.getImage()
+    
+        sentYouLabel?.text                  = placeRelation.asString
     }
 
     func populatePlace(place:RemotePlace) {
