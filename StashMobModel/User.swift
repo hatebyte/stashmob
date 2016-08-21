@@ -12,9 +12,10 @@ import CoreData
 
 public class User: ManagedObject {
 
-    @NSManaged var firstName: String?
-    @NSManaged var lastName: String?
-    @NSManaged var phoneNumber: String?
+    @NSManaged public var firstName: String?
+    @NSManaged public var lastName: String?
+    @NSManaged public var phoneNumber: String?
+    @NSManaged public var email: String?
 
 }
 

@@ -96,6 +96,12 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
     }
 
     func send() {
+        guard let loggedInUser = User.loggedInUser(managedObjectContext) else {
+            fatalError("FIX THIS, THE USER ISNT EVEN LOGGED IN")
+        }
+        let einfo = loggedInUser.emailInfo(remotePlace.placeId)
+        let tinfo = loggedInUser.textInfo(remotePlace.placeId)
+
         switch remoteContact.options {
         case .Both:
             let titleText = NSLocalizedString("How do you want to message \(remoteContact.fullName)", comment: "ContactPickerViewController : actionSheetTitle : titleText")
@@ -105,19 +111,19 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
             let textText = NSLocalizedString("TEXT", comment: "ContactPickerViewController : actionSheet : textButton")
 
             let emailAction = UIAlertAction(title: emailText, style: .Default)  { [unowned self] action in
-                self.sendEmail()
+                self.sendEmail(einfo)
             }
             let textAction = UIAlertAction(title: textText, style: .Default)  { [unowned self] action in
-                self.sendTextMessage()
+                self.sendTextMessage(tinfo)
             }
             actionController.addAction(emailAction)
             actionController.addAction(textAction)
             presentViewController(actionController, animated: true, completion: nil)
 
         case .Email:
-            sendEmail()
+            sendEmail(einfo)
         case .Text:
-            sendTextMessage()
+            sendTextMessage(tinfo)
         }
     }
     
@@ -178,9 +184,8 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
     */
 
     
-    func sendEmail() {
+    func sendEmail(info:EmailInfo) {
         emailDelegate = EmailDelegate()
-        let info = remoteContact.emailInfo(remotePlace.placeId)
         emailDelegate?.email(self, info: info) { [unowned self] isSent in
             if isSent {
                 self.managedObjectContext.send(self.remotePlace, toContact:self.remoteContact)
@@ -190,9 +195,8 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
         }
     }
     
-    func sendTextMessage() {
+    func sendTextMessage(info:TextInfo) {
         textDelegate = TextDelegate()
-        let info = remoteContact.textInfo(remotePlace.placeId)
         textDelegate?.text(self, info: info) { [unowned self] isSent in
             if isSent {
                 self.managedObjectContext.send(self.remotePlace, toContact:self.remoteContact)

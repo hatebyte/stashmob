@@ -28,6 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let mcontext = createMainContext() else { fatalError("BIG PROBLEMS OUT THE DOOR!!!") }
         context                                     = mcontext
 
+        context.performChangesAndWait { [unowned self] in
+            let user:User = self.context.insertObject()
+            user.phoneNumber = "9085818600"
+            user.email = "hatebyte@gmail.com"
+            user.firstName = "Scott"
+            user.lastName = "Jones"
+            user.setAsLoggedInUser()
+        }
+        
         navController                               = UIStoryboard.navigationViewController()
         navController.managedObjectContext          = context
         navController.contactManager                = contactManager

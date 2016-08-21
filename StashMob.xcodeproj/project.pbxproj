@@ -97,6 +97,7 @@
 		6D4E10211D692AB800292208 /* defaultavatar_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D4E101E1D692AB800292208 /* defaultavatar_pin.png */; };
 		6D4E10221D692AB800292208 /* defaultavatar_pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D4E101F1D692AB800292208 /* defaultavatar_pin@2x.png */; };
 		6D4E10231D692AB800292208 /* defaultavatar_pin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D4E10201D692AB800292208 /* defaultavatar_pin@3x.png */; };
+		6D4E10251D6930B300292208 /* User+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10241D6930B300292208 /* User+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +246,7 @@
 		6D4E101E1D692AB800292208 /* defaultavatar_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultavatar_pin.png; sourceTree = "<group>"; };
 		6D4E101F1D692AB800292208 /* defaultavatar_pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultavatar_pin@2x.png"; sourceTree = "<group>"; };
 		6D4E10201D692AB800292208 /* defaultavatar_pin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultavatar_pin@3x.png"; sourceTree = "<group>"; };
+		6D4E10241D6930B300292208 /* User+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Extension.swift"; sourceTree = "<group>"; };
 		EE2E4EB45330CE834B5F7D43 /* Pods-StashMob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.debug.xcconfig"; sourceTree = "<group>"; };
 		F43308FE7F866AA8158613B4 /* Pods_StashMob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StashMob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB7F45913F545E11AC3C17E7 /* Pods-StashMob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.release.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.release.xcconfig"; sourceTree = "<group>"; };
@@ -463,6 +465,7 @@
 				6D4E0FDB1D68A3A000292208 /* RemoteContact.swift */,
 				6D4E0FE81D68BF9000292208 /* RemotePlace+Extensions.swift */,
 				6D4E0FFB1D68CA0000292208 /* URL+Extensions.swift */,
+				6D4E10241D6930B300292208 /* User+Extension.swift */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -1101,6 +1104,7 @@
 				6D41798F1D6827240080AC3E /* UserLocationManager.swift in Sources */,
 				6D4179A11D689BD80080AC3E /* Contactable.swift in Sources */,
 				6D4E100F1D68F7DE00292208 /* GMMultiMarkerController.swift in Sources */,
+				6D4E10251D6930B300292208 /* User+Extension.swift in Sources */,
 				6D4E10171D6911DC00292208 /* HalfContact.swift in Sources */,
 				6D4E10081D68DE8000292208 /* LocationPermissionManager.swift in Sources */,
 				6D4E101C1D691E4200292208 /* ReceivedPlaceView.swift in Sources */,

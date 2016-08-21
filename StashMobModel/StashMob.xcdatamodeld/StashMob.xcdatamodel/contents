@@ -28,6 +28,7 @@
         <relationship name="sentToContacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="sentPlaces" inverseEntity="Contact" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" attributeType="String" syncable="YES"/>
         <attribute name="isLoggedIn" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastName" attributeType="String" syncable="YES"/>
@@ -36,6 +37,6 @@
     <elements>
         <element name="Contact" positionX="-54" positionY="72" width="128" height="165"/>
         <element name="Place" positionX="-63" positionY="-18" width="128" height="270"/>
-        <element name="User" positionX="-54" positionY="99" width="128" height="105"/>
+        <element name="User" positionX="-54" positionY="99" width="128" height="120"/>
     </elements>
 </model>
