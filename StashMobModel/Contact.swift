@@ -59,7 +59,20 @@ public class Contact: ManagedObject {
         print(key)
         return NSPredicate(format: "%K == %@ OR %K == %@ ", Keys.PhoneNumber.rawValue, key, Keys.Email.rawValue, key)
     }
- 
+
+    public static func contactForNumberOrEmailPredicate(email:String?, phoneNumber:String?)->NSPredicate? {
+        if let e = email {
+            guard let p = phoneNumber else {
+                return contactForEmailPredicate(e)
+            }
+            return NSPredicate(format: "%K == %@ OR %K == %@ ", Keys.PhoneNumber.rawValue, e, Keys.Email.rawValue, p)
+        }
+        if let p = phoneNumber {
+            return contactForPhoneNumberPredicate(p)
+        }
+        return nil
+    }
+    
     
 }
 

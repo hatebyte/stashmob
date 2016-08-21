@@ -25,6 +25,16 @@ enum ParamValues {
 typealias ParamFor = (key:UrlParam)->ParamValues
 
 extension NSURL {
+   
+    var receivedItem:ReceivedItem? {
+        guard let p = placeParam() else {
+            return nil
+        }
+        print(absoluteString)
+        let n = numberParam()
+        let e = emailParam()
+        return ReceivedItem(placeId: p, phoneNumber:n, email: e)
+    }
     
     var paramFor:ParamFor {
         get {

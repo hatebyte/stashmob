@@ -55,7 +55,7 @@ class GMMultiMarkerController:NSObject {
             for p in s.places {
                 let marker                  = GMSMarker(position: p.coordinate)
                 marker.map                  = mapView
-                marker.icon                 = s.person.getImage()
+                marker.icon                 = s.person.getPinImage()
                 marker.groundAnchor         = CGPointMake(0.5, 0.5);
                 bounds                      = bounds.includingCoordinate(marker.position)
                 receivedMarkers.append(marker)

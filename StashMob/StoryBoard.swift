@@ -16,7 +16,7 @@ extension UIStoryboard {
     
     static func rootController()->MapViewController {
         guard let rootController = mainStoryBoard.instantiateViewControllerWithIdentifier("MapViewController") as? MapViewController
-            else { fatalError("The storyboard has the wrong type of navigation rootController") }
+            else { fatalError("The storyboard has no rootViewController") }
         return rootController
     }
    
@@ -24,5 +24,11 @@ extension UIStoryboard {
         guard let navController = mainStoryBoard.instantiateInitialViewController() as? FMNavigationController
             else { fatalError("The storyboard has the wrong type of navigation controller") }
         return navController
+    }
+    
+    static func receivedModal()->RecievedPlaceViewController {
+        guard let controller = mainStoryBoard.instantiateViewControllerWithIdentifier("RecievedPlaceViewController") as? RecievedPlaceViewController
+            else { fatalError("The storyboard has no RecievedPlaceViewController") }
+        return controller
     }
 }

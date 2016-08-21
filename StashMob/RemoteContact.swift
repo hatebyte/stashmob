@@ -32,6 +32,14 @@ extension RemoteContact {
         }
         return img
     }
+    
+    func getPinImage()->UIImage {
+        guard let imgN = imageName else { return UIImage(named: "defaultavatar_pin")! }
+        guard let img = NSFileManager.defaultManager().getImageNamed(imgN, ext:"jpg") else {
+            return UIImage(named: "defaultavatar_pin")!
+        }
+        return img
+    }
    
     var fullName:String {
         if let f = firstName, l = lastName {
@@ -47,13 +55,17 @@ extension RemoteContact {
     func deepLinkUrlMessage(placeId:String)->String {
         var emailhash = ""
         var phoneHash = ""
+        var amp = ""
         if let e = email {
             emailhash = "e=\(e)"
         }
         if let pn = phoneNumber {
-            phoneHash   = "p=\(pn)"
+            phoneHash   = "n=\(pn)"
         }
-        return "\(subMessage)\n\n\(NSBundle.mainBundle().deepLinkUrl)://\(placeId)?\(emailhash)&\(phoneHash)"
+        if phoneHash != "" && emailhash != "" {
+            amp = "&"
+        }
+        return "\(subMessage)\n\n\(NSBundle.mainBundle().deepLinkUrl)://?p=\(placeId)&\(emailhash)\(amp)\(phoneHash)"
     }
     
     func emailInfo(placeId:String)->EmailInfo {

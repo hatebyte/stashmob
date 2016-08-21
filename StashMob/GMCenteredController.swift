@@ -12,9 +12,9 @@ import GoogleMaps
 
 class GMCenteredController:NSObject {
     
-    var marker:GMSMarker?
+    private var marker:GMSMarker?
     weak var mapView:GMSMapView!
-    var coordinate:CLLocationCoordinate2D!
+    private var coordinate:CLLocationCoordinate2D!
  
     init(mapView:GMSMapView, coordinate:CLLocationCoordinate2D, image:UIImage?) {
         self.mapView                        = mapView

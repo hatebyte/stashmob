@@ -29,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         context                                     = mcontext
 
         navController                               = UIStoryboard.navigationViewController()
+        navController.managedObjectContext          = context
+        navController.contactManager                = contactManager
+ 
         let rootVC                                  = UIStoryboard.rootController()
         rootVC.managedObjectContext                 = context
         rootVC.contactManager                       = contactManager
@@ -65,7 +68,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK: Open URL
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        print("LAUNCHED FROM TEXT : \(url.absoluteString)")
+        print("LAUNCHED FROM TEXT : \(url.receivedItem)")
+        guard let receivedItem = url.receivedItem else { return false }
+        navController.accept(receivedItem)
         return false
     }
     
