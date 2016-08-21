@@ -106,6 +106,9 @@
 		6D4E10331D69FCC800292208 /* DefaultDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10321D69FCC800292208 /* DefaultDataProvider.swift */; };
 		6D4E10361D69FCF700292208 /* PlaceFeatureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10351D69FCF700292208 /* PlaceFeatureTableViewCell.swift */; };
 		6D4E10381D6A020F00292208 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10371D6A020F00292208 /* ConfigurableCell.swift */; };
+		6D4E103C1D6A0CD600292208 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E103B1D6A0CD600292208 /* PlacesViewController.swift */; };
+		6D4E103E1D6A0CE300292208 /* PlacesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E103D1D6A0CE300292208 /* PlacesView.swift */; };
+		6D4E10411D6A0D2600292208 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10401D6A0D2600292208 /* PlaceTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +266,9 @@
 		6D4E10321D69FCC800292208 /* DefaultDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultDataProvider.swift; path = "../../../capture/capture-live-ios/CaptureLive/App/helpers/ui/tableview/DefaultDataProvider.swift"; sourceTree = "<group>"; };
 		6D4E10351D69FCF700292208 /* PlaceFeatureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceFeatureTableViewCell.swift; sourceTree = "<group>"; };
 		6D4E10371D6A020F00292208 /* ConfigurableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigurableCell.swift; path = "../../../capture/capture-live-ios/SharedCode/sources and providers/ConfigurableCell.swift"; sourceTree = "<group>"; };
+		6D4E103B1D6A0CD600292208 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		6D4E103D1D6A0CE300292208 /* PlacesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesView.swift; sourceTree = "<group>"; };
+		6D4E10401D6A0D2600292208 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		EE2E4EB45330CE834B5F7D43 /* Pods-StashMob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.debug.xcconfig"; sourceTree = "<group>"; };
 		F43308FE7F866AA8158613B4 /* Pods_StashMob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StashMob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB7F45913F545E11AC3C17E7 /* Pods-StashMob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.release.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.release.xcconfig"; sourceTree = "<group>"; };
@@ -457,6 +463,7 @@
 		6D4179471D67C94A0080AC3E /* contacts */ = {
 			isa = PBXGroup;
 			children = (
+				6D41799F1D689A060080AC3E /* protocol */,
 				6D4E10151D6911D100292208 /* data */,
 				6D4179691D67F7D30080AC3E /* implementation */,
 			);
@@ -580,7 +587,7 @@
 		6D4179871D681A8E0080AC3E /* screens */ = {
 			isa = PBXGroup;
 			children = (
-				6D4E10181D691E1A00292208 /* received */,
+				6D4E10181D691E1A00292208 /* place */,
 				6D4179901D682B6E0080AC3E /* mainmap */,
 				6D4E10261D696DDC00292208 /* login */,
 			);
@@ -608,24 +615,25 @@
 			children = (
 				6D35C15A1D67B4FD0000D1D9 /* MapViewController.swift */,
 				6D4179881D681AA00080AC3E /* MapView.swift */,
-				6D4179911D682B7C0080AC3E /* pickcontact */,
+				6D4179911D682B7C0080AC3E /* pickplace */,
+				6D4E10391D6A0C4F00292208 /* viewplaces */,
+				6D4E103A1D6A0C6300292208 /* viewcontacts */,
 			);
 			name = mainmap;
 			sourceTree = "<group>";
 		};
-		6D4179911D682B7C0080AC3E /* pickcontact */ = {
+		6D4179911D682B7C0080AC3E /* pickplace */ = {
 			isa = PBXGroup;
 			children = (
 				6D4179921D682BB10080AC3E /* ContactPickerViewController.swift */,
 				6D4E0FDF1D68B6E200292208 /* ContactPickerView.swift */,
 			);
-			name = pickcontact;
+			name = pickplace;
 			sourceTree = "<group>";
 		};
 		6D4179941D682E740080AC3E /* protocols */ = {
 			isa = PBXGroup;
 			children = (
-				6D41799F1D689A060080AC3E /* contactable */,
 				6D4179951D682E7D0080AC3E /* segue */,
 				6D41798A1D6822B30080AC3E /* apiable */,
 				6D4179701D67FCC80080AC3E /* fetchable */,
@@ -667,12 +675,12 @@
 			name = navigationcontroller;
 			sourceTree = "<group>";
 		};
-		6D41799F1D689A060080AC3E /* contactable */ = {
+		6D41799F1D689A060080AC3E /* protocol */ = {
 			isa = PBXGroup;
 			children = (
 				6D4179A01D689BD80080AC3E /* Contactable.swift */,
 			);
-			name = contactable;
+			name = protocol;
 			sourceTree = "<group>";
 		};
 		6D4E0FD81D68A25C00292208 /* image */ = {
@@ -790,14 +798,14 @@
 			name = data;
 			sourceTree = "<group>";
 		};
-		6D4E10181D691E1A00292208 /* received */ = {
+		6D4E10181D691E1A00292208 /* place */ = {
 			isa = PBXGroup;
 			children = (
 				6D4E10341D69FCE300292208 /* table */,
 				6D4E10191D691E3500292208 /* PlaceViewController.swift */,
 				6D4E101B1D691E4200292208 /* PlaceView.swift */,
 			);
-			name = received;
+			name = place;
 			sourceTree = "<group>";
 		};
 		6D4E101D1D69225600292208 /* storyboard */ = {
@@ -833,6 +841,31 @@
 			isa = PBXGroup;
 			children = (
 				6D4E10351D69FCF700292208 /* PlaceFeatureTableViewCell.swift */,
+			);
+			name = table;
+			sourceTree = "<group>";
+		};
+		6D4E10391D6A0C4F00292208 /* viewplaces */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E103F1D6A0D0300292208 /* table */,
+				6D4E103B1D6A0CD600292208 /* PlacesViewController.swift */,
+				6D4E103D1D6A0CE300292208 /* PlacesView.swift */,
+			);
+			name = viewplaces;
+			sourceTree = "<group>";
+		};
+		6D4E103A1D6A0C6300292208 /* viewcontacts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = viewcontacts;
+			sourceTree = "<group>";
+		};
+		6D4E103F1D6A0D0300292208 /* table */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E10401D6A0D2600292208 /* PlaceTableViewCell.swift */,
 			);
 			name = table;
 			sourceTree = "<group>";
@@ -1154,6 +1187,7 @@
 				6D4E0FE71D68BD0200292208 /* GMCenteredController.swift in Sources */,
 				6D4E100C1D68E3CE00292208 /* StoryBoard.swift in Sources */,
 				6D4E0FDA1D68A27100292208 /* NSFileManager+Avatar.swift in Sources */,
+				6D4E103E1D6A0CE300292208 /* PlacesView.swift in Sources */,
 				6D4179561D67CD6C0080AC3E /* PrivatePhone.m in Sources */,
 				6D41798F1D6827240080AC3E /* UserLocationManager.swift in Sources */,
 				6D4179A11D689BD80080AC3E /* Contactable.swift in Sources */,
@@ -1169,7 +1203,9 @@
 				6D4E0FFA1D68C76700292208 /* EmailDelegate.swift in Sources */,
 				6D4179931D682BB10080AC3E /* ContactPickerViewController.swift in Sources */,
 				6D4E0FE41D68B8B700292208 /* String+Extensions.swift in Sources */,
+				6D4E103C1D6A0CD600292208 /* PlacesViewController.swift in Sources */,
 				6D35C1591D67B4FD0000D1D9 /* AppDelegate.swift in Sources */,
+				6D4E10411D6A0D2600292208 /* PlaceTableViewCell.swift in Sources */,
 				6D4E101A1D691E3500292208 /* PlaceViewController.swift in Sources */,
 				6D4E0FE91D68BF9000292208 /* RemotePlace+Extensions.swift in Sources */,
 				6D35C1DC1D67BEE90000D1D9 /* Crypt.swift in Sources */,

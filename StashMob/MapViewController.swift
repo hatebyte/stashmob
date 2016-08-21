@@ -25,6 +25,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
     
     enum SegueIdentifier:String {
         case PushToContactPicker                   = "pushToContactPicker"
+        case PushToPlaces                           = "pushToPlaces"
     }
     
     var theView:MapView {
@@ -101,7 +102,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
     }
     
     func seePlacesRequested() {
-        
+        performSegue(.PushToPlaces)
     }
     
     // MARK: Location
@@ -147,14 +148,19 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
 
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let mcs                               = segue.destinationViewController as? ManagedObjectContextSettable else { fatalError("DestinationViewController \(segue.destinationViewController.self) is not ManagedObjectContextSettable") }
+        mcs.managedObjectContext                    = managedObjectContext
+
         switch segueIdentifierForSegue(segue) {
         case .PushToContactPicker:
             guard let vc                             = segue.destinationViewController as? ContactPickerViewController else { fatalError("DestinationViewController \(segue.destinationViewController.self) is not ContactPickerViewController") }
-            vc.managedObjectContext                  = managedObjectContext
             vc.contactManager                        = contactManager
 
             guard let rp                             = remotePlace else { fatalError("We lost our remote place") }
             vc.remotePlace                           = rp
+            
+        case .PushToPlaces: break
+            
         }
     }
     

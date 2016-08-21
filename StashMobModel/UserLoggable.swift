@@ -16,8 +16,6 @@ public protocol UserLoggable: class {
     var isLoggedIn:Bool { get set }
     
     func setAsLoggedInUser()
-//    func logOut()
-    
     static func loggedInUser(moc:NSManagedObjectContext)->Element?
     static var loggedInPredicate:NSPredicate { get }
     

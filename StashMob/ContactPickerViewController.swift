@@ -101,7 +101,7 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
         }
 
         switch remoteContact.options {
-        case .Both:
+        case .Both(let email, let phoneNumber):
             let titleText = NSLocalizedString("How do you want to message \(remoteContact.fullName)", comment: "ContactPickerViewController : actionSheetTitle : titleText")
 
             let actionController = UIAlertController(title:titleText, message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -109,22 +109,22 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
             let textText = NSLocalizedString("TEXT", comment: "ContactPickerViewController : actionSheet : textButton")
 
             let emailAction = UIAlertAction(title: emailText, style: .Default)  { [unowned self] action in
-                let einfo = loggedInUser.emailInfo(self.remotePlace.placeId)
+                let einfo = loggedInUser.emailInfo(self.remotePlace.placeId, email:email)
                 self.sendEmail(einfo)
             }
             let textAction = UIAlertAction(title: textText, style: .Default)  { [unowned self] action in
-                let tinfo = loggedInUser.textInfo(self.remotePlace.placeId)
+                let tinfo = loggedInUser.textInfo(self.remotePlace.placeId, phoneNumber:phoneNumber)
                 self.sendTextMessage(tinfo)
             }
             actionController.addAction(emailAction)
             actionController.addAction(textAction)
             presentViewController(actionController, animated: true, completion: nil)
 
-        case .Email:
-            let einfo = loggedInUser.emailInfo(remotePlace.placeId)
+        case .Email(let email):
+            let einfo = loggedInUser.emailInfo(remotePlace.placeId, email:email)
             sendEmail(einfo)
-        case .Text:
-            let tinfo = loggedInUser.textInfo(remotePlace.placeId)
+        case .Text(let phoneNumber):
+            let tinfo = loggedInUser.textInfo(remotePlace.placeId, phoneNumber:phoneNumber)
             sendTextMessage(tinfo)
         }
     }

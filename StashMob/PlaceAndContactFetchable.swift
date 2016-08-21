@@ -45,7 +45,6 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
             request.fetchBatchSize = 500
             request.returnsObjectsAsFaults = false
         }
-        print(places)
         return places.map { RemotePlace(managedPlace:$0) }
     }
     

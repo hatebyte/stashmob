@@ -86,6 +86,9 @@ class LoginViewController: UIViewController, ManagedObjectContextSettable, Manag
     
     // MARK: Button handler
     func submitData() {
+        theView.phoneNumberTextField?.resignFirstResponder()
+        theView.emailTextField?.resignFirstResponder()
+        
         let emailIsValid            = isEmailValid
         let phoneIsValid            = isPhoneNumberValid
        

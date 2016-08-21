@@ -72,11 +72,11 @@ public enum PriceLevel : Int {
 extension PriceLevel {
     var localizedString:String {
         switch self {
-        case Unknown : return NSLocalizedString("Open Now", comment:"PriceLevel: Unknown")
-        case Free : return NSLocalizedString("Open Now", comment:"PriceLevel: Free")
-        case Cheap : return NSLocalizedString("Open Now", comment:"PriceLevel: Cheap")
-        case Medium : return NSLocalizedString("Open Now", comment:"PriceLevel: Medium")
-        case High : return NSLocalizedString("Open Now", comment:"PriceLevel: High")
+        case Unknown : return NSLocalizedString("Unknown", comment:"PriceLevel: Unknown")
+        case Free : return NSLocalizedString("Free", comment:"PriceLevel: Free")
+        case Cheap : return NSLocalizedString("Cheap", comment:"PriceLevel: Cheap")
+        case Medium : return NSLocalizedString("Medium", comment:"PriceLevel: Medium")
+        case High : return NSLocalizedString("High", comment:"PriceLevel: High")
         case Expensive : return NSLocalizedString("Expensive", comment:"PriceLevel: Expensive")
         }
     }

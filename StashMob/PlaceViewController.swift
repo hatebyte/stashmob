@@ -45,7 +45,7 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
     private var dataProvider: Data!
     
     var theView:PlaceView {
-        guard let v = view as? PlaceView else { fatalError("The view is not a RecievedPlaceView") }
+        guard let v = view as? PlaceView else { fatalError("The view is not a PlaceView") }
         return v
     }
     
