@@ -37,7 +37,13 @@ extension UIStoryboard {
             else { fatalError("The storyboard has no LoginViewController") }
         return controller
     }
-
+    
+    static func createContactModal()->CreateContactViewController {
+        guard let controller = mainStoryBoard.instantiateViewControllerWithIdentifier("CreateContactViewController") as? CreateContactViewController
+            else { fatalError("The storyboard has no CreateContactViewController") }
+        return controller
+    }
+    
     
     
 }

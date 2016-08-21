@@ -21,8 +21,8 @@ class ContactView: UIView, TwoListViewable {
     
     @IBOutlet weak var avatarImageView:UIImageView?
     
-    var  emptyStateLeftString   = NSLocalizedString("You haven't received any places from this contact yet", comment: "ContactsView : emptyStateLabel : received ")
-    var  emptyStateRightString  = NSLocalizedString("You haven't sent any places to this contact yet", comment: "ContactView : emptyStateLabel : sent")
+    var  emptyStateRightString   = NSLocalizedString("You haven't received any places from this contact yet", comment: "ContactsView : emptyStateLabel : received ")
+    var  emptyStateLeftString  = NSLocalizedString("You haven't sent any places to this contact yet", comment: "ContactView : emptyStateLabel : sent")
     
     func didload() {
         emptyStateLabel?.font   = UIFont.boldSystemFontOfSize(12)

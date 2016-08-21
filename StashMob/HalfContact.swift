@@ -13,3 +13,18 @@ struct ReceivedItem {
     let phoneNumber:String?
     let email:String?
 }
+
+extension ReceivedItem {
+    
+    var options:Deliverable {
+        if let e = email, p = phoneNumber {
+            return .Both(email:e, phoneNumber:p)
+        } else if let e = email {
+            return .Email(email:e)
+        } else if let p = phoneNumber {
+            return .Text(phoneNumber:p)
+        }
+        fatalError("The User needs something to contact you by")
+    }
+    
+}

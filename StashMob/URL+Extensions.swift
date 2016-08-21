@@ -30,7 +30,6 @@ extension NSURL {
         guard let p = placeParam() else {
             return nil
         }
-        print(absoluteString)
         let n = numberParam()
         let e = emailParam()
         return ReceivedItem(placeId: p, phoneNumber:n, email: e)

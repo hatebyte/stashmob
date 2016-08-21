@@ -119,7 +119,6 @@ class ContactViewController: UIViewController, ManagedObjectContextSettable, Man
                 fatalError("DestinationViewController \(segue.destinationViewController.self) is not DetailPlaceViewController")
             }
             guard let rps = remotePlaceSelected else { fatalError("Contact selected with out remoteContactSelected") }
-            print(remoteContact)
             vc.remoteContact                        = remoteContact
             vc.placeRelation                        = selectedPlaceRelation
             vc.placeId                              = rps.placeId

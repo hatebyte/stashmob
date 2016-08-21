@@ -51,9 +51,9 @@
                                         <state key="normal" title="Button"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTp-6t-aCo">
-                                        <rect key="frame" x="20" y="30" width="560" height="30"/>
+                                        <rect key="frame" x="50" y="30" width="500" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="cvD-fS-OuM"/>
+                                            <constraint firstAttribute="height" constant="40" id="cvD-fS-OuM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -68,7 +68,7 @@
                                         <state key="normal" title="&lt;-"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8of-ae-m3N" customClass="GMSMapView">
-                                        <rect key="frame" x="0.0" y="70" width="600" height="190"/>
+                                        <rect key="frame" x="0.0" y="80" width="600" height="190"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
@@ -77,13 +77,13 @@
                                     <constraint firstItem="8of-ae-m3N" firstAttribute="top" secondItem="TTp-6t-aCo" secondAttribute="bottom" constant="10" id="1BX-m5-V57"/>
                                     <constraint firstItem="8of-ae-m3N" firstAttribute="leading" secondItem="1tq-Ke-24L" secondAttribute="leading" id="1NC-gV-b2F"/>
                                     <constraint firstItem="TTp-6t-aCo" firstAttribute="top" secondItem="1tq-Ke-24L" secondAttribute="top" constant="30" id="2ig-KC-4As"/>
-                                    <constraint firstItem="T9n-DE-LiO" firstAttribute="top" secondItem="8of-ae-m3N" secondAttribute="bottom" constant="10" id="6ba-6E-cbS"/>
+                                    <constraint firstItem="T9n-DE-LiO" firstAttribute="top" secondItem="8of-ae-m3N" secondAttribute="bottom" id="6ba-6E-cbS"/>
                                     <constraint firstItem="T9n-DE-LiO" firstAttribute="height" secondItem="w81-5F-gbp" secondAttribute="height" id="IwP-Cr-jua"/>
                                     <constraint firstAttribute="bottom" secondItem="w81-5F-gbp" secondAttribute="bottom" id="LqB-OJ-Ryq"/>
                                     <constraint firstAttribute="trailing" secondItem="8of-ae-m3N" secondAttribute="trailing" id="MTp-zz-S43"/>
-                                    <constraint firstAttribute="trailing" secondItem="TTp-6t-aCo" secondAttribute="trailing" constant="20" id="N7Z-df-iFb"/>
+                                    <constraint firstAttribute="trailing" secondItem="TTp-6t-aCo" secondAttribute="trailing" constant="50" id="N7Z-df-iFb"/>
                                     <constraint firstItem="i5y-uq-JmL" firstAttribute="leading" secondItem="1tq-Ke-24L" secondAttribute="leading" constant="8" id="Uis-aO-uYy"/>
-                                    <constraint firstItem="TTp-6t-aCo" firstAttribute="leading" secondItem="1tq-Ke-24L" secondAttribute="leading" constant="20" id="WCc-b9-HNA"/>
+                                    <constraint firstItem="TTp-6t-aCo" firstAttribute="leading" secondItem="1tq-Ke-24L" secondAttribute="leading" constant="50" id="WCc-b9-HNA"/>
                                     <constraint firstItem="T9n-DE-LiO" firstAttribute="leading" secondItem="w81-5F-gbp" secondAttribute="trailing" id="WPs-Pu-wJK"/>
                                     <constraint firstItem="w81-5F-gbp" firstAttribute="width" secondItem="1tq-Ke-24L" secondAttribute="width" multiplier="0.5" id="WjF-5r-lBo"/>
                                     <constraint firstAttribute="trailing" secondItem="T9n-DE-LiO" secondAttribute="trailing" id="fQ3-MV-FQc"/>
@@ -763,7 +763,7 @@
         <!--Detail Place View Controller-->
         <scene sceneID="U7q-xa-Ydd">
             <objects>
-                <viewController storyboardIdentifier="PlaceViewController" id="jkF-PN-pGK" customClass="DetailPlaceViewController" customModule="StashMob" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailPlaceViewController" id="jkF-PN-pGK" customClass="DetailPlaceViewController" customModule="StashMob" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8O0-q8-Yb7"/>
                         <viewControllerLayoutGuide type="bottom" id="pPo-fF-cbb"/>

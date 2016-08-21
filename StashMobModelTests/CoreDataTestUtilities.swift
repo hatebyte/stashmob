@@ -33,7 +33,7 @@ func waitForManagedObjectContextToBeDone(moc:NSManagedObjectContext) {
 }
 
 
-private let StoreURL = NSURL.documentsURL.URLByAppendingPathComponent("StashMobModel.currentmodel")
+private let StoreURL = NSURL.documentsURL.URLByAppendingPathComponent("StashLocModel.currentmodel")
 
 extension NSManagedObjectContext {
     

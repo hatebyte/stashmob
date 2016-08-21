@@ -39,6 +39,7 @@ class DetailPlaceViewController: UIViewController, ManagedObjectContextSettable 
         }
     }
     var placeId:String?
+    var shouldSave = false
     private typealias Data = DefaultDataProvider<DetailPlaceViewController>
     private var dataSource:TableViewDataSource<DetailPlaceViewController, Data, PlaceFeatureTableViewCell>!
     private var dataProvider: Data!
@@ -94,6 +95,7 @@ class DetailPlaceViewController: UIViewController, ManagedObjectContextSettable 
     }
    
     func savePlace() {
+        if shouldSave == false { return }
         guard let rp = remotePlace else {
             return
         }

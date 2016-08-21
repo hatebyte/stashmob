@@ -82,7 +82,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK: Open URL
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        print("LAUNCHED FROM TEXT : \(url.receivedItem)")
         guard let receivedItem = url.receivedItem else { return false }
         navController.accept(receivedItem)
         return false
@@ -93,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
                 let webpageURL = userActivity.webpageURL! // Always exists
-                print("LAUNCHED FROM TEXT ioS8 : \(webpageURL.absoluteString)")
+
         }
         return false
     }

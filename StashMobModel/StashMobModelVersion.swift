@@ -9,7 +9,7 @@
 import CoreData
 
 enum StashMobModelVersion : String {
-    case Version1 = "StashMob"
+    case Version1 = "StashLocModel"
 }
 
 extension StashMobModelVersion:ModelVersionType {
@@ -18,6 +18,6 @@ extension StashMobModelVersion:ModelVersionType {
     
     var name: String { return rawValue }
     var modelBundle: NSBundle { return NSBundle(forClass: Place.self) }
-    var modelDirectoryName: String { return "StashMob.momd" }
+    var modelDirectoryName: String { return "StashLocModel.momd" }
 }
 

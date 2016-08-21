@@ -30,6 +30,8 @@ class PlaceView: UIView, TwoListViewable {
         emptyStateLabel?.numberOfLines = 0
         
         titleLabel?.font        = UIFont.boldSystemFontOfSize(14)
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.numberOfLines = 0
         
         rightButton?.setTitleColor(UIColor.grayColor(), forState: .Normal)
         leftButton?.setTitleColor(UIColor.grayColor(), forState: .Normal)

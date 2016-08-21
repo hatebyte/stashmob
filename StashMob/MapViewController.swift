@@ -197,7 +197,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         let settingsAction = UIAlertAction(title: settingsText, style: .Default)  { action in
             UIApplication.sharedApplication().navigateToSettings()
         }
-        let dismissAction = UIAlertAction(title: dismissText, style: .Default)  { [weak self] action in
+        let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { [weak self] action in
             self?.sendToSearchBar()
         }
         alertController.addAction(dismissAction)
@@ -214,7 +214,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         let tryagain                = NSLocalizedString("Try again", comment: "ContactPickerViewController : error : tryagain")
         
         let alertController         = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let fogetitAction           = UIAlertAction(title: fogetitText, style: .Default)  { action in
+        let fogetitAction           = UIAlertAction(title: fogetitText, style: .Cancel)  { action in
         }
         let tryagainAction          = UIAlertAction(title: tryagain, style: .Default)  { action in
             block()

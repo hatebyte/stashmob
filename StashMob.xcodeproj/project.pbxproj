@@ -20,7 +20,6 @@
 		6D35C1911D67B6630000D1D9 /* PlaceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1901D67B6630000D1D9 /* PlaceModelTests.swift */; };
 		6D35C1951D67B6630000D1D9 /* StashMobModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D35C1801D67B6630000D1D9 /* StashMobModel.framework */; };
 		6D35C1961D67B6630000D1D9 /* StashMobModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6D35C1801D67B6630000D1D9 /* StashMobModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6D35C1A01D67B6840000D1D9 /* StashMob.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C19E1D67B6840000D1D9 /* StashMob.xcdatamodeld */; };
 		6D35C1AF1D67B75B0000D1D9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1A31D67B75B0000D1D9 /* Date+Extensions.swift */; };
 		6D35C1B01D67B75B0000D1D9 /* KeyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1A41D67B75B0000D1D9 /* KeyCodable.swift */; };
 		6D35C1B11D67B75B0000D1D9 /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35C1A51D67B75B0000D1D9 /* ManagedObject.swift */; };
@@ -117,6 +116,9 @@
 		6D4E10501D6A26E200292208 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E104F1D6A26E200292208 /* ContactView.swift */; };
 		6D4E10531D6A307500292208 /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10521D6A307500292208 /* PlaceViewController.swift */; };
 		6D4E10551D6A307F00292208 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10541D6A307F00292208 /* PlaceView.swift */; };
+		6D4E10581D6A3A8F00292208 /* CreateContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10571D6A3A8F00292208 /* CreateContactView.swift */; };
+		6D4E105A1D6A3A9900292208 /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10591D6A3A9900292208 /* CreateContactViewController.swift */; };
+		6D8A0CDA1D6A46E400D77901 /* StashLocModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D8A0CD81D6A46E400D77901 /* StashLocModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,7 +186,6 @@
 		6D35C1891D67B6630000D1D9 /* StashMobModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StashMobModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D35C1901D67B6630000D1D9 /* PlaceModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModelTests.swift; sourceTree = "<group>"; };
 		6D35C1921D67B6630000D1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6D35C19F1D67B6840000D1D9 /* StashMob.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StashMob.xcdatamodel; sourceTree = "<group>"; };
 		6D35C1A31D67B75B0000D1D9 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		6D35C1A41D67B75B0000D1D9 /* KeyCodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyCodable.swift; sourceTree = "<group>"; };
 		6D35C1A51D67B75B0000D1D9 /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObject.swift; sourceTree = "<group>"; };
@@ -285,6 +286,9 @@
 		6D4E104F1D6A26E200292208 /* ContactView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		6D4E10521D6A307500292208 /* PlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
 		6D4E10541D6A307F00292208 /* PlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
+		6D4E10571D6A3A8F00292208 /* CreateContactView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactView.swift; sourceTree = "<group>"; };
+		6D4E10591D6A3A9900292208 /* CreateContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactViewController.swift; sourceTree = "<group>"; };
+		6D8A0CD91D6A46E400D77901 /* StashLocModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StashLocModel.xcdatamodel; sourceTree = "<group>"; };
 		EE2E4EB45330CE834B5F7D43 /* Pods-StashMob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.debug.xcconfig"; sourceTree = "<group>"; };
 		F43308FE7F866AA8158613B4 /* Pods_StashMob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StashMob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB7F45913F545E11AC3C17E7 /* Pods-StashMob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.release.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.release.xcconfig"; sourceTree = "<group>"; };
@@ -392,7 +396,6 @@
 		6D35C1811D67B6630000D1D9 /* StashMobModel */ = {
 			isa = PBXGroup;
 			children = (
-				6D35C19E1D67B6840000D1D9 /* StashMob.xcdatamodeld */,
 				6D4179661D67ECB70080AC3E /* stack */,
 				6D41794A1D67C9B10080AC3E /* protocol */,
 				6D35C1D41D67BA210000D1D9 /* remote */,
@@ -551,6 +554,7 @@
 				6D35C1841D67B6630000D1D9 /* Info.plist */,
 				6D35C1BB1D67B7660000D1D9 /* StashMobStack.swift */,
 				6D35C1BD1D67B76F0000D1D9 /* StashMobModelVersion.swift */,
+				6D8A0CD81D6A46E400D77901 /* StashLocModel.xcdatamodeld */,
 			);
 			name = stack;
 			sourceTree = "<group>";
@@ -603,6 +607,7 @@
 		6D4179871D681A8E0080AC3E /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				6D4E10561D6A3A7F00292208 /* create */,
 				6D4E10181D691E1A00292208 /* place */,
 				6D4179901D682B6E0080AC3E /* mainmap */,
 				6D4E10261D696DDC00292208 /* login */,
@@ -926,6 +931,15 @@
 			name = singleplace;
 			sourceTree = "<group>";
 		};
+		6D4E10561D6A3A7F00292208 /* create */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E10591D6A3A9900292208 /* CreateContactViewController.swift */,
+				6D4E10571D6A3A8F00292208 /* CreateContactView.swift */,
+			);
+			name = create;
+			sourceTree = "<group>";
+		};
 		A051F15F11FFC5C1ED464C23 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1223,6 +1237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D4E10281D696DFC00292208 /* LoginViewController.swift in Sources */,
+				6D4E105A1D6A3A9900292208 /* CreateContactViewController.swift in Sources */,
 				6D4179511D67CBCF0080AC3E /* GMSPlace+Extensions.swift in Sources */,
 				6D4E10361D69FCF700292208 /* PlaceFeatureTableViewCell.swift in Sources */,
 				6D4179891D681AA00080AC3E /* MapView.swift in Sources */,
@@ -1275,6 +1290,7 @@
 				6D4E0FDE1D68A58500292208 /* ContactManager.swift in Sources */,
 				6D4179971D682E870080AC3E /* SegueHandlerType.swift in Sources */,
 				6D4179721D67FCE10080AC3E /* PlaceAndContactFetchable.swift in Sources */,
+				6D4E10581D6A3A8F00292208 /* CreateContactView.swift in Sources */,
 				6D4E10481D6A1F3700292208 /* ContactsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1302,10 +1318,10 @@
 				6D41797F1D6814110080AC3E /* User.swift in Sources */,
 				6D35C1D31D67B9DA0000D1D9 /* Contact.swift in Sources */,
 				6D35C1B01D67B75B0000D1D9 /* KeyCodable.swift in Sources */,
-				6D35C1A01D67B6840000D1D9 /* StashMob.xcdatamodeld in Sources */,
 				6D35C1BC1D67B7660000D1D9 /* StashMobStack.swift in Sources */,
 				6D4179601D67D5320080AC3E /* Binaryable.swift in Sources */,
 				6D35C1B91D67B75B0000D1D9 /* NSPersistentStore+Extensions.swift in Sources */,
+				6D8A0CDA1D6A46E400D77901 /* StashLocModel.xcdatamodeld in Sources */,
 				6D35C1B51D67B75B0000D1D9 /* ModelVersionType.swift in Sources */,
 				6D35C1B31D67B75B0000D1D9 /* Migration.swift in Sources */,
 				6D35C1B41D67B75B0000D1D9 /* ModelBuilder.swift in Sources */,
@@ -1671,13 +1687,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6D35C19E1D67B6840000D1D9 /* StashMob.xcdatamodeld */ = {
+		6D8A0CD81D6A46E400D77901 /* StashLocModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6D35C19F1D67B6840000D1D9 /* StashMob.xcdatamodel */,
+				6D8A0CD91D6A46E400D77901 /* StashLocModel.xcdatamodel */,
 			);
-			currentVersion = 6D35C19F1D67B6840000D1D9 /* StashMob.xcdatamodel */;
-			path = StashMob.xcdatamodeld;
+			currentVersion = 6D8A0CD91D6A46E400D77901 /* StashLocModel.xcdatamodel */;
+			path = StashLocModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -27,7 +27,6 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
     }
     
     deinit {
-        print("deinit : ContactPickerViewController")
         gmController = nil
         emailDelegate = nil
         textDelegate = nil
@@ -149,7 +148,7 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
             UIApplication.sharedApplication().navigateToSettings()
             self.pop()
         }
-        let dismissAction = UIAlertAction(title: dismissText, style: .Default)  { [unowned self] action in
+        let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { [unowned self] action in
             self.pop()
         }
         alertController.addAction(dismissAction)
