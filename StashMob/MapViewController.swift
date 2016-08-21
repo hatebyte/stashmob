@@ -24,8 +24,9 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
     var remotePlace:RemotePlace?
     
     enum SegueIdentifier:String {
-        case PushToContactPicker                   = "pushToContactPicker"
+        case PushToContactPicker                    = "pushToContactPicker"
         case PushToPlaces                           = "pushToPlaces"
+        case PushToContacts                         = "pushToContacts"
     }
     
     var theView:MapView {
@@ -98,7 +99,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
     }
     
     func seePeopleRequested() {
-        
+        performSegue(.PushToContacts)
     }
     
     func seePlacesRequested() {
@@ -160,7 +161,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
             vc.remotePlace                           = rp
             
         case .PushToPlaces: break
-            
+        case .PushToContacts: break
         }
     }
     

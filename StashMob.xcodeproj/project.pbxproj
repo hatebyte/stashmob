@@ -109,6 +109,10 @@
 		6D4E103C1D6A0CD600292208 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E103B1D6A0CD600292208 /* PlacesViewController.swift */; };
 		6D4E103E1D6A0CE300292208 /* PlacesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E103D1D6A0CE300292208 /* PlacesView.swift */; };
 		6D4E10411D6A0D2600292208 /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10401D6A0D2600292208 /* PlaceTableViewCell.swift */; };
+		6D4E10441D6A1E8E00292208 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10431D6A1E8E00292208 /* ContactTableViewCell.swift */; };
+		6D4E10461D6A1F2C00292208 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10451D6A1F2C00292208 /* ContactsViewController.swift */; };
+		6D4E10481D6A1F3700292208 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10471D6A1F3700292208 /* ContactsView.swift */; };
+		6D4E104B1D6A20C500292208 /* TwoListViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E104A1D6A20C500292208 /* TwoListViewable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -269,6 +273,10 @@
 		6D4E103B1D6A0CD600292208 /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		6D4E103D1D6A0CE300292208 /* PlacesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesView.swift; sourceTree = "<group>"; };
 		6D4E10401D6A0D2600292208 /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
+		6D4E10431D6A1E8E00292208 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		6D4E10451D6A1F2C00292208 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		6D4E10471D6A1F3700292208 /* ContactsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		6D4E104A1D6A20C500292208 /* TwoListViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoListViewable.swift; sourceTree = "<group>"; };
 		EE2E4EB45330CE834B5F7D43 /* Pods-StashMob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.debug.xcconfig"; sourceTree = "<group>"; };
 		F43308FE7F866AA8158613B4 /* Pods_StashMob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StashMob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB7F45913F545E11AC3C17E7 /* Pods-StashMob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.release.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.release.xcconfig"; sourceTree = "<group>"; };
@@ -660,6 +668,7 @@
 		6D41799B1D6897B40080AC3E /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				6D4E10491D6A20B800292208 /* view */,
 				6D4E102B1D69FC4200292208 /* table */,
 				6D4E101D1D69225600292208 /* storyboard */,
 				6D41799C1D6897B90080AC3E /* navigationcontroller */,
@@ -858,6 +867,9 @@
 		6D4E103A1D6A0C6300292208 /* viewcontacts */ = {
 			isa = PBXGroup;
 			children = (
+				6D4E10421D6A1E8300292208 /* table */,
+				6D4E10451D6A1F2C00292208 /* ContactsViewController.swift */,
+				6D4E10471D6A1F3700292208 /* ContactsView.swift */,
 			);
 			name = viewcontacts;
 			sourceTree = "<group>";
@@ -868,6 +880,22 @@
 				6D4E10401D6A0D2600292208 /* PlaceTableViewCell.swift */,
 			);
 			name = table;
+			sourceTree = "<group>";
+		};
+		6D4E10421D6A1E8300292208 /* table */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E10431D6A1E8E00292208 /* ContactTableViewCell.swift */,
+			);
+			name = table;
+			sourceTree = "<group>";
+		};
+		6D4E10491D6A20B800292208 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E104A1D6A20C500292208 /* TwoListViewable.swift */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		A051F15F11FFC5C1ED464C23 /* Frameworks */ = {
@@ -1171,16 +1199,19 @@
 				6D4E10361D69FCF700292208 /* PlaceFeatureTableViewCell.swift in Sources */,
 				6D4179891D681AA00080AC3E /* MapView.swift in Sources */,
 				6D4E10301D69FC8F00292208 /* DataSource.swift in Sources */,
+				6D4E10461D6A1F2C00292208 /* ContactsViewController.swift in Sources */,
 				6D41799E1D6897CE0080AC3E /* FMNavigationController.swift in Sources */,
 				6D4E10011D68D47A00292208 /* CMValidator.m in Sources */,
 				6D4E10381D6A020F00292208 /* ConfigurableCell.swift in Sources */,
 				6D4E10111D68F91E00292208 /* PlaceAndPerson.swift in Sources */,
 				6D41798C1D6822FB0080AC3E /* GoogleApiTokenable.swift in Sources */,
 				6D35C15B1D67B4FD0000D1D9 /* MapViewController.swift in Sources */,
+				6D4E10441D6A1E8E00292208 /* ContactTableViewCell.swift in Sources */,
 				6D4E10331D69FCC800292208 /* DefaultDataProvider.swift in Sources */,
 				6D41799A1D68963F0080AC3E /* UIApplication+Extensions.swift in Sources */,
 				6D4E0FF51D68C41D00292208 /* ScreenSize.swift in Sources */,
 				6D4E0FDC1D68A3A000292208 /* RemoteContact+Extensions.swift in Sources */,
+				6D4E104B1D6A20C500292208 /* TwoListViewable.swift in Sources */,
 				6D4E100A1D68E10800292208 /* NSManagedObjectContext+LocationPermission.swift in Sources */,
 				6D4E10041D68D5BB00292208 /* TextDelegate.swift in Sources */,
 				6D4E102A1D696E1B00292208 /* LoginView.swift in Sources */,
@@ -1212,6 +1243,7 @@
 				6D4E0FDE1D68A58500292208 /* ContactManager.swift in Sources */,
 				6D4179971D682E870080AC3E /* SegueHandlerType.swift in Sources */,
 				6D4179721D67FCE10080AC3E /* PlaceAndContactFetchable.swift in Sources */,
+				6D4E10481D6A1F3700292208 /* ContactsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

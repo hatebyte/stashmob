@@ -1,5 +1,5 @@
 //
-//  PlacesViewController.swift
+//  ContactsViewController.swift
 //  StashMob
 //
 //  Created by Scott Jones on 8/21/16.
@@ -7,18 +7,19 @@
 //
 
 import UIKit
+
 import CoreData
 import StashMobModel
 
-class PlacesViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable {
+class ContactsViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable {
     
     weak var managedObjectContext: NSManagedObjectContext!
     weak var contactManager: Contactable!
     
-    private typealias Data = DefaultDataProvider<PlacesViewController>
-    private var dataSource:TableViewDataSource<PlacesViewController, Data, PlaceTableViewCell>!
+    private typealias Data = DefaultDataProvider<ContactsViewController>
+    private var dataSource:TableViewDataSource<ContactsViewController, Data, ContactTableViewCell>!
     private var dataProvider: Data!
-   
+    
     var theView:TwoListViewable {
         guard let v = view as? TwoListViewable else { fatalError("The view is not a TwoListViewable") }
         return v
@@ -26,19 +27,19 @@ class PlacesViewController: UIViewController, ManagedObjectContextSettable, Mana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let v = theView as? PlacesView
+        
+        let v = theView as? ContactsView
         v?.didload()
         sentPicked()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         if #available(iOS 8.3, *) {
             managedObjectContext.refreshAllObjects()
         }
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         addHandlers()
@@ -67,7 +68,7 @@ class PlacesViewController: UIViewController, ManagedObjectContextSettable, Mana
     }
     
     func receivedPicked() {
-        let received                                = managedObjectContext.fetchAllRecievedPlaces()
+        let received                                = managedObjectContext.fetchAllRecievedContacts()
         theView.highlightRecieved()
         
         if received.count == 0 {
@@ -81,7 +82,7 @@ class PlacesViewController: UIViewController, ManagedObjectContextSettable, Mana
     }
     
     func sentPicked() {
-        let sent                                    = managedObjectContext.fetchAllSentPlaces()
+        let sent                                    = managedObjectContext.fetchAllSentContacts()
         theView.highlightSent()
         
         if sent.count == 0 {
@@ -97,32 +98,32 @@ class PlacesViewController: UIViewController, ManagedObjectContextSettable, Mana
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
-extension PlacesViewController : UITableViewDelegate {
+extension ContactsViewController : UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return PlaceTableViewCellHeight
+        return ContactTableViewCellHeight
     }
     
 }
 
-extension PlacesViewController : DataProviderDelegate {
-    func dataProviderDidUpdate(updates:[DataProviderUpdate<RemotePlace>]?) {
+extension ContactsViewController : DataProviderDelegate {
+    func dataProviderDidUpdate(updates:[DataProviderUpdate<RemoteContact>]?) {
     }
 }
 
-extension PlacesViewController : DataSourceDelegate {
-    func cellIdentifierForObject(object:RemotePlace) -> String {
-        return PlaceTableViewCell.Identifier
+extension ContactsViewController : DataSourceDelegate {
+    func cellIdentifierForObject(object:RemoteContact) -> String {
+        return ContactTableViewCell.Identifier
     }
 }
