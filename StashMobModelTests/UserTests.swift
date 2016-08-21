@@ -30,8 +30,6 @@ class UserTests: XCTestCase {
         moc.performChanges { [unowned self] in
             let user:User = self.moc.insertObject()
             user.phoneNumber = "9085818600"
-            user.firstName = "Scott"
-            user.lastName = "Jones"
         }
         waitForManagedObjectContextToBeDone(moc)
         
@@ -47,8 +45,6 @@ class UserTests: XCTestCase {
         let user:User = self.moc.insertObject()
         moc.performChanges {
             user.phoneNumber = "9085818600"
-            user.firstName = "Scott"
-            user.lastName = "Jones"
         }
         waitForManagedObjectContextToBeDone(moc)
 

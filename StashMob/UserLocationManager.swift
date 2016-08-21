@@ -12,16 +12,16 @@ import CoreMotion
 
 public typealias UpdateLocation = (location:CLLocationCoordinate2D)->()
 
-public class UserMovementManager: NSObject, CLLocationManagerDelegate {
+public class UserLocationManager: NSObject, CLLocationManagerDelegate {
     
     var update:UpdateLocation?
  
-    public class var shared :UserMovementManager {
-        struct Singleton {
-            static let instance = UserMovementManager()
-        }
-        return Singleton.instance
-    }
+//    public class var shared :UserLocationManager {
+//        struct Singleton {
+//            static let instance = UserLocationManager()
+//        }
+//        return Singleton.instance
+//    }
     
     lazy var locationManager: CLLocationManager! = {
         let manager                     = CLLocationManager()

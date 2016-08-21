@@ -35,16 +35,16 @@ class Crypter {
     private static let key = "bbC2H19lkVbQDfakxcrtNMQdd0FloLyw" // length == 32
     private static let iv = "gqLOHUioQ0QjhuvI" // length == 16
     
-    static func encryphoneNumber(number:String)->String {
+    static func encrypt(string:String)->String {
         do {
-            let enc = try number.aesEncrypt(key, iv: iv)
+            let enc = try string.aesEncrypt(key, iv: iv)
             return enc
         } catch {
             fatalError("CryptoSwift no longer works")
         }
     }
     
-    static func decryptPhoneNumber(hash:String)->String? {
+    static func decrypt(hash:String)->String? {
         do {
             let dec = try hash.aesDecrypt(key, iv: iv)
             return dec

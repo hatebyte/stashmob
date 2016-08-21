@@ -14,4 +14,5 @@ let testContact = RemoteContact(
     ,email              : "mylegfeelsfunney@gmail.com"
     ,firstName          : "Scott"
     ,lastName           : "Jones"
+    ,imageName          : "avatar"
 )

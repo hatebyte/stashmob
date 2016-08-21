@@ -24,10 +24,10 @@ class StashMobTests: XCTestCase {
     func testCanDecryptHashedPhoneNumber() {
         // given
         let unhashed = "9085818600"
-        let en = Crypter.encryphoneNumber(unhashed)
+        let en = Crypter.encrypt(unhashed)
 
         // when
-        let dn = Crypter.decryptPhoneNumber(en)
+        let dn = Crypter.decrypt(en)
         
         // then 
         XCTAssertNotEqual(unhashed, en, "The unhashed phone number is not the same as the unhashed")

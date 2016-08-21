@@ -66,6 +66,7 @@ class ContactAndPlaceFetchableTests: XCTestCase {
             ,email              : "mylegfeelsfunney@gmail.com"
             ,firstName          : "Jake"
             ,lastName           : "Jones"
+
         )
         let sally = RemoteContact(
             phoneNumber        : "9085818601"

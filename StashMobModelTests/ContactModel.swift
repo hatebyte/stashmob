@@ -99,6 +99,6 @@ class ContactModel: XCTestCase {
         XCTAssertEqual(place.name, "Malrooneys Park")
     }
 
-    
-    
+
+
 }

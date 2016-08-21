@@ -17,17 +17,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var context:NSManagedObjectContext!
-
+    var navController:FMNavigationController!
+    var contactManager = ContactManager()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         GMSPlacesClient.provideAPIKey(NSBundle.mainBundle().googlePlacesKey)
         GMSServices.provideAPIKey(NSBundle.mainBundle().googleMapsKey)
         
+        guard let mcontext = createMainContext() else { fatalError("BIG PROBLEMS OUT THE DOOR!!!") }
+        context                                     = mcontext
 
+        navController                               = UIStoryboard.navigationViewController()
+        navController.managedObjectContext          = context
+        navController.contactManager                = contactManager
+ 
+        let rootVC                                  = UIStoryboard.rootController()
+        rootVC.managedObjectContext                 = context
+        rootVC.contactManager                       = contactManager
+        navController.viewControllers               = [rootVC]
         
-        guard let mcontext                           = createMainContext() else { fatalError("BIG PROBLEMS OUT THE DOOR!!!") }
-        context = mcontext
+        self.window                                 = UIWindow(frame:UIScreen.mainScreen().bounds)
+        self.window?.rootViewController             = navController
+        self.window?.frame                          = UIScreen.mainScreen().bounds
+        self.window?.makeKeyAndVisible()
         
+//        context.performChangesAndWait { [unowned self] in
+//            let user:User = self.context.insertObject()
+//            user.phoneNumber = "9085818600"
+//            user.email = "hatebyte@gmail.com"
+//            user.firstName = "Scott"
+//            user.lastName = "Jones"
+//            user.setAsLoggedInUser()
+//        }
+        
+        guard let _  = User.loggedInUser(context) else {
+            navController.showLoginModal()
+            return true
+        }
         return true
     }
 
@@ -53,6 +80,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
 
-
+    //MARK: Open URL
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        print("LAUNCHED FROM TEXT : \(url.receivedItem)")
+        guard let receivedItem = url.receivedItem else { return false }
+        navController.accept(receivedItem)
+        return false
+    }
+    
+    //MARK: Deep Linking
+    @available(iOS 8.0, *)
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+                let webpageURL = userActivity.webpageURL! // Always exists
+                print("LAUNCHED FROM TEXT ioS8 : \(webpageURL.absoluteString)")
+        }
+        return false
+    }
 }
 
