@@ -31,7 +31,7 @@ class ContactViewController: UIViewController, ManagedObjectContextSettable, Man
     var selectedPlaceRelation:PlaceRelation = .Sent
     
     enum SegueIdentifier:String {
-        case PushToPlace                         = "pushToPlace"
+        case PushToPlaceDetail                         = "pushToPlaceDetail"
     }
     
     override func viewDidLoad() {
@@ -114,7 +114,7 @@ class ContactViewController: UIViewController, ManagedObjectContextSettable, Man
         mcs.managedObjectContext                    = managedObjectContext
         
         switch segueIdentifierForSegue(segue) {
-        case .PushToPlace:
+        case .PushToPlaceDetail:
             guard let vc = mcs as? DetailPlaceViewController else {
                 fatalError("DestinationViewController \(segue.destinationViewController.self) is not DetailPlaceViewController")
             }
@@ -136,7 +136,7 @@ extension ContactViewController : UITableViewDelegate {
         remotePlaceSelected     = place
         selectedPlaceRelation   = (wasSent) ? .Sent : .Received
         
-        performSegue(.PushToPlace)
+        performSegue(.PushToPlaceDetail)
     }
     
     

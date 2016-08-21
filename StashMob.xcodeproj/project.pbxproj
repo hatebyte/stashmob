@@ -115,6 +115,8 @@
 		6D4E104B1D6A20C500292208 /* TwoListViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E104A1D6A20C500292208 /* TwoListViewable.swift */; };
 		6D4E104E1D6A267600292208 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E104D1D6A267600292208 /* ContactViewController.swift */; };
 		6D4E10501D6A26E200292208 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E104F1D6A26E200292208 /* ContactView.swift */; };
+		6D4E10531D6A307500292208 /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10521D6A307500292208 /* PlaceViewController.swift */; };
+		6D4E10551D6A307F00292208 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10541D6A307F00292208 /* PlaceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,6 +283,8 @@
 		6D4E104A1D6A20C500292208 /* TwoListViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoListViewable.swift; sourceTree = "<group>"; };
 		6D4E104D1D6A267600292208 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		6D4E104F1D6A26E200292208 /* ContactView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		6D4E10521D6A307500292208 /* PlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
+		6D4E10541D6A307F00292208 /* PlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		EE2E4EB45330CE834B5F7D43 /* Pods-StashMob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.debug.xcconfig"; sourceTree = "<group>"; };
 		F43308FE7F866AA8158613B4 /* Pods_StashMob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StashMob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB7F45913F545E11AC3C17E7 /* Pods-StashMob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StashMob.release.xcconfig"; path = "Pods/Target Support Files/Pods-StashMob/Pods-StashMob.release.xcconfig"; sourceTree = "<group>"; };
@@ -864,6 +868,7 @@
 				6D4E103F1D6A0D0300292208 /* table */,
 				6D4E103B1D6A0CD600292208 /* PlacesViewController.swift */,
 				6D4E103D1D6A0CE300292208 /* PlacesView.swift */,
+				6D4E10511D6A303A00292208 /* singleplace */,
 			);
 			name = viewplaces;
 			sourceTree = "<group>";
@@ -910,6 +915,15 @@
 				6D4E104F1D6A26E200292208 /* ContactView.swift */,
 			);
 			name = singlecontact;
+			sourceTree = "<group>";
+		};
+		6D4E10511D6A303A00292208 /* singleplace */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E10521D6A307500292208 /* PlaceViewController.swift */,
+				6D4E10541D6A307F00292208 /* PlaceView.swift */,
+			);
+			name = singleplace;
 			sourceTree = "<group>";
 		};
 		A051F15F11FFC5C1ED464C23 /* Frameworks */ = {
@@ -1213,12 +1227,14 @@
 				6D4E10361D69FCF700292208 /* PlaceFeatureTableViewCell.swift in Sources */,
 				6D4179891D681AA00080AC3E /* MapView.swift in Sources */,
 				6D4E10301D69FC8F00292208 /* DataSource.swift in Sources */,
+				6D4E10531D6A307500292208 /* PlaceViewController.swift in Sources */,
 				6D4E10461D6A1F2C00292208 /* ContactsViewController.swift in Sources */,
 				6D41799E1D6897CE0080AC3E /* FMNavigationController.swift in Sources */,
 				6D4E10011D68D47A00292208 /* CMValidator.m in Sources */,
 				6D4E10381D6A020F00292208 /* ConfigurableCell.swift in Sources */,
 				6D4E10111D68F91E00292208 /* PlaceAndPerson.swift in Sources */,
 				6D41798C1D6822FB0080AC3E /* GoogleApiTokenable.swift in Sources */,
+				6D4E10551D6A307F00292208 /* PlaceView.swift in Sources */,
 				6D35C15B1D67B4FD0000D1D9 /* MapViewController.swift in Sources */,
 				6D4E10441D6A1E8E00292208 /* ContactTableViewCell.swift in Sources */,
 				6D4E10331D69FCC800292208 /* DefaultDataProvider.swift in Sources */,
