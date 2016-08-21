@@ -51,11 +51,11 @@ public class Place: ManagedObject {
     }
 
     public static var allReceivedLocationsPredicate:NSPredicate {
-        return NSPredicate(format: "%K != NULL AND %K[SIZE] > 0", Keys.ReceivedFromContacts.rawValue, Keys.ReceivedFromContacts.rawValue)
+        return NSPredicate(format: "ANY %K != NULL", Keys.ReceivedFromContacts.rawValue)
     }
     
     public static var allSentLocationsPredicate:NSPredicate {
-        return NSPredicate(format: "%K != NULL AND %K[SIZE] > 0", Keys.SentToContacts.rawValue, Keys.SentToContacts.rawValue)
+        return NSPredicate(format: "ANY %K != NULL", Keys.SentToContacts.rawValue)
     }
 
     public static func placeForIdPredicate(placeId:String)->NSPredicate {

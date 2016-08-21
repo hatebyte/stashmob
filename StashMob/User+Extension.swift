@@ -28,18 +28,16 @@ extension User {
         return "\(subMessage)\n\n\(NSBundle.mainBundle().deepLinkUrl)://?p=\(placeId)&\(emailhash)\(amp)\(phoneHash)"
     }
     
-    func emailInfo(placeId:String)->EmailInfo {
-        guard let eml = email else { fatalError("User needs the email to create email info") }
+    func emailInfo(placeId:String, email em:String)->EmailInfo {
         let info = EmailInfo(
             titleString: title
             ,messageString: deepLinkUrlMessage(placeId)
-            ,toRecipentsArray:[eml]
+            ,toRecipentsArray:[em]
         )
         return info
     }
     
-    func textInfo(placeId:String)->TextInfo {
-        guard let pn = phoneNumber else { fatalError("User needs the phone to create text info") }
+    func textInfo(placeId:String, phoneNumber pn:String)->TextInfo {
         let info = TextInfo(
             messageString: deepLinkUrlMessage(placeId)
             ,toRecipentsArray:[pn]
@@ -48,12 +46,12 @@ extension User {
     }
     
     var options:Deliverable {
-        if let _ = email, _ = phoneNumber {
-            return .Both
-        } else if let _ = email {
-            return .Email
-        } else if let _ = phoneNumber{
-            return .Text
+        if let e = email, p = phoneNumber {
+            return .Both(email:e, phoneNumber:p)
+        } else if let e = email {
+            return .Email(email:e)
+        } else if let p = phoneNumber {
+            return .Text(phoneNumber:p)
         }
         fatalError("The User needs something to contact you by")
     }

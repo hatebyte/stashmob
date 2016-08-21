@@ -47,6 +47,14 @@ public class Contact: ManagedObject {
         items.addObject(place)
     }
 
+    public static var allReceivedContactsPredicate:NSPredicate {
+        return NSPredicate(format: "ANY %K != NULL", Keys.RecievedPlaces.rawValue)
+    }
+    
+    public static var allSentContactsPredicate:NSPredicate {
+        return NSPredicate(format: "ANY %K != NULL", Keys.SentPlaces.rawValue)
+    }
+    
     public static func contactForPhoneNumberPredicate(number:String)->NSPredicate {
         return NSPredicate(format: "%K == %@", Keys.PhoneNumber.rawValue, number)
     }

@@ -188,6 +188,7 @@ class ContactAndPlaceFetchableTests: XCTestCase {
             ,lastName           : "Jones"
         )
         send2PlacesToRemoteUser(jake)
+        recieve2PlacesFromRemoteUser(jake)
         
         // when
         let contacts = moc.fetchAllSentPlaces()
@@ -205,7 +206,8 @@ class ContactAndPlaceFetchableTests: XCTestCase {
             ,lastName           : "Jones"
         )
         recieve2PlacesFromRemoteUser(jake)
-        
+        send2PlacesToRemoteUser(jake)
+
         // when
         let places = moc.receivedPlacesFrom(jake)
         

@@ -1,5 +1,5 @@
 //
-//  PlaceViewController.swift
+//  PlacesViewController.swift
 //  StashMob
 //
 //  Created by Scott Jones on 8/21/16.
@@ -10,46 +10,41 @@ import UIKit
 import CoreData
 import StashMobModel
 
-class PlaceViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable, SegueHandlerType {
+class PlacesViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable, SegueHandlerType {
     
     weak var managedObjectContext: NSManagedObjectContext!
     weak var contactManager: Contactable!
     
-    private typealias Data = DefaultDataProvider<PlaceViewController>
-    private var dataSource:TableViewDataSource<PlaceViewController, Data, ContactTableViewCell>!
+    private typealias Data = DefaultDataProvider<PlacesViewController>
+    private var dataSource:TableViewDataSource<PlacesViewController, Data, PlaceTableViewCell>!
     private var dataProvider: Data!
-    private var gmController:GMCenteredController!
- 
+  
+    var remotePlaceSelected:RemotePlace?
+    
     var theView:TwoListViewable {
         guard let v = view as? TwoListViewable else { fatalError("The view is not a TwoListViewable") }
         return v
     }
-    
-    var remotePlace : RemotePlace!
-    var remoteContactSelected:RemoteContact?
-    var selectedPlaceRelation:PlaceRelation = .Sent
-    
+   
     enum SegueIdentifier:String {
-        case PushToPlaceDetail                         = "pushToPlaceDetail"
+        case PushToPlace                         = "pushToPlace"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let v = theView as? PlaceView
+
+        let v = theView as? PlacesView
         v?.didload()
-        v?.populate(remotePlace)
-        gmController                                   = GMCenteredController(mapView: v!.mapView!, coordinate:remotePlace.coordinate, image:UIImage(named:"event_pin"))
         sentPicked()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         if #available(iOS 8.3, *) {
             managedObjectContext.refreshAllObjects()
         }
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         addHandlers()
@@ -72,17 +67,13 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
         theView.backButton?.removeTarget(self, action: #selector(pop), forControlEvents: .TouchUpInside)
     }
     
-    var wasSent:Bool {
-        return theView.leftButton?.backgroundColor == UIColor.blueColor()
-    }
-    
     // MARK: ButtonHandlers
     func pop() {
         navigationController?.popViewControllerAnimated(true)
     }
     
     func receivedPicked() {
-        let received                                = managedObjectContext.contactsWhoSentMePlace(remotePlace)
+        let received                                = managedObjectContext.fetchAllRecievedPlaces()
         theView.highlightRecieved()
         
         if received.count == 0 {
@@ -96,7 +87,7 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
     }
     
     func sentPicked() {
-        let sent                                    = managedObjectContext.contactsWhoWereSentPlace(remotePlace)
+        let sent                                    = managedObjectContext.fetchAllSentPlaces()
         theView.highlightSent()
         
         if sent.count == 0 {
@@ -109,49 +100,46 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
         theView.tableView?.delegate                 = self
     }
     
+    
+    // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let mcs                               = segue.destinationViewController as? ManagedObjectContextSettable else { fatalError("DestinationViewController \(segue.destinationViewController.self) is not ManagedObjectContextSettable") }
         mcs.managedObjectContext                    = managedObjectContext
         
         switch segueIdentifierForSegue(segue) {
-        case .PushToPlaceDetail:
-            guard let vc = mcs as? DetailPlaceViewController else {
-                fatalError("DestinationViewController \(segue.destinationViewController.self) is not DetailPlaceViewController")
+        case .PushToPlace:
+            guard let vc = mcs as? PlaceViewController else {
+                fatalError("DestinationViewController \(segue.destinationViewController.self) is not PlaceViewController")
             }
-            guard let rcs = remoteContactSelected else { fatalError("Contact selected with out remoteContactSelected") }
-            vc.remoteContact                        = rcs
-            vc.placeRelation                        = selectedPlaceRelation
-            vc.placeId                              = remotePlace.placeId
-            vc.remotePlace                          = remotePlace
+            guard let rps = remotePlaceSelected else { fatalError("Contact selected with out remotePlaceSelected") }
+            vc.remotePlace = rps
         }
     }
-    
+
 }
 
-extension PlaceViewController : UITableViewDelegate {
-    
+extension PlacesViewController : UITableViewDelegate {
+   
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let contact                     = dataProvider.objectAtIndexPath(indexPath)
-        remoteContactSelected           = contact
-        selectedPlaceRelation           = (wasSent) ? .Sent : .Received
+        let place = dataProvider.objectAtIndexPath(indexPath)
+        remotePlaceSelected = place
         
-        performSegue(.PushToPlaceDetail)
+        performSegue(.PushToPlace)
     }
-    
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return ContactTableViewCellHeight
+        return PlaceTableViewCellHeight
     }
     
 }
 
-extension PlaceViewController : DataProviderDelegate {
-    func dataProviderDidUpdate(updates:[DataProviderUpdate<RemoteContact>]?) {
+extension PlacesViewController : DataProviderDelegate {
+    func dataProviderDidUpdate(updates:[DataProviderUpdate<RemotePlace>]?) {
     }
 }
 
-extension PlaceViewController : DataSourceDelegate {
-    func cellIdentifierForObject(object:RemoteContact) -> String {
-        return ContactTableViewCell.Identifier
+extension PlacesViewController : DataSourceDelegate {
+    func cellIdentifierForObject(object:RemotePlace) -> String {
+        return PlaceTableViewCell.Identifier
     }
 }

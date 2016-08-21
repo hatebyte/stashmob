@@ -1,5 +1,5 @@
 //
-//  PlaceView.swift
+//  ContactView.swift
 //  StashMob
 //
 //  Created by Scott Jones on 8/21/16.
@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import GoogleMaps
 import StashMobModel
 
-class PlaceView: UIView, TwoListViewable {
+class ContactView: UIView, TwoListViewable {
     
     @IBOutlet weak var titleLabel:UILabel?
     @IBOutlet weak var tableView:UITableView?
@@ -20,10 +19,10 @@ class PlaceView: UIView, TwoListViewable {
     @IBOutlet weak var emptyStateView:UIView?
     @IBOutlet weak var emptyStateLabel:UILabel?
     
-    var  emptyStateLeftString   = NSLocalizedString("You haven't received this place from anyone yet", comment: "PlaceView : emptyStateLabel : received ")
-    var  emptyStateRightString  = NSLocalizedString("You haven't sent this place to anyone yet", comment: "PlaceView : emptyStateLabel : sent")
-   
-    @IBOutlet weak var mapView:GMSMapView?
+    @IBOutlet weak var avatarImageView:UIImageView?
+    
+    var  emptyStateLeftString   = NSLocalizedString("You haven't received any places from this contact yet", comment: "ContactsView : emptyStateLabel : received ")
+    var  emptyStateRightString  = NSLocalizedString("You haven't sent any places to this contact yet", comment: "ContactView : emptyStateLabel : sent")
     
     func didload() {
         emptyStateLabel?.font   = UIFont.boldSystemFontOfSize(12)
@@ -34,14 +33,15 @@ class PlaceView: UIView, TwoListViewable {
         rightButton?.setTitleColor(UIColor.grayColor(), forState: .Normal)
         leftButton?.setTitleColor(UIColor.grayColor(), forState: .Normal)
         
-        let sentText            = NSLocalizedString("Sent To", comment: "PlaceView : sentButton : titleText ")
-        let receievedText       = NSLocalizedString("Recieved From", comment: "PlaceView : receivedButton : titleText ")
+        let sentText            = NSLocalizedString("Sent To", comment: "ContactView : sentButton : titleText ")
+        let receievedText       = NSLocalizedString("From", comment: "ContactView : receivedButton : titleText ")
         rightButton?.setTitle(receievedText, forState: .Normal)
         leftButton?.setTitle(sentText, forState: .Normal)
     }
-    
-    func populate(place:RemotePlace) {
-        titleLabel?.text = place.name
+
+    func populate(contact:RemoteContact) {
+        avatarImageView?.image = contact.getImage()
+        titleLabel?.text = contact.fullName
     }
     
 }

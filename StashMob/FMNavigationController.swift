@@ -43,7 +43,6 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         modalVC.placeId                 = placeId
         modalVC.placeRelation           = .Received
         modalVC.managedObjectContext    = managedObjectContext
-        modalVC.contactManager          = contactManager
         presentViewController(modalVC, animated: true, completion: nil)
     }
     

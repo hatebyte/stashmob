@@ -13,9 +13,9 @@ let title = NSLocalizedString("YO! Check out this wacky place!", comment: "Email
 let subMessage = NSLocalizedString("Follow this link to see what I'm up to.\n(Make sure you have StashMob on your phone.)", comment: "RemoteContact message : text")
 
 enum  Deliverable {
-    case Both
-    case Email
-    case Text
+    case Both(email:String, phoneNumber:String)
+    case Email(email:String)
+    case Text(phoneNumber:String)
 }
 
 extension RemoteContact {
@@ -53,12 +53,12 @@ extension RemoteContact {
     }
     
     var options:Deliverable {
-        if let _ = email, _ = phoneNumber {
-            return .Both
-        } else if let _ = email {
-            return .Email
-        } else if let _ = phoneNumber {
-            return .Text
+        if let e = email, p = phoneNumber {
+            return .Both(email:e, phoneNumber:p)
+        } else if let e = email {
+            return .Email(email:e)
+        } else if let p = phoneNumber {
+            return .Text(phoneNumber:p)
         }
         fatalError("The RemoteContact has defied the logic of the app")
     }

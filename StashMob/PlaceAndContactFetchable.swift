@@ -18,6 +18,8 @@ protocol ContactAndPlaceFetchable {
     func fetchAllContacts()->[RemoteContact]
     func fetchAllSentPlaces()->[RemotePlace]
     func fetchAllRecievedPlaces()->[RemotePlace]
+    func fetchAllSentContacts()->[RemoteContact]
+    func fetchAllRecievedContacts()->[RemoteContact]
     func receivedPlacesFrom(contact:RemoteContact)->[RemotePlace]
     func sentPlacesTo(contact:RemoteContact)->[RemotePlace]
     func contactsWhoSentMePlace(place:RemotePlace)->[RemoteContact]
@@ -45,7 +47,6 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
             request.fetchBatchSize = 500
             request.returnsObjectsAsFaults = false
         }
-        print(places)
         return places.map { RemotePlace(managedPlace:$0) }
     }
     
@@ -56,6 +57,24 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
             request.returnsObjectsAsFaults = false
         }
         return contacts.map { RemotePlace(managedPlace:$0) }
+    }
+    
+    func fetchAllSentContacts()->[RemoteContact] {
+        let places = Contact.fetchInContext(self) { request in
+            request.predicate = Contact.allSentContactsPredicate
+            request.fetchBatchSize = 500
+            request.returnsObjectsAsFaults = false
+        }
+        return places.map { RemoteContact(managedContact:$0) }
+    }
+    
+    func fetchAllRecievedContacts()->[RemoteContact] {
+        let contacts = Contact.fetchInContext(self) { request in
+            request.predicate = Contact.allReceivedContactsPredicate
+            request.fetchBatchSize = 500
+            request.returnsObjectsAsFaults = false
+        }
+        return contacts.map { RemoteContact(managedContact:$0) }
     }
    
     private func contactForNumber(string:String)->Contact? {

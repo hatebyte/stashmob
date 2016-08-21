@@ -1,5 +1,5 @@
 //
-//  PlaceViewController.swift
+//  ContactsViewController.swift
 //  StashMob
 //
 //  Created by Scott Jones on 8/21/16.
@@ -10,36 +10,31 @@ import UIKit
 import CoreData
 import StashMobModel
 
-class PlaceViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable, SegueHandlerType {
+class ContactsViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable,SegueHandlerType {
     
     weak var managedObjectContext: NSManagedObjectContext!
     weak var contactManager: Contactable!
     
-    private typealias Data = DefaultDataProvider<PlaceViewController>
-    private var dataSource:TableViewDataSource<PlaceViewController, Data, ContactTableViewCell>!
+    private typealias Data = DefaultDataProvider<ContactsViewController>
+    private var dataSource:TableViewDataSource<ContactsViewController, Data, ContactTableViewCell>!
     private var dataProvider: Data!
-    private var gmController:GMCenteredController!
- 
+   
+    var remoteContactSelected:RemoteContact?
+    
+    enum SegueIdentifier:String {
+        case PushToContact                         = "pushToContact"
+    }
+    
     var theView:TwoListViewable {
         guard let v = view as? TwoListViewable else { fatalError("The view is not a TwoListViewable") }
         return v
     }
     
-    var remotePlace : RemotePlace!
-    var remoteContactSelected:RemoteContact?
-    var selectedPlaceRelation:PlaceRelation = .Sent
-    
-    enum SegueIdentifier:String {
-        case PushToPlaceDetail                         = "pushToPlaceDetail"
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let v = theView as? PlaceView
+        let v = theView as? ContactsView
         v?.didload()
-        v?.populate(remotePlace)
-        gmController                                   = GMCenteredController(mapView: v!.mapView!, coordinate:remotePlace.coordinate, image:UIImage(named:"event_pin"))
         sentPicked()
     }
     
@@ -72,17 +67,13 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
         theView.backButton?.removeTarget(self, action: #selector(pop), forControlEvents: .TouchUpInside)
     }
     
-    var wasSent:Bool {
-        return theView.leftButton?.backgroundColor == UIColor.blueColor()
-    }
-    
     // MARK: ButtonHandlers
     func pop() {
         navigationController?.popViewControllerAnimated(true)
     }
     
     func receivedPicked() {
-        let received                                = managedObjectContext.contactsWhoSentMePlace(remotePlace)
+        let received                                = managedObjectContext.fetchAllRecievedContacts()
         theView.highlightRecieved()
         
         if received.count == 0 {
@@ -96,7 +87,7 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
     }
     
     func sentPicked() {
-        let sent                                    = managedObjectContext.contactsWhoWereSentPlace(remotePlace)
+        let sent                                    = managedObjectContext.fetchAllSentContacts()
         theView.highlightSent()
         
         if sent.count == 0 {
@@ -109,35 +100,32 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
         theView.tableView?.delegate                 = self
     }
     
+    
+    // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let mcs                               = segue.destinationViewController as? ManagedObjectContextSettable else { fatalError("DestinationViewController \(segue.destinationViewController.self) is not ManagedObjectContextSettable") }
         mcs.managedObjectContext                    = managedObjectContext
         
         switch segueIdentifierForSegue(segue) {
-        case .PushToPlaceDetail:
-            guard let vc = mcs as? DetailPlaceViewController else {
-                fatalError("DestinationViewController \(segue.destinationViewController.self) is not DetailPlaceViewController")
+        case .PushToContact:
+            guard let vc = mcs as? ContactViewController else {
+                fatalError("DestinationViewController \(segue.destinationViewController.self) is not ContactViewController")
             }
             guard let rcs = remoteContactSelected else { fatalError("Contact selected with out remoteContactSelected") }
-            vc.remoteContact                        = rcs
-            vc.placeRelation                        = selectedPlaceRelation
-            vc.placeId                              = remotePlace.placeId
-            vc.remotePlace                          = remotePlace
+            vc.remoteContact = rcs
         }
     }
     
 }
 
-extension PlaceViewController : UITableViewDelegate {
+extension ContactsViewController : UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let contact                     = dataProvider.objectAtIndexPath(indexPath)
-        remoteContactSelected           = contact
-        selectedPlaceRelation           = (wasSent) ? .Sent : .Received
+        let contact = dataProvider.objectAtIndexPath(indexPath)
+        remoteContactSelected = contact
         
-        performSegue(.PushToPlaceDetail)
+        performSegue(.PushToContact)
     }
-    
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return ContactTableViewCellHeight
@@ -145,12 +133,12 @@ extension PlaceViewController : UITableViewDelegate {
     
 }
 
-extension PlaceViewController : DataProviderDelegate {
+extension ContactsViewController : DataProviderDelegate {
     func dataProviderDidUpdate(updates:[DataProviderUpdate<RemoteContact>]?) {
     }
 }
 
-extension PlaceViewController : DataSourceDelegate {
+extension ContactsViewController : DataSourceDelegate {
     func cellIdentifierForObject(object:RemoteContact) -> String {
         return ContactTableViewCell.Identifier
     }

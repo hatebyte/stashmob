@@ -1,5 +1,5 @@
 //
-//  PlaceViewController.swift
+//  ContactViewController.swift
 //  StashMob
 //
 //  Created by Scott Jones on 8/21/16.
@@ -10,23 +10,24 @@ import UIKit
 import CoreData
 import StashMobModel
 
-class PlaceViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable, SegueHandlerType {
+class ContactViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable, SegueHandlerType {
     
     weak var managedObjectContext: NSManagedObjectContext!
     weak var contactManager: Contactable!
     
-    private typealias Data = DefaultDataProvider<PlaceViewController>
-    private var dataSource:TableViewDataSource<PlaceViewController, Data, ContactTableViewCell>!
+    private typealias Data = DefaultDataProvider<ContactViewController>
+    private var dataSource:TableViewDataSource<ContactViewController, Data, PlaceTableViewCell>!
     private var dataProvider: Data!
-    private var gmController:GMCenteredController!
- 
+    
     var theView:TwoListViewable {
         guard let v = view as? TwoListViewable else { fatalError("The view is not a TwoListViewable") }
         return v
     }
     
-    var remotePlace : RemotePlace!
-    var remoteContactSelected:RemoteContact?
+    var remoteContact : RemoteContact!
+    var sendPlaces:[RemotePlace]!
+    var recievedPlaces:[RemotePlace]!
+    var remotePlaceSelected:RemotePlace?
     var selectedPlaceRelation:PlaceRelation = .Sent
     
     enum SegueIdentifier:String {
@@ -36,10 +37,9 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let v = theView as? PlaceView
+        let v = theView as? ContactView
         v?.didload()
-        v?.populate(remotePlace)
-        gmController                                   = GMCenteredController(mapView: v!.mapView!, coordinate:remotePlace.coordinate, image:UIImage(named:"event_pin"))
+        v?.populate(remoteContact)
         sentPicked()
     }
     
@@ -82,7 +82,7 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
     }
     
     func receivedPicked() {
-        let received                                = managedObjectContext.contactsWhoSentMePlace(remotePlace)
+        let received                                = managedObjectContext.receivedPlacesFrom(remoteContact)
         theView.highlightRecieved()
         
         if received.count == 0 {
@@ -96,7 +96,7 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
     }
     
     func sentPicked() {
-        let sent                                    = managedObjectContext.contactsWhoWereSentPlace(remotePlace)
+        let sent                                    = managedObjectContext.sentPlacesTo(remoteContact)
         theView.highlightSent()
         
         if sent.count == 0 {
@@ -118,40 +118,41 @@ class PlaceViewController: UIViewController, ManagedObjectContextSettable, Manag
             guard let vc = mcs as? DetailPlaceViewController else {
                 fatalError("DestinationViewController \(segue.destinationViewController.self) is not DetailPlaceViewController")
             }
-            guard let rcs = remoteContactSelected else { fatalError("Contact selected with out remoteContactSelected") }
-            vc.remoteContact                        = rcs
+            guard let rps = remotePlaceSelected else { fatalError("Contact selected with out remoteContactSelected") }
+            print(remoteContact)
+            vc.remoteContact                        = remoteContact
             vc.placeRelation                        = selectedPlaceRelation
-            vc.placeId                              = remotePlace.placeId
-            vc.remotePlace                          = remotePlace
+            vc.placeId                              = rps.placeId
+            vc.remotePlace                          = rps
         }
     }
     
 }
 
-extension PlaceViewController : UITableViewDelegate {
-    
+extension ContactViewController : UITableViewDelegate {
+   
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let contact                     = dataProvider.objectAtIndexPath(indexPath)
-        remoteContactSelected           = contact
-        selectedPlaceRelation           = (wasSent) ? .Sent : .Received
+        let place = dataProvider.objectAtIndexPath(indexPath)
+        remotePlaceSelected     = place
+        selectedPlaceRelation   = (wasSent) ? .Sent : .Received
         
         performSegue(.PushToPlaceDetail)
     }
     
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return ContactTableViewCellHeight
+        return PlaceTableViewCellHeight
     }
     
 }
 
-extension PlaceViewController : DataProviderDelegate {
-    func dataProviderDidUpdate(updates:[DataProviderUpdate<RemoteContact>]?) {
+extension ContactViewController : DataProviderDelegate {
+    func dataProviderDidUpdate(updates:[DataProviderUpdate<RemotePlace>]?) {
     }
 }
 
-extension PlaceViewController : DataSourceDelegate {
-    func cellIdentifierForObject(object:RemoteContact) -> String {
-        return ContactTableViewCell.Identifier
+extension ContactViewController : DataSourceDelegate {
+    func cellIdentifierForObject(object:RemotePlace) -> String {
+        return PlaceTableViewCell.Identifier
     }
 }
