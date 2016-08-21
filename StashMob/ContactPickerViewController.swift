@@ -43,18 +43,11 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
         picker.peoplePickerDelegate = self
         picker.displayedProperties  = [NSNumber(int: kABPersonPhoneProperty)]
         
-        var error: Unmanaged<CFError>?
-        guard let addressBook: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue() else {
-            self.showNoSettingsAlert()
-            return
-        }
-        ABAddressBookRequestAccessWithCompletion(addressBook) { [unowned self] granted, error in
-            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-                if granted {
-                    self.presentViewController(picker, animated:false, completion: nil)
-                } else {
-                    self.showNoSettingsAlert()
-                }
+        ContactManager.getAccess { [unowned self] granted in
+            if granted {
+                self.presentViewController(picker, animated:false, completion: nil)
+            } else {
+                self.showNoSettingsAlert()
             }
         }
     }

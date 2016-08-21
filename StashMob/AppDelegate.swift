@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
 
-    //MARK: Open URL
+    //MARK: Deep Linking
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         guard let receivedItem = url.receivedItem else { return false }
         navController.accept(receivedItem)
@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @available(iOS 8.0, *)
     func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-                let webpageURL = userActivity.webpageURL! // Always exists
+                _ = userActivity.webpageURL! // Always exists
 
         }
         return false

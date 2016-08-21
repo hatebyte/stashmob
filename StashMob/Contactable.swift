@@ -10,14 +10,11 @@ import Foundation
 import StashMobModel
 import AddressBookUI
 
-
-
 protocol Contactable:class {
     func remoteUserForPerson(person:ABRecordRef)->RemoteContact?
     func contactExistsForEmail(email:String?, phoneNumber:String?)->RemoteContact?
-
-//    func makeContactForKey(key:String)->RemoteContact
-//    func makeContactForEmail(email:String)->RemoteContact
+    func createContact(remoteContact:RemoteContact)->Bool
+    static func getAccess(granted:(Bool)->())
 }
 
 protocol ManagedContactable:class {

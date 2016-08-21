@@ -23,11 +23,14 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
                 return
             }
         }
-
-        if let remoteContact = contactManager.contactExistsForEmail(receivedItem.email, phoneNumber: receivedItem.phoneNumber) {
-            showReceivedModal(remoteContact, placeId: receivedItem.placeId)
-        } else {
-            attemptToCreateContact(receivedItem)
+        ContactManager.getAccess { [unowned self] granted in
+            if granted {
+                if let remoteContact = self.contactManager.contactExistsForEmail(receivedItem.email, phoneNumber: receivedItem.phoneNumber) {
+                    self.showReceivedModal(remoteContact, placeId: receivedItem.placeId)
+                } else {
+                    self.attemptToCreateContact(receivedItem)
+                }
+            }
         }
     }
     
@@ -48,10 +51,18 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         presentViewController(modalVC, animated: true, completion: nil)
     }
     
-    func showCreateContactModal() {
-        let modalVC = UIStoryboard.loginModal()
+    func showCreateContactModal(receivedItem:ReceivedItem) {
+        let modalVC = UIStoryboard.createContactModal()
         modalVC.managedObjectContext    = managedObjectContext
         modalVC.contactManager          = contactManager
+        modalVC.receivedItem            = receivedItem
+        modalVC.complete = { [weak self] remoteContact in
+            if let rc = remoteContact {
+                self?.showReceivedModal(rc, placeId: receivedItem.placeId)
+            } else {
+                self?.alertCreationDidntWork()
+            }
+        }
         presentViewController(modalVC, animated: true, completion: nil)
     }
     
@@ -79,13 +90,26 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { action in
         }
         let createAction = UIAlertAction(title: yesText, style: .Default)  { [weak self] action in
-            self?.showCreateContactModal()
+            self?.showCreateContactModal(receivedItem)
         }
         alertController.addAction(dismissAction)
         alertController.addAction(createAction)
         
         presentViewController(alertController, animated: true, completion: nil)
     }
-   
+  
+    func alertCreationDidntWork() {
+        let alertTitle              = NSLocalizedString("Well, I guess it didnt work. ", comment: "CreateContact : ErroralertTitle : text")
+        let alertMessage            = NSLocalizedString("Whoops.", comment: "CreateContact : ErroralertTitle : message")
+        
+        let dismissText             = NSLocalizedString("Dismiss", comment: "CreateContact : Dismiss : titleText")
+        
+        let alertController = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { action in
+        }
+        alertController.addAction(dismissAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
     
 }
