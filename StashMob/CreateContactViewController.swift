@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import StashMobModel
 
 typealias FinisheCreation = (RemoteContact?)->()
 

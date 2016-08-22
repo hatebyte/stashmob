@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import StashMobModel
 
 class LoginViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable {
     
@@ -26,7 +25,6 @@ class LoginViewController: UIViewController, ManagedObjectContextSettable, Manag
         theView.didLoad()
         theView.phoneNumberTextField?.delegate   = self
         theView.emailTextField?.delegate   = self
-        
 
     }
     
@@ -111,9 +109,7 @@ class LoginViewController: UIViewController, ManagedObjectContextSettable, Manag
         managedObjectContext.performChanges {
             user.setAsLoggedInUser()
         }
-//        if let _ = User.loggedInUser(managedObjectContext) {
-            dismissViewControllerAnimated(true, completion: nil)
-//        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     /*

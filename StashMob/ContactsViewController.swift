@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import StashMobModel
 
 class ContactsViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable,SegueHandlerType {
     

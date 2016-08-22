@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import StashMobModel
 import GooglePlaces
 import GoogleMaps
 

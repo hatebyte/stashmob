@@ -9,8 +9,6 @@
 import UIKit
 
 
-import StashMobModel
-
 public let ContactTableViewCellHeight:CGFloat        = 50.0
 class ContactTableViewCell: UITableViewCell {
     

@@ -8,7 +8,6 @@
 //
 
 import Foundation
-import StashMobModel
 import CoreLocation
 
 struct PlaceFeature {

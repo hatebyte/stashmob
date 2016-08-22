@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+    <entity name="Contact" representedClassName="StashMob.Contact" syncable="YES">
+        <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="-978289200" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recievedPlaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="receivedFromContacts" inverseEntity="Place" syncable="YES"/>
+        <relationship name="sentPlaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="sentToContacts" inverseEntity="Place" syncable="YES"/>
+    </entity>
+    <entity name="Place" representedClassName="StashMob.Place" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="-978289200" syncable="YES"/>
+        <attribute name="lastVisited" attributeType="Date" defaultDateTimeInterval="-978289200" syncable="YES"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="placeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priceLevel" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rating" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="status" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="types" optional="YES" attributeType="Transformable" valueTransformerName="StringArrayTransformerName" syncable="YES"/>
+        <attribute name="websiteUrlString" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="receivedFromContacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="recievedPlaces" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="sentToContacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="sentPlaces" inverseEntity="Contact" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="StashMob.User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isLoggedIn" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Contact" positionX="-27" positionY="45" width="128" height="165"/>
+        <element name="Place" positionX="-36" positionY="36" width="128" height="270"/>
+        <element name="User" positionX="-36" positionY="9" width="128" height="90"/>
+    </elements>
+</model>

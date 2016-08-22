@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import StashMobModel
 
 struct PersonAndPlaces{
     let places:[RemotePlace]

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import StashMobModel
 import CoreData
 
 public struct RemotePlace {

@@ -6,8 +6,7 @@
 //  Copyright © 2016 Scott Jones. All rights reserved.
 //
 
-import Foundation
-import StashMobModel
+import UIKit
 
 let title = NSLocalizedString("YO! Check out this wacky place!", comment: "Email Title : text")
 let subMessage = NSLocalizedString("Follow this link to see what I'm up to.\n(Make sure you have StashMob on your phone.)", comment: "RemoteContact message : text")

@@ -8,7 +8,6 @@
 
 import UIKit
 import GoogleMaps
-import StashMobModel
 
 class DetailPlaceView: UIView {
 

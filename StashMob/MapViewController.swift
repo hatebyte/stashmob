@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import GooglePlacePicker
-import StashMobModel
 
 class MapViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable, SegueHandlerType {
 
@@ -174,17 +173,21 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         let dismissText             = NSLocalizedString("Dismiss", comment: "ContactPickerViewController : dismissButton : titleText")
         let settingsText            = NSLocalizedString("Fix In Settings", comment: "ContactPickerViewController : settingsButton : titleText")
         
-        let alertController = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let settingsAction = UIAlertAction(title: settingsText, style: .Default)  { action in
-            UIApplication.sharedApplication().navigateToSettings()
-        }
-        let dismissAction = UIAlertAction(title: dismissText, style: .Default)  { [weak self] action in
+        let alertController = CMAlertController(title:alertTitle, message:alertMessage)
+        let dismissAction = CMAlertAction(title: dismissText, style: .Primary)  { [weak self] action in
             self?.sendToSearchBar()
         }
         alertController.addAction(dismissAction)
-        alertController.addAction(settingsAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        if #available(iOS 8.0, *) {
+            let settingsAction = CMAlertAction(title: settingsText, style: .Primary)  { action in
+                UIApplication.sharedApplication().navigateToSettings()
+            }
+            alertController.addAction(settingsAction)
+        }
+
+       
+        CMAlert.presentViewController(alertController)
     }
 
     func alertDeniedLocationSettings() {
@@ -194,17 +197,17 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         let dismissText             = NSLocalizedString("Dismiss", comment: "ContactPickerViewController : dismissButton : titleText")
         let settingsText            = NSLocalizedString("Fix In Settings", comment: "ContactPickerViewController : settingsButton : titleText")
         
-        let alertController = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let settingsAction = UIAlertAction(title: settingsText, style: .Default)  { action in
+        let alertController = CMAlertController(title:alertTitle, message:alertMessage)
+        let settingsAction = CMAlertAction(title: settingsText, style: .Primary)  { action in
             UIApplication.sharedApplication().navigateToSettings()
         }
-        let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { [weak self] action in
+        let dismissAction = CMAlertAction(title: dismissText, style: .Cancel)  { [weak self] action in
             self?.sendToSearchBar()
         }
         alertController.addAction(dismissAction)
         alertController.addAction(settingsAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        CMAlert.presentViewController(alertController)
     }
     
     func alertBadThingsWithRetryBlock(block:()->()) {
@@ -214,34 +217,34 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         let fogetitText             = NSLocalizedString("Nah, forget it", comment: "ContactPickerViewController : error : forgetit")
         let tryagain                = NSLocalizedString("Try again", comment: "ContactPickerViewController : error : tryagain")
         
-        let alertController         = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let fogetitAction           = UIAlertAction(title: fogetitText, style: .Cancel)  { action in
+        let alertController         = CMAlertController(title:alertTitle, message:alertMessage)
+        let fogetitAction           = CMAlertAction(title: fogetitText, style: .Cancel)  { action in
         }
-        let tryagainAction          = UIAlertAction(title: tryagain, style: .Default)  { action in
+        let tryagainAction          = CMAlertAction(title: tryagain, style: .Primary)  { action in
             block()
         }
         alertController.addAction(tryagainAction)
         alertController.addAction(fogetitAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        CMAlert.presentViewController(alertController)
     }
     
     func actionSheetForLocationOrSearch() {
         let titleText = NSLocalizedString("How do you want to find a place?", comment: "ContactPickerViewController : actionSheetTitle : titleText")
         
-        let actionController = UIAlertController(title:titleText, message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let actionController = CMActionSheetController(title:titleText)
         let searchText = NSLocalizedString("Search My Self", comment: "ContactPickerViewController : actionSheet : searchButton")
         let currentText = NSLocalizedString("Use CurrentLocation", comment: "ContactPickerViewController : actionSheet : locationButton")
         
-        let searchAction = UIAlertAction(title: searchText, style: .Default)  { [weak self] action in
+        let searchAction = CMAlertAction(title: searchText, style: .Primary)  { [weak self] action in
             self?.sendToSearchBar()
         }
-        let locationAction = UIAlertAction(title: currentText, style: .Default)  { [weak self] action in
+        let locationAction = CMAlertAction(title: currentText, style: .Primary)  { [weak self] action in
             self?.startLocating()
         }
-        actionController.addAction(locationAction)
         actionController.addAction(searchAction)
-        presentViewController(actionController, animated: true, completion: nil)
+        actionController.addAction(locationAction)
+        CMAlert.presentViewController(actionController)
     }
     
 }

@@ -7,18 +7,16 @@
 //
 
 import Foundation
-import StashMobModel
+
 import AddressBookUI
 
 class ContactManager: Contactable {
  
-    let addressBook: ABAddressBookRef?
+    var addressBook: ABAddressBookRef?
     
     init() {
         var error: Unmanaged<CFError>?
-        guard let add: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue() else {
-            fatalError("WHOA, Big Contact problems out the door. No Address book")
-        }
+        let add: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()
         self.addressBook = add
     }
    

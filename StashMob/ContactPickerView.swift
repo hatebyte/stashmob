@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import StashMobModel
 import GoogleMaps
 
 class ContactPickerView: UIView {

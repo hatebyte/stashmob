@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import StashMobModel
 import CoreData
 
 protocol ManagedObjectContextSettable:class {
