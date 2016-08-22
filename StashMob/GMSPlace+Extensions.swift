@@ -8,7 +8,6 @@
 
 import Foundation
 import GooglePlaces
-import StashMobModel
 
 extension GMSPlace {
 

@@ -9,7 +9,7 @@
 import Foundation
 
 import CoreData
-@testable import StashMobModel
+@testable import StashMob
 
 extension dispatch_group_t {
     func spinUntilEmpty() {

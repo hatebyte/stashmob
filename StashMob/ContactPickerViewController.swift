@@ -9,7 +9,6 @@
 import UIKit
 import AddressBookUI
 import CoreData
-import StashMobModel
 
 class ContactPickerViewController: UIViewController, ManagedObjectContextSettable {
         
@@ -101,41 +100,39 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
 
         switch remoteContact.options {
         case .Both(let email, let phoneNumber):
-            let titleText = NSLocalizedString("How do you want to message \(remoteContact.fullName)", comment: "ContactPickerViewController : actionSheetTitle : titleText")
+            let titleText           = NSLocalizedString("How do you want to message \(remoteContact.fullName)", comment: "ContactPickerViewController : actionSheetTitle : titleText")
+            let actionController    = CMActionSheetController(title:titleText)
+            let emailText           = NSLocalizedString("EMAIL", comment: "ContactPickerViewController : actionSheet : emailButton")
+            let textText            = NSLocalizedString("TEXT", comment: "ContactPickerViewController : actionSheet : textButton")
 
-            let actionController = UIAlertController(title:titleText, message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            let emailText = NSLocalizedString("EMAIL", comment: "ContactPickerViewController : actionSheet : emailButton")
-            let textText = NSLocalizedString("TEXT", comment: "ContactPickerViewController : actionSheet : textButton")
-
-            let emailAction = UIAlertAction(title: emailText, style: .Default)  { [unowned self] action in
-                let einfo = loggedInUser.emailInfo(self.remotePlace.placeId, email:email)
+            let emailAction = CMAlertAction(title: emailText, style: .Primary)  { [unowned self] action in
+                let einfo           = loggedInUser.emailInfo(self.remotePlace.placeId, email:email)
                 self.sendEmail(einfo)
             }
-            let textAction = UIAlertAction(title: textText, style: .Default)  { [unowned self] action in
-                let tinfo = loggedInUser.textInfo(self.remotePlace.placeId, phoneNumber:phoneNumber)
+            let textAction = CMAlertAction(title: textText, style: .Primary)  { [unowned self] action in
+                let tinfo           = loggedInUser.textInfo(self.remotePlace.placeId, phoneNumber:phoneNumber)
                 self.sendTextMessage(tinfo)
             }
             actionController.addAction(emailAction)
             actionController.addAction(textAction)
-            presentViewController(actionController, animated: true, completion: nil)
-
+            CMAlert.presentViewController(actionController)
         case .Email(let email):
-            let einfo = loggedInUser.emailInfo(remotePlace.placeId, email:email)
+            let einfo               = loggedInUser.emailInfo(remotePlace.placeId, email:email)
             sendEmail(einfo)
         case .Text(let phoneNumber):
-            let tinfo = loggedInUser.textInfo(remotePlace.placeId, phoneNumber:phoneNumber)
+            let tinfo               = loggedInUser.textInfo(remotePlace.placeId, phoneNumber:phoneNumber)
             sendTextMessage(tinfo)
         }
     }
     
     //MARK: Alert error
     func showAlert(title:String, message:String? = nil, block:()->()) {
-        let alertController = UIAlertController(title:title, message:message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController = CMAlertController(title:title, message:message ?? "")
         let dismissText = NSLocalizedString("Dismiss", comment: "ContactPickerViewController : dismissButton : titleText")
-        alertController.addAction(UIAlertAction(title: dismissText, style: .Default) { action in
+        alertController.addAction(CMAlertAction(title: dismissText, style: .Primary) { action in
                 block()
         })
-        presentViewController(alertController, animated: true, completion: nil)
+        CMAlert.presentViewController(alertController)
     }
     
     func showNoSettingsAlert(){
@@ -143,18 +140,18 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
         let dismissText             = NSLocalizedString("Dismiss", comment: "ContactPickerViewController : dismissButton : titleText")
         let settingsText            = NSLocalizedString("Go To Settings", comment: "ContactPickerViewController : dismissButton : titleText")
         
-        let alertController = UIAlertController(title:alertMessage, message:nil, preferredStyle: UIAlertControllerStyle.Alert)
-        let settingsAction = UIAlertAction(title: settingsText, style: .Default)  { [unowned self] action in
+        let alertController = CMAlertController(title:alertMessage)
+        let settingsAction = CMAlertAction(title: settingsText, style: .Primary)  { [unowned self] action in
             UIApplication.sharedApplication().navigateToSettings()
             self.pop()
         }
-        let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { [unowned self] action in
+        let dismissAction = CMAlertAction(title: dismissText, style: .Cancel)  { [unowned self] action in
             self.pop()
         }
         alertController.addAction(dismissAction)
         alertController.addAction(settingsAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        CMAlert.presentViewController(alertController)
     }
    
     // MARK: Internals

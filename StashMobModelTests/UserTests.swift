@@ -8,7 +8,7 @@
 
 import XCTest
 import CoreData
-@testable import StashMobModel
+@testable import StashMob
 
 class UserTests: XCTestCase {
     

@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import StashMobModel
 
 class LoginViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable {
     

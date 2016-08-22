@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import StashMobModel
 
 class FMNavigationController: UINavigationController, ManagedObjectContextSettable, ManagedContactable {
 
@@ -110,16 +109,16 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         let yesText            = NSLocalizedString("Oh hell yeah!", comment: "CreateContact : yes : titleText")
         
         
-        let alertController = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { action in
+        let alertController = CMAlertController(title:alertTitle, message:alertMessage)
+        let dismissAction = CMAlertAction(title: dismissText, style: .Cancel)  { action in
         }
-        let createAction = UIAlertAction(title: yesText, style: .Default)  { [weak self] action in
+        let createAction = CMAlertAction(title: yesText, style: .Primary)  { [weak self] action in
             self?.showCreateContactModal(receivedItem)
         }
         alertController.addAction(dismissAction)
         alertController.addAction(createAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        CMAlert.presentViewController(alertController)
     }
   
     func alertCreationDidntWork() {
@@ -128,12 +127,12 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         
         let dismissText             = NSLocalizedString("Dismiss", comment: "CreateContact : Dismiss : titleText")
         
-        let alertController = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { action in
+        let alertController = CMAlertController(title:alertTitle, message:alertMessage)
+        let dismissAction = CMAlertAction(title: dismissText, style: .Cancel)  { action in
         }
         alertController.addAction(dismissAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        CMAlert.presentViewController(alertController)
     }
     
     func stopIt() {
@@ -142,12 +141,12 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         
         let dismissText             = NSLocalizedString("I'm Sorry", comment: "CreateContact : stopitalertTitle : button")
         
-        let alertController = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { action in
+        let alertController = CMAlertController(title:alertTitle, message:alertMessage)
+        let dismissAction = CMAlertAction(title: dismissText, style: .Cancel)  { action in
         }
         alertController.addAction(dismissAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        CMAlert.presentViewController(alertController)
     }
     
 }

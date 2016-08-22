@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import StashMobModel
+
 import AddressBookUI
 
 class ContactManager: Contactable {

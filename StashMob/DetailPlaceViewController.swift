@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import GooglePlaces
-import StashMobModel
 
 enum PlaceRelation {
     case Received
@@ -154,13 +153,13 @@ class DetailPlaceViewController: UIViewController, ManagedObjectContextSettable 
         let alertMessage            = NSLocalizedString("Lets get outta here!", comment: "RecievedPlaceViewController : error : message")
         let dismissText             = NSLocalizedString("Dismiss", comment: "RecievedPlaceViewController : error : forgetit")
         
-        let alertController         = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let dismissAction          = UIAlertAction(title: dismissText, style: .Default)  { action in
+        let alertController         = CMAlertController(title:alertTitle, message:alertMessage)
+        let dismissAction          = CMAlertAction(title: dismissText, style: .Primary)  { action in
             block()
         }
         alertController.addAction(dismissAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        CMAlert.presentViewController(alertController)
     }
     
 }

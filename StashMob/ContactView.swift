@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import StashMobModel
 
 class ContactView: UIView, TwoListViewable {
     

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import StashMobModel
 
 public let PlaceTableViewCellHeight:CGFloat        = 50.0
 class PlaceTableViewCell: UITableViewCell {
