@@ -31,6 +31,7 @@ class ContactPickerView: UIView {
     }
 
     func didload() {
+        contactImageView?.clipsToBounds     = true
         let sendText                        = NSLocalizedString("SEND!!", comment: "ContactPickerView : send : text")
         let dontSendText                    = NSLocalizedString("Cancel", comment: "ContactPickerView : send : text")
         
@@ -63,7 +64,7 @@ class ContactPickerView: UIView {
     }
 
     func populateContact(contact:RemoteContact) {
-        let fn                              = contact.fullName
+        let fn                              = contact.fullName + "?"
         contactNameLabel?.text              = fn
         
         let w                               = fn.widthWithConstrainedHeight(40, font: contactNameLabel!.font) + 80
