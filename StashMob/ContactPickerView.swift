@@ -21,10 +21,13 @@ class ContactPickerView: UIView {
     @IBOutlet weak var subLabel:UILabel?
     @IBOutlet weak var toLabel:UILabel?
     @IBOutlet weak var contactImageView:UIImageView?
- 
+    @IBOutlet weak var backButton:UIButton?
+    @IBOutlet weak var chooseContactButton:UIButton?
+    @IBOutlet weak var chooseView:UIView?
+
     func didload() {
-        let sendText                        = NSLocalizedString("YES SEND!!", comment: "ContactPickerView : send : text")
-        let dontSendText                    = NSLocalizedString("NO WHOOPS!", comment: "ContactPickerView : send : text")
+        let sendText                        = NSLocalizedString("SEND!!", comment: "ContactPickerView : send : text")
+        let dontSendText                    = NSLocalizedString("Cancel", comment: "ContactPickerView : send : text")
         
         sendButton?.setTitle(sendText, forState: .Normal)
         dontSendButton?.setTitle(dontSendText, forState: .Normal)
@@ -38,8 +41,18 @@ class ContactPickerView: UIView {
 
         contactNameLabel?.adjustsFontSizeToFitWidth = true
         contactNameLabel?.font              = UIFont.boldSystemFontOfSize(24)
+        
+        let contactButtonText = NSLocalizedString("Choose Contact\nTo Receive This Location", comment: "ContactPickerView : chooseContactButton : text")
+        chooseContactButton?.setTitle(contactButtonText, forState: .Normal)
+        chooseContactButton?.titleLabel?.font = UIFont.systemFontOfSize(24)
+        chooseContactButton?.titleLabel?.numberOfLines = 0
+        chooseContactButton?.titleLabel?.textAlignment = .Center
     }
     
+    func hideChooser() {
+        chooseView?.hidden                  = true
+    }
+   
     func populatePlace(place:RemotePlace) {
         placeNameLabel?.text                = place.name
     }

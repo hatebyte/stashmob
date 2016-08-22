@@ -38,25 +38,6 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
         theView.didload()
         theView.populatePlace(remotePlace)
         gmController                = GMCenteredController(mapView: theView.mapView!, coordinate:remotePlace.coordinate, image: UIImage(named:"event_pin"))
-        
-        let picker                  = ABPeoplePickerNavigationController()
-        picker.peoplePickerDelegate = self
-        picker.displayedProperties  = [NSNumber(int: kABPersonPhoneProperty)]
-        
-        var error: Unmanaged<CFError>?
-        guard let addressBook: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue() else {
-            self.showNoSettingsAlert()
-            return
-        }
-        ABAddressBookRequestAccessWithCompletion(addressBook) { [unowned self] granted, error in
-            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-                if granted {
-                    self.presentViewController(picker, animated:false, completion: nil)
-                } else {
-                    self.showNoSettingsAlert()
-                }
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,13 +62,32 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
     }
     
     func addHandlers() {
+        theView.chooseContactButton?.addTarget(self, action: #selector(fetchContacts), forControlEvents: .TouchUpInside)
+        theView.backButton?.addTarget(self, action: #selector(pop), forControlEvents: .TouchUpInside)
         theView.sendButton?.addTarget(self, action: #selector(send), forControlEvents: .TouchUpInside)
         theView.dontSendButton?.addTarget(self, action: #selector(pop), forControlEvents: .TouchUpInside)
     }
     
     func removeHandlers() {
+        theView.chooseContactButton?.removeTarget(self, action: #selector(fetchContacts), forControlEvents: .TouchUpInside)
+        theView.backButton?.removeTarget(self, action: #selector(pop), forControlEvents: .TouchUpInside)
         theView.sendButton?.removeTarget(self, action: #selector(send), forControlEvents: .TouchUpInside)
         theView.dontSendButton?.removeTarget(self, action: #selector(pop), forControlEvents: .TouchUpInside)
+    }
+    
+    // MARK: Button Handlers
+    func fetchContacts() {
+        let picker                  = ABPeoplePickerNavigationController()
+        picker.peoplePickerDelegate = self
+        picker.displayedProperties  = [NSNumber(int: kABPersonPhoneProperty)]
+        
+        ContactManager.getAccess { [unowned self] granted in
+            if granted {
+                self.presentViewController(picker, animated:true, completion: nil)
+            } else {
+                self.showNoSettingsAlert()
+            }
+        }
     }
     
     func pop() {
@@ -156,10 +156,12 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
         
         presentViewController(alertController, animated: true, completion: nil)
     }
-    
-    func didSelectPerson(person: ABRecordRef) {
-        if let rc = contactManager.remoteUserForPerson(person) {
-            remoteContact = rc
+   
+    // MARK: Internals
+    func didSelectPerson(person: ABRecordRef, imageData:NSData?) {
+        if var rc = contactManager.remoteUserForPerson(person) {
+            managedObjectContext.saveImageDataIfNecessary(&rc, imageData:imageData)
+            remoteContact               = rc
             theView.populateContact(remoteContact)
         } else {
             theView.hideContact()
@@ -173,18 +175,7 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
             }
         }
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    
     func sendEmail(info:EmailInfo) {
         emailDelegate = EmailDelegate()
         emailDelegate?.email(self, info: info) { [unowned self] isSent in
@@ -212,7 +203,12 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
 extension ContactPickerViewController : ABPeoplePickerNavigationControllerDelegate {
    
     func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController, didSelectPerson person: ABRecordRef) {
-        didSelectPerson(person)
+        if let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)?.takeUnretainedValue() {
+            didSelectPerson(person, imageData:imgData)
+        } else {
+            didSelectPerson(person, imageData:nil)
+        }
+        theView.hideChooser()
         peoplePicker.dismissViewControllerAnimated(true, completion: nil)
     }
 

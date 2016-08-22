@@ -89,10 +89,7 @@ class ContactViewController: UIViewController, ManagedObjectContextSettable, Man
             theView.emptyForRight()
             return
         }
-        theView.hideEmptyState()
-        dataProvider                                = DefaultDataProvider(items:received, delegate :self)
-        dataSource                                  = TableViewDataSource(tableView:theView.tableView!, dataProvider: dataProvider, delegate:self)
-        theView.tableView?.delegate                 = self
+        updateDataProvider(received)
     }
     
     func sentPicked() {
@@ -103,12 +100,18 @@ class ContactViewController: UIViewController, ManagedObjectContextSettable, Man
             theView.emptyForLeft()
             return
         }
+        updateDataProvider(sent)
+    }
+   
+    // MARK: Duplicate
+    func updateDataProvider(objects:[RemotePlace]) {
         theView.hideEmptyState()
-        dataProvider                                = DefaultDataProvider(items:sent, delegate :self)
+        dataProvider                                = DefaultDataProvider(items:objects, delegate :self)
         dataSource                                  = TableViewDataSource(tableView:theView.tableView!, dataProvider: dataProvider, delegate:self)
         theView.tableView?.delegate                 = self
     }
     
+    // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let mcs                               = segue.destinationViewController as? ManagedObjectContextSettable else { fatalError("DestinationViewController \(segue.destinationViewController.self) is not ManagedObjectContextSettable") }
         mcs.managedObjectContext                    = managedObjectContext

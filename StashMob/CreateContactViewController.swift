@@ -7,29 +7,145 @@
 //
 
 import UIKit
+import CoreData
+import StashMobModel
 
-class CreateContactViewController: UIViewController {
+typealias FinisheCreation = (RemoteContact?)->()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+class CreateContactViewController: UIViewController, ManagedObjectContextSettable, ManagedContactable {
+        
+    weak var managedObjectContext: NSManagedObjectContext!
+    weak var contactManager: Contactable!
+    
+    var receivedItem:ReceivedItem!
+    var complete:FinisheCreation!
+    
+    var theView:CreateContactView {
+        guard let v = view as? CreateContactView else { fatalError("The view is not a CreateContactView") }
+        return v
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        theView.didLoad()
+        theView.populate(receivedItem)
+        theView.phoneNumberTextField?.delegate      = self
+        theView.emailTextField?.delegate            = self
+        theView.firstNameTextField?.delegate        = self
+        theView.lastNameTextField?.delegate         = self
     }
-    */
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        addHandlers()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeHandlers()
+    }
+    
+    func addHandlers() {
+        theView.submitButton?.addTarget(self, action: #selector(attempToCreateRemoteContact), forControlEvents: .TouchUpInside)
+        let nc                                      = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self, selector:#selector(areFieldsPopulated), name:UITextFieldTextDidChangeNotification,      object:nil)
+    }
+    
+    func removeHandlers() {
+        theView.submitButton?.removeTarget(self, action: #selector(attempToCreateRemoteContact), forControlEvents: .TouchUpInside)
+        let nc                                      = NSNotificationCenter.defaultCenter()
+        nc.removeObserver(self, name:UITextFieldTextDidChangeNotification,          object:nil)
+    }
+   
+    func areFieldsPopulated() {
+        theView.submitButton?.enabled = false
+        if isPhoneNumberValid || isEmailValid {
+            if isFirstNameValid && isLastNameValid {
+                theView.submitButton?.enabled = true
+            }
+        }
+    }
+    
+    var isEmailValid:Bool {
+        if let text = theView.emailTextField?.text {
+            let validString = CMValidator.isEmailValid(text) as String
+            return VALID_INPUT == validString
+        }
+        return false
+    }
+    
+    var isPhoneNumberValid:Bool {
+        if let text = theView.phoneNumberTextField?.text {
+            let validString = CMValidator.validatePhoneNumber(CMValidator.unFormatPhoneNumber(text)) as String
+            return VALID_INPUT == validString
+        }
+        return false
+    }
+    
+    var isFirstNameValid:Bool {
+        if let text = theView.firstNameTextField?.text {
+            if text.characters.count >= 2 { return true }
+        }
+        return false
+    }
 
+    var isLastNameValid:Bool {
+        if let text = theView.lastNameTextField?.text {
+            if text.characters.count >= 2 { return true }
+        }
+        return false
+    }
+
+    func attempToCreateRemoteContact() {
+        theView.phoneNumberTextField?.resignFirstResponder()
+        theView.emailTextField?.resignFirstResponder()
+        theView.firstNameTextField?.resignFirstResponder()
+        theView.lastNameTextField?.resignFirstResponder()
+        
+        var unformatedPhone:String?
+        if let text = theView.phoneNumberTextField?.text {
+            unformatedPhone = CMValidator.validatePhoneNumber(CMValidator.unFormatPhoneNumber(text)) as String
+        }
+ 
+        let tempContact = RemoteContact(
+            phoneNumber     : unformatedPhone
+            ,email          : theView.emailTextField?.text
+            ,firstName      : theView.firstNameTextField?.text
+            ,lastName       : theView.lastNameTextField?.text
+        )
+        if contactManager.createContact(tempContact) == true {
+            dismissViewControllerAnimated(true, completion: { [weak self] in
+                self?.complete(tempContact)
+            })
+        } else {
+            dismissViewControllerAnimated(true, completion: { [weak self] in
+                self?.complete(nil)
+            })
+        }
+    }
+    
+}
+
+extension CreateContactViewController : UITextFieldDelegate {
+    
+    //MARK: TextFieldDelegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if (textField == theView.phoneNumberTextField) {
+            let returnOrValue:AnyObject!                = CMValidator.formatPhoneNumber(textField.text, withRange:range)
+            if returnOrValue as? NSString == REACHED_MAX_LENGTH {
+                return false;
+            } else {
+                textField.text                          = returnOrValue as? String
+                return true
+            }
+        }
+        return true
+    }
+    
 }

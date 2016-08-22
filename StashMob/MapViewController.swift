@@ -25,6 +25,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
     
     enum SegueIdentifier:String {
         case PushToContactPicker                    = "pushToContactPicker"
+        case PushToContactPickerNoAnimation         = "pushToContactPickerNoAnimation"
         case PushToPlaces                           = "pushToPlaces"
         case PushToContacts                         = "pushToContacts"
     }
@@ -40,14 +41,13 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         locationPermissions = LocationPermissionsManager(locationManager: locationManager)
         theView.didload()
         gmController = GMMultiMarkerController(mapView: theView.mapView!)
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         addHandlers()
         
-        // For some reason, the GMCamera does not update on first launch
+        // For some reason, the GMCamera does not update on first launch unless slightly differed
         let pandp                                   = managedObjectContext.mapContactsToPersonAndPlaces()
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] in
@@ -79,6 +79,14 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         }
     }
     
+    func sendToSearchBar() {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        self.presentViewController(autocompleteController, animated: true, completion: nil)
+    }
+    
+    
+ 
     
     // MARK: Button handlers
     func findAPlaceRequested() {
@@ -114,13 +122,6 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         }
     }
     
-    func sendToSearchBar() {
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        self.presentViewController(autocompleteController, animated: true, completion: nil)
-    }
-    
-    
     // MARK: Place Picker
     func addPicker(center:CLLocationCoordinate2D) {
         let northEast           = CLLocationCoordinate2DMake(center.latitude + 0.001, center.longitude + 0.001)
@@ -133,7 +134,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
             
             if let place = place {
                 self?.remotePlace = place.toRemotePlace()
-                self?.performSegue(.PushToContactPicker)
+                self?.performSegue(.PushToContactPickerNoAnimation)
                 
             } else if error != nil {
                 self?.alertBadThingsWithRetryBlock { [weak self] in
@@ -153,7 +154,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         mcs.managedObjectContext                    = managedObjectContext
 
         switch segueIdentifierForSegue(segue) {
-        case .PushToContactPicker:
+        case .PushToContactPicker, .PushToContactPickerNoAnimation:
             guard let vc                             = segue.destinationViewController as? ContactPickerViewController else { fatalError("DestinationViewController \(segue.destinationViewController.self) is not ContactPickerViewController") }
             vc.contactManager                        = contactManager
 
@@ -226,7 +227,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
     }
     
     func actionSheetForLocationOrSearch() {
-        let titleText = NSLocalizedString("How do you want to find a place", comment: "ContactPickerViewController : actionSheetTitle : titleText")
+        let titleText = NSLocalizedString("How do you want to find a place?", comment: "ContactPickerViewController : actionSheetTitle : titleText")
         
         let actionController = UIAlertController(title:titleText, message:nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         let searchText = NSLocalizedString("Search My Self", comment: "ContactPickerViewController : actionSheet : searchButton")

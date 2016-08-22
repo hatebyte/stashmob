@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import StashMobModel
+@testable import StashMob
 
 let testContact = RemoteContact(
      phoneNumber        : "9085818600"

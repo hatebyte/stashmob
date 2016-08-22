@@ -21,7 +21,24 @@ class ContactManager: Contactable {
         }
         self.addressBook = add
     }
-    
+   
+    static func getAccess(grantedAccess:(Bool)->()) {
+        var error: Unmanaged<CFError>?
+        guard let addressBook: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue() else {
+            grantedAccess(false)
+            return
+        }
+        ABAddressBookRequestAccessWithCompletion(addressBook) { granted, error in
+            dispatch_async(dispatch_get_main_queue()) {
+                if granted {
+                    grantedAccess(true)
+                } else {
+                    grantedAccess(false)
+                }
+            }
+        }
+    }
+
     func remoteUserForPerson(person:ABRecordRef)->RemoteContact? {
         let email = quickEmail(person)
         var number = quickPhoneNumber(person)
@@ -32,17 +49,10 @@ class ContactManager: Contactable {
         if email == nil && number == nil { return nil }
         let fName = propForKey(person, key:kABPersonFirstNameProperty)
         let lName = propForKey(person, key:kABPersonLastNameProperty)
-        var rContact = RemoteContact(phoneNumber:number, email: email, firstName: fName, lastName: lName)
-        if let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)?.takeUnretainedValue() {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                rContact.imageName = NSUUID().UUIDString
-                rContact.saveRawImage(imgData)
-            })
-        }
-        return rContact
+        return RemoteContact(phoneNumber:number, email: email, firstName: fName, lastName: lName)
     }
     
-    func contactExistsForEmail(email:String?, phoneNumber:String?)->RemoteContact? {
+    func contactExistsFor(email email:String?, phoneNumber:String?)->(contact:RemoteContact?, data:NSData?) {
         let allContacts = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue() as Array
         var record: ABRecordRef?
         for person in allContacts {
@@ -66,13 +76,54 @@ class ContactManager: Contactable {
             }
         }
         if let r = record {
-            return remoteUserForPerson(r)
+            if let imgData = ABPersonCopyImageDataWithFormat(r, kABPersonImageFormatThumbnail)?.takeUnretainedValue() {
+                return (remoteUserForPerson(r), imgData)
+            } else {
+                return (remoteUserForPerson(r), nil)
+            }
         } else {
-            return nil
+            return (nil, nil)
         }
     }
 
-    func quickPhoneNumber(person:ABRecordRef)->String? {
+    func createContact(remoteContact:RemoteContact)->Bool {
+        let record: ABRecordRef = ABPersonCreate().takeRetainedValue()
+        if let f = remoteContact.email {
+            ABRecordSetValue(record, kABPersonFirstNameProperty, f, nil)
+        }
+        if let l = remoteContact.email {
+            ABRecordSetValue(record, kABPersonLastNameProperty, l, nil)
+        }
+        if let e = remoteContact.email {
+            let email: ABMultiValueRef = ABMultiValueCreateMutable(ABPropertyType(kABMultiStringPropertyType)).takeRetainedValue()
+            ABMultiValueAddValueAndLabel(email, e, kABHomeLabel, nil)
+            ABRecordSetValue(record, kABPersonEmailProperty, email, nil)
+        }
+        if let p = remoteContact.phoneNumber {
+            let phoneNumbers: ABMutableMultiValue = ABMultiValueCreateMutable(ABPropertyType(kABMultiStringPropertyType)).takeRetainedValue()
+            ABMultiValueAddValueAndLabel(phoneNumbers, p, kABPersonPhoneMainLabel, nil)
+            ABRecordSetValue(record, kABPersonPhoneProperty, phoneNumbers, nil)
+        }
+        
+        ABAddressBookAddRecord(addressBook, record, nil)
+        return saveAddressBookChanges()
+    }
+    
+    func saveAddressBookChanges()->Bool {
+        if ABAddressBookHasUnsavedChanges(addressBook){
+            var err: Unmanaged<CFErrorRef>? = nil
+            let savedToAddressBook = ABAddressBookSave(addressBook, &err)
+            if savedToAddressBook {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+
+    private func quickPhoneNumber(person:ABRecordRef)->String? {
         var number:String? = nil
         if let phoneNumbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
             for index in 0 ..< ABMultiValueGetCount(phoneNumbers) {
@@ -82,7 +133,7 @@ class ContactManager: Contactable {
         return number
     }
     
-    func quickEmail(person:ABRecordRef)->String? {
+    private func quickEmail(person:ABRecordRef)->String? {
         var email:String? = nil
         let emails: ABMultiValueRef = ABRecordCopyValue(person, kABPersonEmailProperty).takeRetainedValue()
         if (ABMultiValueGetCount(emails) > 0) {
@@ -92,7 +143,7 @@ class ContactManager: Contactable {
         return email
     }
 
-    func propForKey(person:ABRecordRef, key:ABPropertyID)->String? {
+    private func propForKey(person:ABRecordRef, key:ABPropertyID)->String? {
         let tempT = ABRecordCopyValue(person, key)
         if let fnt = tempT {
             let n: NSObject? = Unmanaged<NSObject>.fromOpaque(fnt.toOpaque()).takeRetainedValue()

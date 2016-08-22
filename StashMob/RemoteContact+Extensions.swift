@@ -20,9 +20,12 @@ enum  Deliverable {
 
 extension RemoteContact {
     
-    func saveRawImage(data:NSData) {
+    func saveImage(data:NSData) {
         guard let imgN = imageName else { return }
         NSFileManager.defaultManager().saveImageNamed(imgN, ext:"jpg", data:data)
+        let tempImage                       = UIImage.circleImage(data)
+        let pictureData                     = UIImagePNGRepresentation(tempImage)!
+        NSFileManager.defaultManager().savePinImageNamed(imgN, ext:"png", data:pictureData)
     }
     
     func getImage()->UIImage {
@@ -35,7 +38,7 @@ extension RemoteContact {
     
     func getPinImage()->UIImage {
         guard let imgN = imageName else { return UIImage(named: "defaultavatar_pin")! }
-        guard let img = NSFileManager.defaultManager().getImageNamed(imgN, ext:"jpg") else {
+        guard let img = NSFileManager.defaultManager().getPinImageNamed(imgN, ext:"png") else {
             return UIImage(named: "defaultavatar_pin")!
         }
         return img

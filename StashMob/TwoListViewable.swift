@@ -22,6 +22,7 @@ protocol TwoListViewable:class {
 }
 
 extension TwoListViewable {
+    
     func emptyForRight() {
         emptyStateView?.hidden  = false
         emptyStateLabel?.text   = emptyStateRightString

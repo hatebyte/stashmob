@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import StashMobModel
+@testable import StashMob
 
 let testPlace = RemotePlace(
      placeId            : "place_id_def"

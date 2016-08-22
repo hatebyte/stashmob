@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import StashMobModel
+import CoreData
 
 public struct RemotePlace {
     
@@ -64,6 +66,47 @@ extension RemotePlace {
         self.status                 = Int(managedPlace.status)
         self.types                  = managedPlace.types ?? []
         self.websiteUrlString       = managedPlace.websiteUrlString
+    }
+    
+}
+
+
+
+
+
+extension RemotePlace : RemoteMappable {
+    
+    public func mapTo<T:ManagedObjectType>(managedObject:T) {
+        guard let place = managedObject as? Place else {
+            fatalError("Object mapped is not a Place")
+        }
+        if place.longitude == 0 && place.latitude == 0 {
+            place.createdAt = NSDate()
+        }
+        place.lastVisited = NSDate()
+        
+        place.placeId                = placeId
+        place.name                   = name
+        place.address                = address
+        place.latitude               = latitude
+        place.longitude              = longitude
+        place.phoneNumber            = phoneNumber
+        place.priceLevel             = Int16(priceLevel ?? 0)
+        place.rating                 = rating
+        place.status                 = Int16(status)
+        place.types                  = types
+        place.websiteUrlString       = websiteUrlString
+    }
+    
+}
+
+extension RemotePlace {
+    
+    public func insertIntoContext(moc:NSManagedObjectContext)->Place {
+        let predicate = NSPredicate(format:"%K == %@", Place.Keys.PlaceId.rawValue, placeId)
+        return Place.insertOrUpdate(moc, matchingPredicate : predicate) { place in
+            self.mapTo(place)
+        }
     }
     
 }
