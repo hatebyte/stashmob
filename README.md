@@ -30,3 +30,6 @@ Namely, decoupling of implementation through protocols. The app passes structs a
 If we want to replace CoreData or the AddressBook in the future, we can write new implementations and the rest of the app would not be effected. 
 
 	
+	
+Note: There is an iOS7 friendly version, but it restricts the frameworks and encryption I liked.   
+[iOS & Branch](https://github.com/hatebyte/stashmob/tree/iOS7Support)
