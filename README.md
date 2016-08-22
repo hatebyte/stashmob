@@ -32,4 +32,4 @@ If we want to replace CoreData or the AddressBook in the future, we can write ne
 	
 	
 Note: There is an iOS7 friendly version, but it restricts the frameworks and encryption I liked.   
-[iOS & Branch](https://github.com/hatebyte/stashmob/tree/iOS7Support)
+[iOS7 Branch](https://github.com/hatebyte/stashmob/tree/iOS7Support)
