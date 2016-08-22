@@ -37,11 +37,11 @@ extension NSURL {
     
     var paramFor:ParamFor {
         get {
-//            if #available(iOS 8, *) {
+            if #available(iOS 8, *) {
                 return self.paramForIOS8
-//            } else {
-//                return self.paramForIOS7
-//            }
+            } else {
+                return self.paramForIOS7
+            }
         }
     }
     
@@ -59,11 +59,7 @@ extension NSURL {
         let e = self.paramFor(key:.Email)
         switch e {
         case ParamValues.KeyFound(let value):
-            if let v = value.stringByRemovingPercentEncoding {
-                return Crypter.decrypt(v)
-            } else {
-                return nil
-            }
+            return value
         case ParamValues.NoKey:
             return nil
         }
@@ -73,11 +69,7 @@ extension NSURL {
         let e = self.paramFor(key:.PhoneNumber)
         switch e {
         case ParamValues.KeyFound(let value):
-            if let v = value.stringByRemovingPercentEncoding {
-                return Crypter.decrypt(v)
-            } else {
-                return nil
-            }
+            return value
         case ParamValues.NoKey:
             return nil
         }

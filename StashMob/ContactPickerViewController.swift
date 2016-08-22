@@ -141,15 +141,19 @@ class ContactPickerViewController: UIViewController, ManagedObjectContextSettabl
         let settingsText            = NSLocalizedString("Go To Settings", comment: "ContactPickerViewController : dismissButton : titleText")
         
         let alertController = CMAlertController(title:alertMessage)
-        let settingsAction = CMAlertAction(title: settingsText, style: .Primary)  { [unowned self] action in
-            UIApplication.sharedApplication().navigateToSettings()
-            self.pop()
-        }
         let dismissAction = CMAlertAction(title: dismissText, style: .Cancel)  { [unowned self] action in
             self.pop()
         }
         alertController.addAction(dismissAction)
-        alertController.addAction(settingsAction)
+
+        if #available(iOS 8.0, *) {
+            let settingsAction = CMAlertAction(title: settingsText, style: .Primary)  { [unowned self] action in
+                UIApplication.sharedApplication().navigateToSettings()
+                self.pop()
+            }
+            alertController.addAction(settingsAction)
+        }
+
         
         CMAlert.presentViewController(alertController)
     }

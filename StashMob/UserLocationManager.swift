@@ -27,7 +27,9 @@ public class UserLocationManager: NSObject, CLLocationManagerDelegate {
         let manager                     = CLLocationManager()
         manager.desiredAccuracy         = kCLLocationAccuracyBest
         manager.delegate                = self
-        manager.requestWhenInUseAuthorization()
+        if #available(iOS 8.0, *) {
+            manager.requestWhenInUseAuthorization()
+        }
         return manager
     }()
     

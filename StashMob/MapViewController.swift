@@ -174,14 +174,18 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         let settingsText            = NSLocalizedString("Fix In Settings", comment: "ContactPickerViewController : settingsButton : titleText")
         
         let alertController = CMAlertController(title:alertTitle, message:alertMessage)
-        let settingsAction = CMAlertAction(title: settingsText, style: .Primary)  { action in
-            UIApplication.sharedApplication().navigateToSettings()
-        }
         let dismissAction = CMAlertAction(title: dismissText, style: .Primary)  { [weak self] action in
             self?.sendToSearchBar()
         }
         alertController.addAction(dismissAction)
-        alertController.addAction(settingsAction)
+        
+        if #available(iOS 8.0, *) {
+            let settingsAction = CMAlertAction(title: settingsText, style: .Primary)  { action in
+                UIApplication.sharedApplication().navigateToSettings()
+            }
+            alertController.addAction(settingsAction)
+        }
+
        
         CMAlert.presentViewController(alertController)
     }

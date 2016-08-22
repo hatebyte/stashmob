@@ -9,10 +9,12 @@
 import UIKit
 
 extension UIApplication {
-    
+   
     public func navigateToSettings() {
-        let url = NSURL(string: UIApplicationOpenSettingsURLString)
-        openURL(url!)
+        if #available(iOS 8.0, *) {
+            let url = NSURL(string: UIApplicationOpenSettingsURLString)
+            openURL(url!)
+        }
     }
     
 }

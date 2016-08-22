@@ -25,7 +25,6 @@ class LoginViewController: UIViewController, ManagedObjectContextSettable, Manag
         theView.didLoad()
         theView.phoneNumberTextField?.delegate   = self
         theView.emailTextField?.delegate   = self
-        
 
     }
     
