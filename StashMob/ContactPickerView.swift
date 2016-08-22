@@ -25,6 +25,11 @@ class ContactPickerView: UIView {
     @IBOutlet weak var chooseContactButton:UIButton?
     @IBOutlet weak var chooseView:UIView?
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contactImageView?.layer.cornerRadius = min(contactImageView!.frame.size.height, contactImageView!.frame.size.width) / 2.0
+    }
+
     func didload() {
         let sendText                        = NSLocalizedString("SEND!!", comment: "ContactPickerView : send : text")
         let dontSendText                    = NSLocalizedString("Cancel", comment: "ContactPickerView : send : text")

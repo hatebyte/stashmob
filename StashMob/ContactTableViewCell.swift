@@ -23,10 +23,18 @@ class ContactTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         nameLabel?.font = UIFont.boldSystemFontOfSize(10)
-        nameLabel?.adjustsFontSizeToFitWidth = true        
+        nameLabel?.adjustsFontSizeToFitWidth = true
+        
+        avatarImageView?.clipsToBounds = true
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        avatarImageView?.layer.cornerRadius = min(avatarImageView!.frame.size.height, avatarImageView!.frame.size.width) / 2.0
     }
     
 }

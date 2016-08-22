@@ -1566,8 +1566,8 @@
 					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
 					"$(PROJECT_DIR)/**",
 				);
-				GoogleMapsApiKey = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
-				GooglePlacesApiKey = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
+				GOOGLE_MAPS_KEY = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
+				GOOGLE_PLACES_KEY = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
 				INFOPLIST_FILE = StashMob/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1598,8 +1598,8 @@
 					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
 					"$(PROJECT_DIR)/**",
 				);
-				GoogleMapsApiKey = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
-				GooglePlacesApiKey = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
+				GOOGLE_MAPS_KEY = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
+				GOOGLE_PLACES_KEY = AIzaSyDEr0vWCZocZJPh7Ui8P4JjocGHAg2BPGw;
 				INFOPLIST_FILE = StashMob/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

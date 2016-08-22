@@ -24,7 +24,7 @@ class ContactsView: UIView, TwoListViewable {
         emptyStateLabel?.font   = UIFont.boldSystemFontOfSize(12)
         emptyStateLabel?.numberOfLines = 0
         
-        titleLabel?.text        = NSLocalizedString("YOUR CONTACTS", comment: "ContactsView : titleLabel : text ")
+        titleLabel?.text        = NSLocalizedString("YOUR PEOPLE", comment: "ContactsView : titleLabel : text ")
         
         titleLabel?.font        = UIFont.boldSystemFontOfSize(14)
         

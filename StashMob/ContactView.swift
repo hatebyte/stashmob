@@ -25,6 +25,8 @@ class ContactView: UIView, TwoListViewable {
     var  emptyStateLeftString  = NSLocalizedString("You haven't sent any places to this contact yet", comment: "ContactView : emptyStateLabel : sent")
     
     func didload() {
+        avatarImageView?.clipsToBounds = true
+        
         emptyStateLabel?.font   = UIFont.boldSystemFontOfSize(12)
         emptyStateLabel?.numberOfLines = 0
         
@@ -37,11 +39,17 @@ class ContactView: UIView, TwoListViewable {
         let receievedText       = NSLocalizedString("From", comment: "ContactView : receivedButton : titleText ")
         rightButton?.setTitle(receievedText, forState: .Normal)
         leftButton?.setTitle(sentText, forState: .Normal)
+        layoutIfNeeded()
     }
 
     func populate(contact:RemoteContact) {
         avatarImageView?.image = contact.getImage()
         titleLabel?.text = contact.fullName
     }
-    
+   
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        avatarImageView?.layer.cornerRadius = min(avatarImageView!.frame.size.height, avatarImageView!.frame.size.width) / 2.0
+    }
+
 }

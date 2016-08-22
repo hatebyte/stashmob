@@ -20,8 +20,15 @@ class DetailPlaceView: UIView {
     @IBOutlet weak var sentYouLabel:UILabel?
     @IBOutlet weak var contactImageView:UIImageView?
     @IBOutlet weak var tableView:UITableView?
-    
+   
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contactImageView?.layer.cornerRadius = min(contactImageView!.frame.size.height, contactImageView!.frame.size.width) / 2.0
+    }
+
     func didload() {
+        contactImageView?.clipsToBounds     = true
+
         let sendText                        = NSLocalizedString("Close", comment: "ReceivedPlaceView : close : text")
         exitButton?.setTitle(sendText, forState: .Normal)
         
@@ -31,6 +38,7 @@ class DetailPlaceView: UIView {
         
         contactNameLabel?.adjustsFontSizeToFitWidth = true
         contactNameLabel?.font              = UIFont.boldSystemFontOfSize(24)
+        layoutIfNeeded()
     }
     
     func populateContact(contact:RemoteContact, placeRelation:PlaceRelation) {
