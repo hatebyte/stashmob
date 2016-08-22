@@ -109,9 +109,7 @@ class LoginViewController: UIViewController, ManagedObjectContextSettable, Manag
         managedObjectContext.performChanges {
             user.setAsLoggedInUser()
         }
-//        if let _ = User.loggedInUser(managedObjectContext) {
-            dismissViewControllerAnimated(true, completion: nil)
-//        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     /*
