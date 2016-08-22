@@ -80,10 +80,7 @@ class PlacesViewController: UIViewController, ManagedObjectContextSettable, Mana
             theView.emptyForRight()
             return
         }
-        theView.hideEmptyState()
-        dataProvider                                = DefaultDataProvider(items:received, delegate :self)
-        dataSource                                  = TableViewDataSource(tableView:theView.tableView!, dataProvider: dataProvider, delegate:self)
-        theView.tableView?.delegate                 = self
+        updateDataProvider(received)
     }
     
     func sentPicked() {
@@ -94,12 +91,16 @@ class PlacesViewController: UIViewController, ManagedObjectContextSettable, Mana
             theView.emptyForLeft()
             return
         }
+        updateDataProvider(sent)
+    }
+   
+    // MARK: Duplicate
+    func updateDataProvider(objects:[RemotePlace]) {
         theView.hideEmptyState()
-        dataProvider                                = DefaultDataProvider(items:sent, delegate :self)
+        dataProvider                                = DefaultDataProvider(items:objects, delegate :self)
         dataSource                                  = TableViewDataSource(tableView:theView.tableView!, dataProvider: dataProvider, delegate:self)
         theView.tableView?.delegate                 = self
     }
-    
     
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -61,7 +61,7 @@ class GMMultiMarkerController:NSObject {
                 receivedMarkers.append(marker)
             }
         }
-        mapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets:UIEdgeInsetsMake(40, 40, 40, 40)))
+        mapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withEdgeInsets:UIEdgeInsetsMake(40, 60, 40, 60)))
     }
     
 }

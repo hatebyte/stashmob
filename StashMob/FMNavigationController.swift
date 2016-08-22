@@ -15,7 +15,18 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
     weak var managedObjectContext: NSManagedObjectContext!
     weak var contactManager: Contactable!
 
+    func checkLoggedIn() {
+        if !isLoggedIn {
+            showLoginModal()
+        }
+    }
+    
+    var isLoggedIn:Bool {
+        return User.loggedInUser(managedObjectContext) != nil
+    }
+    
     func accept(receivedItem:ReceivedItem) {
+        guard isLoggedIn else { return }
         if let predicate = Contact.contactForNumberOrEmailPredicate(receivedItem.email, phoneNumber: receivedItem.phoneNumber) {
             if let c = Contact.findOrFetchInContext(managedObjectContext, matchingPredicate: predicate) {
                 let remoteContact = RemoteContact(managedContact: c)
@@ -25,7 +36,10 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         }
         ContactManager.getAccess { [unowned self] granted in
             if granted {
-                if let remoteContact = self.contactManager.contactExistsForEmail(receivedItem.email, phoneNumber: receivedItem.phoneNumber) {
+                let result = self.contactManager.contactExistsFor(email:receivedItem.email,
+                    phoneNumber:receivedItem.phoneNumber)
+                if var remoteContact = result.contact {
+                    self.managedObjectContext.saveImageDataIfNecessary(&remoteContact, imageData: result.data)
                     self.showReceivedModal(remoteContact, placeId: receivedItem.placeId)
                 } else {
                     self.attemptToCreateContact(receivedItem)
@@ -41,14 +55,20 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         modalVC.placeRelation           = .Received
         modalVC.managedObjectContext    = managedObjectContext
         modalVC.shouldSave              = true
-        presentViewController(modalVC, animated: true, completion: nil)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] in
+            self?.presentViewController(modalVC, animated: true, completion: nil)
+        }
     }
     
     func showLoginModal() {
         let modalVC = UIStoryboard.loginModal()
         modalVC.managedObjectContext    = managedObjectContext
         modalVC.contactManager          = contactManager
-        presentViewController(modalVC, animated: true, completion: nil)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] in
+            self?.presentViewController(modalVC, animated: true, completion: nil)
+        }
     }
     
     func showCreateContactModal(receivedItem:ReceivedItem) {

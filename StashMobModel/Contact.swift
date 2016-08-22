@@ -11,27 +11,17 @@ import CoreData
 
 public class Contact: ManagedObject {
 
-    @NSManaged var createdAt: NSDate
-    @NSManaged var firstName: String?
-    @NSManaged var lastName: String?
-    @NSManaged var phoneNumber: String?
-    @NSManaged var email: String?
-    @NSManaged var imageName: String?
-    @NSManaged var sentPlaces: Set<Place>?
-    @NSManaged var recievedPlaces: Set<Place>?
+    @NSManaged public var createdAt: NSDate
+    @NSManaged public var firstName: String?
+    @NSManaged public var lastName: String?
+    @NSManaged public var phoneNumber: String?
+    @NSManaged public var email: String?
+    @NSManaged public var imageName: String?
+    @NSManaged public var sentPlaces: Set<Place>?
+    @NSManaged public var recievedPlaces: Set<Place>?
 
-    public var sentRemotePlaces:[RemotePlace] {
-        guard let sp = sentPlaces else { return [] }
-        return placesToRemotePlaces(sp)
-    }
-    
-    public var recievedRemotePlaces:[RemotePlace] {
-        guard let rp = recievedPlaces else { return [] }
-        return placesToRemotePlaces(rp)
-    }
-    
-    private func placesToRemotePlaces(ps:Set<Place>)->[RemotePlace] {
-        return NSSet(set: ps).map { RemotePlace(managedPlace:$0 as! Place) }
+    public var hasImage:Bool {
+        return imageName != nil
     }
     
     public func addToSentPlaces(place:Place) {
@@ -101,42 +91,4 @@ extension Contact : ManagedObjectType {
     public static var defaultPredicate:NSPredicate {
         return NSPredicate(value:true)
     }
-}
-
-
-extension RemoteContact : RemoteMappable {
-    
-    public func mapTo<T:ManagedObjectType>(managedObject:T) {
-        guard let contact = managedObject as? Contact else {
-            fatalError("Object mapped is not a Contact")
-        }
-        if contact.firstName == nil && contact.lastName == nil {
-            contact.createdAt = NSDate()
-        }
-        
-        contact.phoneNumber            = phoneNumber
-        contact.firstName              = firstName ?? ""
-        contact.lastName               = lastName ?? ""
-        contact.email                  = email
-        contact.imageName              = imageName
-    }
-    
-}
-
-extension RemoteContact {
-    
-    public func insertIntoContext(moc:NSManagedObjectContext)->Contact {
-        var predicate: NSPredicate!
-        if let n = phoneNumber {
-           predicate = NSPredicate(format:"%K == %@", Contact.Keys.PhoneNumber.rawValue, n)
-        } else if let n = email {
-            predicate = NSPredicate(format:"%K == %@", Contact.Keys.Email.rawValue, n)
-        } else {
-            fatalError("The remote contact has neither email nor phone number")
-        }
-        return Contact.insertOrUpdate(moc, matchingPredicate : predicate) { contact in
-            self.mapTo(contact)
-        }
-    }
-    
 }

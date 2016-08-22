@@ -49,17 +49,10 @@ class ContactManager: Contactable {
         if email == nil && number == nil { return nil }
         let fName = propForKey(person, key:kABPersonFirstNameProperty)
         let lName = propForKey(person, key:kABPersonLastNameProperty)
-        var rContact = RemoteContact(phoneNumber:number, email: email, firstName: fName, lastName: lName)
-        if let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)?.takeUnretainedValue() {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                rContact.imageName = NSUUID().UUIDString
-                rContact.saveRawImage(imgData)
-            })
-        }
-        return rContact
+        return RemoteContact(phoneNumber:number, email: email, firstName: fName, lastName: lName)
     }
     
-    func contactExistsForEmail(email:String?, phoneNumber:String?)->RemoteContact? {
+    func contactExistsFor(email email:String?, phoneNumber:String?)->(contact:RemoteContact?, data:NSData?) {
         let allContacts = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue() as Array
         var record: ABRecordRef?
         for person in allContacts {
@@ -83,9 +76,13 @@ class ContactManager: Contactable {
             }
         }
         if let r = record {
-            return remoteUserForPerson(r)
+            if let imgData = ABPersonCopyImageDataWithFormat(r, kABPersonImageFormatThumbnail)?.takeUnretainedValue() {
+                return (remoteUserForPerson(r), imgData)
+            } else {
+                return (remoteUserForPerson(r), nil)
+            }
         } else {
-            return nil
+            return (nil, nil)
         }
     }
 

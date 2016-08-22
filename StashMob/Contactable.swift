@@ -12,7 +12,7 @@ import AddressBookUI
 
 protocol Contactable:class {
     func remoteUserForPerson(person:ABRecordRef)->RemoteContact?
-    func contactExistsForEmail(email:String?, phoneNumber:String?)->RemoteContact?
+    func contactExistsFor(email email:String?, phoneNumber:String?)->(contact:RemoteContact?, data:NSData?)
     func createContact(remoteContact:RemoteContact)->Bool
     static func getAccess(granted:(Bool)->())
 }

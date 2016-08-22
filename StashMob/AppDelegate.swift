@@ -37,24 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootVC.contactManager                       = contactManager
         navController.viewControllers               = [rootVC]
         
-        self.window                                 = UIWindow(frame:UIScreen.mainScreen().bounds)
-        self.window?.rootViewController             = navController
-        self.window?.frame                          = UIScreen.mainScreen().bounds
-        self.window?.makeKeyAndVisible()
+        window                                      = UIWindow(frame:UIScreen.mainScreen().bounds)
+        window?.rootViewController                  = navController
+        window?.frame                               = UIScreen.mainScreen().bounds
+        window?.makeKeyAndVisible()
         
-//        context.performChangesAndWait { [unowned self] in
-//            let user:User = self.context.insertObject()
-//            user.phoneNumber = "9085818600"
-//            user.email = "hatebyte@gmail.com"
-//            user.firstName = "Scott"
-//            user.lastName = "Jones"
-//            user.setAsLoggedInUser()
-//        }
-        
-        guard let _  = User.loggedInUser(context) else {
-            navController.showLoginModal()
-            return true
-        }
+        navController.checkLoggedIn()
         return true
     }
 

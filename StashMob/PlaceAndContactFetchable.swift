@@ -28,6 +28,7 @@ protocol ContactAndPlaceFetchable {
     func mapContactsToPersonAndPlaces()->(sent:[PersonAndPlaces], received:[PersonAndPlaces])
     func send(place:RemotePlace, toContact contact:RemoteContact)
     func recieve(place:RemotePlace, fromContact contact:RemoteContact)
+    func saveImageDataIfNecessary(inout remoteContact:RemoteContact, imageData:NSData?)
 }
 
 extension NSManagedObjectContext : ContactAndPlaceFetchable {
@@ -172,4 +173,15 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
         }
     }
 
+    func saveImageDataIfNecessary(inout remoteContact:RemoteContact, imageData:NSData?) {
+        if let data = imageData {
+            let contact:Contact = remoteContact.insertIntoContext(self)
+            if !contact.hasImage {
+                remoteContact.imageName = NSUUID().UUIDString
+                remoteContact.saveImage(data)
+                saveOrRollback()
+            }
+        }
+    }
+    
 }
