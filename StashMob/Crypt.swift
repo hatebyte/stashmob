@@ -20,12 +20,14 @@ extension String {
         return result
     }
     
-    func aesDecrypt(key: String, iv: String) throws -> String {
-        let data = NSData(base64EncodedString: self, options: NSDataBase64DecodingOptions(rawValue: 0))
-        let dec = try AES(key: key, iv: iv, blockMode:.CBC).decrypt(data!.arrayOfBytes())
-        let decData = NSData(bytes: dec, length: Int(dec.count))
-        let result = NSString(data: decData, encoding: NSUTF8StringEncoding)
-        return String(result!)
+    func aesDecrypt(key: String, iv: String) throws -> String? {
+        if let data = NSData(base64EncodedString: self, options: NSDataBase64DecodingOptions(rawValue: 0)) {
+            let dec = try AES(key: key, iv: iv, blockMode:.CBC).decrypt(data.arrayOfBytes())
+            let decData = NSData(bytes: dec, length: Int(dec.count))
+            let result = NSString(data: decData, encoding: NSUTF8StringEncoding)
+            return String(result!)
+        }
+        return nil
     }
 
 }
@@ -46,8 +48,10 @@ class Crypter {
     
     static func decrypt(hash:String)->String? {
         do {
-            let dec = try hash.aesDecrypt(key, iv: iv)
-            return dec
+            if let dec = try hash.aesDecrypt(key, iv: iv) {
+                return dec
+            }
+            return nil
         } catch {
             return nil
         }

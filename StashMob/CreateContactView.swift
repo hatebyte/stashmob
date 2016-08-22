@@ -52,7 +52,10 @@ class CreateContactView: UIView {
     }
     
     func populate(receivedItem:ReceivedItem) {
-        switch receivedItem.options {
+        guard let options =  receivedItem.options else {
+            return
+        }
+        switch options {
         case .Both(let e, let p):
             emailTextField?.text                = e
             phoneNumberTextField?.text          = p

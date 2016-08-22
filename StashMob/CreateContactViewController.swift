@@ -105,7 +105,7 @@ class CreateContactViewController: UIViewController, ManagedObjectContextSettabl
         
         var unformatedPhone:String?
         if let text = theView.phoneNumberTextField?.text {
-            unformatedPhone = CMValidator.validatePhoneNumber(CMValidator.unFormatPhoneNumber(text)) as String
+            unformatedPhone = CMValidator.unFormatPhoneNumber(text) as String
         }
  
         let tempContact = RemoteContact(
@@ -114,6 +114,7 @@ class CreateContactViewController: UIViewController, ManagedObjectContextSettabl
             ,firstName      : theView.firstNameTextField?.text
             ,lastName       : theView.lastNameTextField?.text
         )
+        print(tempContact)
         if contactManager.createContact(tempContact) == true {
             dismissViewControllerAnimated(true, completion: { [weak self] in
                 self?.complete(tempContact)

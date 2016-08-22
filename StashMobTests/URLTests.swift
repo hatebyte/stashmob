@@ -45,7 +45,7 @@ class URLTests: XCTestCase {
 
     func testNSURLCanReturnReturnsNullPhoneNumber() {
         // given
-        let url = NSURL(string: "stashmob://?e=hashofemail")!
+        let url = NSURL(string: "stashmob://?e=V6hsB88vA/eL+hsGEJMr3Qn9a656BYyVU8kIyQ3imq4=")!
         
         // when
         let phoneNumber = url.numberParam()
@@ -56,19 +56,19 @@ class URLTests: XCTestCase {
     
     func testNSURLCanReturnPhoneNumber() {
         // given
-        let url = NSURL(string: "stashmob://?p=asdfadsfdsa&e=hashofemail&n=hashofphonenumber")!
+        let url = NSURL(string: "stashmob://?p=ChIJvacMBYu8w4kRd0iusOBPFmg&e=V6hsB88vA/eL+hsGEJMr3Qn9a656BYyVU8kIyQ3imq4=&n=DUYAbFYvcDvHQHaq6wICZQ==")!
         
         // when
         let phoneNumber = url.numberParam()
         
         // then
-        XCTAssertEqual("hashofphonenumber", phoneNumber!)
+        XCTAssertEqual("9085818600", phoneNumber!)
     }
    
     
     func testNSURLCanReturnReturnsNullEmail() {
         // given
-        let url = NSURL(string: "stashmob://?p=asdfadsfdsa&n=hashofphonenumber")!
+        let url = NSURL(string: "stashmob://?p=ChIJvacMBYu8w4kRd0iusOBPFmg&n=DUYAbFYvcDvHQHaq6wICZQ==")!
         
         // when
         let email = url.emailParam()
@@ -79,13 +79,13 @@ class URLTests: XCTestCase {
     
     func testNSURLCanReturnPhoneEmail() {
         // given
-        let url = NSURL(string: "stashmob://?p=asdfadsfdsa&e=hashofemail&n=hashofphonenumber")!
+        let url = NSURL(string: "stashmob://?p=ChIJvacMBYu8w4kRd0iusOBPFmg&e=V6hsB88vA/eL+hsGEJMr3Qn9a656BYyVU8kIyQ3imq4=&n=DUYAbFYvcDvHQHaq6wICZQ==")!
         
         // when
         let email = url.emailParam()
         
         // then
-        XCTAssertEqual("hashofemail", email!)
+        XCTAssertEqual("hatebyte@gmail.com", email!)
     }
     
     

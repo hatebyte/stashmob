@@ -88,10 +88,10 @@ class ContactManager: Contactable {
 
     func createContact(remoteContact:RemoteContact)->Bool {
         let record: ABRecordRef = ABPersonCreate().takeRetainedValue()
-        if let f = remoteContact.email {
+        if let f = remoteContact.firstName {
             ABRecordSetValue(record, kABPersonFirstNameProperty, f, nil)
         }
-        if let l = remoteContact.email {
+        if let l = remoteContact.lastName {
             ABRecordSetValue(record, kABPersonLastNameProperty, l, nil)
         }
         if let e = remoteContact.email {

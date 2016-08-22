@@ -16,7 +16,7 @@ struct ReceivedItem {
 
 extension ReceivedItem {
     
-    var options:Deliverable {
+    var options:Deliverable? {
         if let e = email, p = phoneNumber {
             return .Both(email:e, phoneNumber:p)
         } else if let e = email {
@@ -24,7 +24,7 @@ extension ReceivedItem {
         } else if let p = phoneNumber {
             return .Text(phoneNumber:p)
         }
-        fatalError("The User needs something to contact you by")
+        return nil
     }
     
 }

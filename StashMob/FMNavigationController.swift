@@ -90,7 +90,11 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         var contactInfo:String      = ""
         let phoneNumber             = NSLocalizedString("number", comment: "CreateContact : alert : numberText")
         let email                   = NSLocalizedString("email", comment: "CreateContact : alert : emailText")
-        switch receivedItem.options {
+        guard let options =  receivedItem.options else {
+            stopIt()
+            return
+        }
+        switch options {
         case .Both(let e, let p):
             contactInfo = "\(email):\(e) or \(phoneNumber):\(p)"
         case .Email(let e):
@@ -123,6 +127,20 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
         let alertMessage            = NSLocalizedString("Whoops.", comment: "CreateContact : ErroralertTitle : message")
         
         let dismissText             = NSLocalizedString("Dismiss", comment: "CreateContact : Dismiss : titleText")
+        
+        let alertController = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { action in
+        }
+        alertController.addAction(dismissAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func stopIt() {
+        let alertTitle              = NSLocalizedString("Stop it", comment: "CreateContact : stopitalertTitle : title")
+        let alertMessage            = NSLocalizedString("Don't edit the urls.", comment: "CreateContact : stopitalertTitle : message")
+        
+        let dismissText             = NSLocalizedString("I'm Sorry", comment: "CreateContact : stopitalertTitle : button")
         
         let alertController = UIAlertController(title:alertTitle, message:alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
         let dismissAction = UIAlertAction(title: dismissText, style: .Cancel)  { action in

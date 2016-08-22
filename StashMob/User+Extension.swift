@@ -17,10 +17,12 @@ extension User {
         var phoneHash = ""
         var amp = ""
         if let e = email {
-            emailhash = "e=\(e)"
+            let en = Crypter.encrypt(e)
+            emailhash = "e=\(en.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!)"
         }
         if let pn = phoneNumber {
-            phoneHash   = "n=\(pn)"
+            let en = Crypter.encrypt(pn)
+            phoneHash   = "n=\(en.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!)"
         }
         if phoneHash != "" && emailhash != "" {
             amp = "&"

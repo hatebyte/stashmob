@@ -26,6 +26,9 @@ class LoginViewController: UIViewController, ManagedObjectContextSettable, Manag
         theView.didLoad()
         theView.phoneNumberTextField?.delegate   = self
         theView.emailTextField?.delegate   = self
+        
+        theView.phoneNumberTextField?.text = "(737) 738-8388"
+        theView.emailTextField?.text = "barfbag99@gmail.com"
     }
     
     override func viewWillAppear(animated: Bool) {

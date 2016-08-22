@@ -59,7 +59,11 @@ extension NSURL {
         let e = self.paramFor(key:.Email)
         switch e {
         case ParamValues.KeyFound(let value):
-            return value
+            if let v = value.stringByRemovingPercentEncoding {
+                return Crypter.decrypt(v)
+            } else {
+                return nil
+            }
         case ParamValues.NoKey:
             return nil
         }
@@ -69,7 +73,11 @@ extension NSURL {
         let e = self.paramFor(key:.PhoneNumber)
         switch e {
         case ParamValues.KeyFound(let value):
-            return value
+            if let v = value.stringByRemovingPercentEncoding {
+                return Crypter.decrypt(v)
+            } else {
+                return nil
+            }
         case ParamValues.NoKey:
             return nil
         }

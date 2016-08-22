@@ -33,6 +33,37 @@ class StashMobTests: XCTestCase {
         XCTAssertNotEqual(unhashed, en, "The unhashed phone number is not the same as the unhashed")
         XCTAssertEqual(unhashed, dn, "The dehashed phone number is the same as the unhashed")
     }
+ 
+    func testUrlEncodeAndDecryptionOfEmailCanHappen() {
+        // given
+        let s = "hatebyte@gmail.com";
+        let en = Crypter.encrypt(s)
+ 
+        // when
+        let sEncode = en.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
+        
+        // then
+        let sDecode = sEncode?.stringByRemovingPercentEncoding
+        let dn = Crypter.decrypt(sDecode!)
+        
+        XCTAssertEqual(s, dn)
+    }
     
+    
+    func testUrlEncodeAndDecryptionOfNumberCanHappen() {
+        // given
+        let s = "9085818600";
+        let en = Crypter.encrypt(s)
+        
+        // when
+        let sEncode = en.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
+        
+        // then
+        let sDecode = sEncode?.stringByRemovingPercentEncoding
+        let dn = Crypter.decrypt(sDecode!)
+        
+        XCTAssertEqual(s, dn)
+    }
+
     
 }
