@@ -17,7 +17,7 @@ class LoginView: UIView {
     @IBOutlet weak var submitButton:UIButton?
     
     func didLoad() {
-        let reasonText                          = NSLocalizedString("Ok, I know this looks weird. But I need to log you in with either your phone number or email. This way when you send people places, I can identify you on the other side.", comment: "LoginView : reasonLabel : text")
+        let reasonText                          = NSLocalizedString("Ok, I know this looks weird.\nBut I need to log you in with either your phone number or email. This way when you send people places, I can either find you or create you in their Contacts", comment: "LoginView : reasonLabel : text")
         reasonLabel?.text                       = reasonText
         reasonLabel?.numberOfLines              = 0
         reasonLabel?.adjustsFontSizeToFitWidth  = true
