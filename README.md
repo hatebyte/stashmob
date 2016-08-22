@@ -28,8 +28,3 @@ This app demonstrates the design principles that are important to me.
 Namely, decoupling of implementation through protocols. The app passes structs as model currencies. CoreData and the AddressBook frame work communicate to the app through these structs. This allows flexiblity in the future. 
 
 If we want to replace CoreData or the AddressBook in the future, we can write new implementations and the rest of the app would not be effected. 
-
-	
-	
-Note: There is an iOS7 friendly version, but it restricts the frameworks and encryption I liked.   
-[iOS7 Branch](https://github.com/hatebyte/stashmob/tree/iOS7Support)
