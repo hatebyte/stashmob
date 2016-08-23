@@ -49,6 +49,18 @@
 		6D4179971D682E870080AC3E /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179961D682E870080AC3E /* SegueHandlerType.swift */; };
 		6D41799E1D6897CE0080AC3E /* FMNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41799D1D6897CE0080AC3E /* FMNavigationController.swift */; };
 		6D4179A11D689BD80080AC3E /* Contactable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4179A01D689BD80080AC3E /* Contactable.swift */; };
+		6D472DCE1D6CD2AB00BAACC3 /* ContactAndPlaceFetchableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DB61D6CD29A00BAACC3 /* ContactAndPlaceFetchableTests.swift */; };
+		6D472DCF1D6CD2AB00BAACC3 /* ContactFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DB71D6CD29A00BAACC3 /* ContactFetchTests.swift */; };
+		6D472DD01D6CD2AB00BAACC3 /* ContactHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DB81D6CD29A00BAACC3 /* ContactHelpers.swift */; };
+		6D472DD11D6CD2AB00BAACC3 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DB91D6CD29A00BAACC3 /* ContactModel.swift */; };
+		6D472DD21D6CD2AB00BAACC3 /* CoreDataTestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DBA1D6CD29A00BAACC3 /* CoreDataTestUtilities.swift */; };
+		6D472DD31D6CD2AB00BAACC3 /* EncrytionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DBB1D6CD29A00BAACC3 /* EncrytionTests.swift */; };
+		6D472DD41D6CD2AB00BAACC3 /* PersonAndPlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DBC1D6CD29A00BAACC3 /* PersonAndPlacesTests.swift */; };
+		6D472DD51D6CD2AB00BAACC3 /* PlaceHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DBD1D6CD29A00BAACC3 /* PlaceHelpers.swift */; };
+		6D472DD61D6CD2AB00BAACC3 /* PlaceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DBE1D6CD29A00BAACC3 /* PlaceModelTests.swift */; };
+		6D472DD71D6CD2AB00BAACC3 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DBF1D6CD29A00BAACC3 /* URLTests.swift */; };
+		6D472DD81D6CD2AB00BAACC3 /* UserHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DC01D6CD29A00BAACC3 /* UserHelpers.swift */; };
+		6D472DD91D6CD2AB00BAACC3 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DC11D6CD29A00BAACC3 /* UserTests.swift */; };
 		6D4E0FDA1D68A27100292208 /* NSFileManager+Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E0FD91D68A27100292208 /* NSFileManager+Avatar.swift */; };
 		6D4E0FDC1D68A3A000292208 /* RemoteContact+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E0FDB1D68A3A000292208 /* RemoteContact+Extensions.swift */; };
 		6D4E0FDE1D68A58500292208 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E0FDD1D68A58500292208 /* ContactManager.swift */; };
@@ -186,15 +198,11 @@
 		6D35C1651D67B4FD0000D1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D35C1671D67B4FD0000D1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D35C16C1D67B4FD0000D1D9 /* StashMobTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StashMobTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D35C1921D67B6630000D1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D35C1DB1D67BEE90000D1D9 /* Crypt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypt.swift; sourceTree = "<group>"; };
 		6D4179501D67CBCF0080AC3E /* GMSPlace+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GMSPlace+Extensions.swift"; sourceTree = "<group>"; };
 		6D4179531D67CD6B0080AC3E /* StashMob-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StashMob-Bridging-Header.h"; sourceTree = "<group>"; };
 		6D4179571D67D0C40080AC3E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		6D41795D1D67D4BE0080AC3E /* CoreDataTestUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestUtilities.swift; sourceTree = "<group>"; };
 		6D4179711D67FCE10080AC3E /* PlaceAndContactFetchable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAndContactFetchable.swift; sourceTree = "<group>"; };
-		6D4179831D6816210080AC3E /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
-		6D4179851D68162B0080AC3E /* UserHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelpers.swift; sourceTree = "<group>"; };
 		6D4179881D681AA00080AC3E /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		6D41798B1D6822FB0080AC3E /* GoogleApiTokenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleApiTokenable.swift; sourceTree = "<group>"; };
 		6D41798E1D6827240080AC3E /* UserLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
@@ -202,6 +210,19 @@
 		6D4179961D682E870080AC3E /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		6D41799D1D6897CE0080AC3E /* FMNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMNavigationController.swift; sourceTree = "<group>"; };
 		6D4179A01D689BD80080AC3E /* Contactable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contactable.swift; sourceTree = "<group>"; };
+		6D472DB61D6CD29A00BAACC3 /* ContactAndPlaceFetchableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactAndPlaceFetchableTests.swift; sourceTree = "<group>"; };
+		6D472DB71D6CD29A00BAACC3 /* ContactFetchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactFetchTests.swift; sourceTree = "<group>"; };
+		6D472DB81D6CD29A00BAACC3 /* ContactHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactHelpers.swift; sourceTree = "<group>"; };
+		6D472DB91D6CD29A00BAACC3 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		6D472DBA1D6CD29A00BAACC3 /* CoreDataTestUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestUtilities.swift; sourceTree = "<group>"; };
+		6D472DBB1D6CD29A00BAACC3 /* EncrytionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncrytionTests.swift; sourceTree = "<group>"; };
+		6D472DBC1D6CD29A00BAACC3 /* PersonAndPlacesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonAndPlacesTests.swift; sourceTree = "<group>"; };
+		6D472DBD1D6CD29A00BAACC3 /* PlaceHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceHelpers.swift; sourceTree = "<group>"; };
+		6D472DBE1D6CD29A00BAACC3 /* PlaceModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceModelTests.swift; sourceTree = "<group>"; };
+		6D472DBF1D6CD29A00BAACC3 /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
+		6D472DC01D6CD29A00BAACC3 /* UserHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelpers.swift; sourceTree = "<group>"; };
+		6D472DC11D6CD29A00BAACC3 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		6D472DDA1D6CD2EA00BAACC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D4E0FD91D68A27100292208 /* NSFileManager+Avatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Avatar.swift"; sourceTree = "<group>"; };
 		6D4E0FDB1D68A3A000292208 /* RemoteContact+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RemoteContact+Extensions.swift"; sourceTree = "<group>"; };
 		6D4E0FDD1D68A58500292208 /* ContactManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
@@ -398,7 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				6D35C1571D67B4FD0000D1D9 /* StashMob */,
-				6D35C18F1D67B6630000D1D9 /* StashMobModelTests */,
+				6D472DB51D6CD29A00BAACC3 /* StashMobTests */,
 				6D35C1561D67B4FD0000D1D9 /* Products */,
 				A051F15F11FFC5C1ED464C23 /* Frameworks */,
 				6817AC84BF751C74633C57CD /* Pods */,
@@ -430,16 +451,6 @@
 				6D99E2A61D6B52160072F1C3 /* Images-2.xcassets */,
 			);
 			path = StashMob;
-			sourceTree = "<group>";
-		};
-		6D35C18F1D67B6630000D1D9 /* StashMobModelTests */ = {
-			isa = PBXGroup;
-			children = (
-				6D4179821D68160A0080AC3E /* user */,
-				6D41795C1D67D49E0080AC3E /* helpers */,
-				6D35C1921D67B6630000D1D9 /* Info.plist */,
-			);
-			path = StashMobModelTests;
 			sourceTree = "<group>";
 		};
 		6D35C1D91D67BED50000D1D9 /* tools */ = {
@@ -483,14 +494,6 @@
 			name = extensions;
 			sourceTree = "<group>";
 		};
-		6D41795C1D67D49E0080AC3E /* helpers */ = {
-			isa = PBXGroup;
-			children = (
-				6D41795D1D67D4BE0080AC3E /* CoreDataTestUtilities.swift */,
-			);
-			name = helpers;
-			sourceTree = "<group>";
-		};
 		6D4179691D67F7D30080AC3E /* implementation */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,15 +518,6 @@
 				6D4179711D67FCE10080AC3E /* PlaceAndContactFetchable.swift */,
 			);
 			name = fetchable;
-			sourceTree = "<group>";
-		};
-		6D4179821D68160A0080AC3E /* user */ = {
-			isa = PBXGroup;
-			children = (
-				6D4179831D6816210080AC3E /* UserTests.swift */,
-				6D4179851D68162B0080AC3E /* UserHelpers.swift */,
-			);
-			name = user;
 			sourceTree = "<group>";
 		};
 		6D4179871D681A8E0080AC3E /* screens */ = {
@@ -619,6 +613,26 @@
 				6D4179A01D689BD80080AC3E /* Contactable.swift */,
 			);
 			name = protocol;
+			sourceTree = "<group>";
+		};
+		6D472DB51D6CD29A00BAACC3 /* StashMobTests */ = {
+			isa = PBXGroup;
+			children = (
+				6D472DDA1D6CD2EA00BAACC3 /* Info.plist */,
+				6D472DB61D6CD29A00BAACC3 /* ContactAndPlaceFetchableTests.swift */,
+				6D472DB71D6CD29A00BAACC3 /* ContactFetchTests.swift */,
+				6D472DB81D6CD29A00BAACC3 /* ContactHelpers.swift */,
+				6D472DB91D6CD29A00BAACC3 /* ContactModel.swift */,
+				6D472DBA1D6CD29A00BAACC3 /* CoreDataTestUtilities.swift */,
+				6D472DBB1D6CD29A00BAACC3 /* EncrytionTests.swift */,
+				6D472DBC1D6CD29A00BAACC3 /* PersonAndPlacesTests.swift */,
+				6D472DBD1D6CD29A00BAACC3 /* PlaceHelpers.swift */,
+				6D472DBE1D6CD29A00BAACC3 /* PlaceModelTests.swift */,
+				6D472DBF1D6CD29A00BAACC3 /* URLTests.swift */,
+				6D472DC01D6CD29A00BAACC3 /* UserHelpers.swift */,
+				6D472DC11D6CD29A00BAACC3 /* UserTests.swift */,
+			);
+			path = StashMobTests;
 			sourceTree = "<group>";
 		};
 		6D4E0FD81D68A25C00292208 /* image */ = {
@@ -1236,6 +1250,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D472DD91D6CD2AB00BAACC3 /* UserTests.swift in Sources */,
+				6D472DCE1D6CD2AB00BAACC3 /* ContactAndPlaceFetchableTests.swift in Sources */,
+				6D472DD31D6CD2AB00BAACC3 /* EncrytionTests.swift in Sources */,
+				6D472DD01D6CD2AB00BAACC3 /* ContactHelpers.swift in Sources */,
+				6D472DD21D6CD2AB00BAACC3 /* CoreDataTestUtilities.swift in Sources */,
+				6D472DD41D6CD2AB00BAACC3 /* PersonAndPlacesTests.swift in Sources */,
+				6D472DD51D6CD2AB00BAACC3 /* PlaceHelpers.swift in Sources */,
+				6D472DD61D6CD2AB00BAACC3 /* PlaceModelTests.swift in Sources */,
+				6D472DD71D6CD2AB00BAACC3 /* URLTests.swift in Sources */,
+				6D472DD81D6CD2AB00BAACC3 /* UserHelpers.swift in Sources */,
+				6D472DD11D6CD2AB00BAACC3 /* ContactModel.swift in Sources */,
+				6D472DCF1D6CD2AB00BAACC3 /* ContactFetchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1423,6 +1449,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = StashMobTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.stash.places.StashMobTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1436,6 +1463,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = StashMobTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.stash.places.StashMobTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

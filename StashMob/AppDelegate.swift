@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         navController.checkLoggedIn()
+        
         return true
     }
 
