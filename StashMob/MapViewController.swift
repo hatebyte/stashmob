@@ -168,7 +168,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
     // MARK: Alerts
     func alertNeedLocationsInSettings() {
         let alertTitle              = NSLocalizedString("Well Hmm, we do need locations access to get this done.", comment: "MapViewController : alertTitle : nolocation")
-        let alertMessage            = NSLocalizedString("We are going to force you to search for a place if you dont give us access to your location.", comment: "MapViewController : alertmessage : nolocation")
+        let alertMessage            = NSLocalizedString("Use the search bar\nor fix in settings.", comment: "MapViewController : alertmessage : nolocation")
         
         let dismissText             = NSLocalizedString("Dismiss", comment: "ContactPickerViewController : dismissButton : titleText")
         let settingsText            = NSLocalizedString("Fix In Settings", comment: "ContactPickerViewController : settingsButton : titleText")
