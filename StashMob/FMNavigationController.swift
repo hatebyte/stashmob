@@ -102,8 +102,8 @@ class FMNavigationController: UINavigationController, ManagedObjectContextSettab
             contactInfo = "\(phoneNumber):\(p)"
         }
         
-        let alertTitle              = NSLocalizedString("New Contact!", comment: "CreateContact : alertTitle : text")
-        let alertMessage            = NSLocalizedString("So it doesn't look like you don't have a contact for \(contactInfo). Would you like to create them so you can see the location?", comment: "CreateContact : alertmessage : text")
+        let alertTitle              = NSLocalizedString("Create New Contact?", comment: "CreateContact : alertTitle : text")
+        let alertMessage            = NSLocalizedString("\(contactInfo)", comment: "CreateContact : alertmessage : text")
         
         let dismissText             = NSLocalizedString("Nah, forget it", comment: "CreateContact : no : titleText")
         let yesText            = NSLocalizedString("Oh hell yeah!", comment: "CreateContact : yes : titleText")
