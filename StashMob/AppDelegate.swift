@@ -42,34 +42,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         navController.checkLoggedIn()
-        if !navController.isLoggedIn {
-            let place = RemotePlace(
-                 placeId            : "place_id_def"
-                ,name               : "Malrooneys Park"
-                ,address            : "122 Buttercup Lane"
-                ,latitude           : 47.0
-                ,longitude          : 74.0
-                ,phoneNumber        : "9085818600"
-                ,priceLevel         : 12
-                ,rating             : 3.0
-                ,status             : 3
-                ,types              : ["nice", "smelly"]
-                ,websiteUrlString   : "https://reddit.com/r/swift"
-            )
-            let p = place.insertIntoContext(context)
-            for i in 0..<100 {
-                let contact = RemoteContact(
-                     phoneNumber        : "908581\(i)"
-                    ,email              : "mylegfeels\(i)funney@gmail.com"
-                    ,firstName          : "Scott \(i)"
-                    ,lastName           : "Jones"
-                    ,imageName          : "avatar"
-                )
-                let c = contact.insertIntoContext(context)
-                c.addToSentPlaces(p)
-            }
-            context.saveOrRollback()
-        }
+//        if !navController.isLoggedIn {
+//            let place = RemotePlace(
+//                 placeId            : "place_id_def"
+//                ,name               : "Malrooneys Park"
+//                ,address            : "122 Buttercup Lane"
+//                ,latitude           : 47.0
+//                ,longitude          : 74.0
+//                ,phoneNumber        : "9085818600"
+//                ,priceLevel         : 12
+//                ,rating             : 3.0
+//                ,status             : 3
+//                ,types              : ["nice", "smelly"]
+//                ,websiteUrlString   : "https://reddit.com/r/swift"
+//            )
+//            let p = place.insertIntoContext(context)
+//            for i in 0..<100 {
+//                let contact = RemoteContact(
+//                     phoneNumber        : "908581\(i)"
+//                    ,email              : "mylegfeels\(i)funney@gmail.com"
+//                    ,firstName          : "Scott \(i)"
+//                    ,lastName           : "Jones"
+//                    ,imageName          : "avatar"
+//                )
+//                let c = contact.insertIntoContext(context)
+//                c.addToSentPlaces(p)
+//            }
+//            context.saveOrRollback()
+//        }
         return true
     }
 

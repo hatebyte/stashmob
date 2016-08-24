@@ -39,12 +39,11 @@ class GMMultiMarkerController:NSObject {
         clearPins()
         var bounds                          = GMSCoordinateBounds()
         let eImage                          = UIImage(named:"event_pin")
-//        let pImage                          = UIImage(named:"defaultavatar")
         for s in sent {
             for p in s.places {
                 let marker                  = GMSMarker(position: p.coordinate)
                 marker.map                  = mapView
-                marker.icon                 = eImage//eImage
+                marker.icon                 = eImage
                 marker.groundAnchor         = CGPointMake(0.5, 0.5);
                 bounds                      = bounds.includingCoordinate(marker.position)
                 sentMarkers.append(marker)

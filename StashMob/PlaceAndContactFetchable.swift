@@ -145,8 +145,7 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
         let contacts = Contact.fetchInContext(self) { request in
             request.predicate = Contact.defaultPredicate
             request.fetchLimit = 500
-            request.includesPropertyValues = false
-            request.returnsObjectsAsFaults = true
+            request.returnsObjectsAsFaults = false
         }
         let s:[PersonAndPlaces] = []
         let r:[PersonAndPlaces] = []
