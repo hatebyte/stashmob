@@ -12,8 +12,8 @@ import GoogleMaps
 
 class GMMultiMarkerController:NSObject {
     
-    var sentMarkers:[GMSMarker]         = []
-    var receivedMarkers:[GMSMarker]     = []
+    var sentMarkers:[GMSMarker]             = []
+    var receivedMarkers:[GMSMarker]         = []
     weak var mapView:GMSMapView!
     
     init(mapView:GMSMapView) {
@@ -27,11 +27,9 @@ class GMMultiMarkerController:NSObject {
     }
    
     private func clearPins() {
-        for m in sentMarkers {
+        for m in (sentMarkers + receivedMarkers) {
             m.map                           = nil
-        }
-        for m in receivedMarkers {
-            m.map                           = nil
+            m.icon                          = nil
         }
         sentMarkers                         = []
         receivedMarkers                     = []
@@ -40,11 +38,13 @@ class GMMultiMarkerController:NSObject {
     func update(sent:[PersonAndPlaces], received:[PersonAndPlaces]) {
         clearPins()
         var bounds                          = GMSCoordinateBounds()
+        let eImage                          = UIImage(named:"event_pin")
+//        let pImage                          = UIImage(named:"defaultavatar")
         for s in sent {
             for p in s.places {
                 let marker                  = GMSMarker(position: p.coordinate)
                 marker.map                  = mapView
-                marker.icon                 = UIImage(named:"event_pin")
+                marker.icon                 = eImage//eImage
                 marker.groundAnchor         = CGPointMake(0.5, 0.5);
                 bounds                      = bounds.includingCoordinate(marker.position)
                 sentMarkers.append(marker)

@@ -14,8 +14,12 @@ class ContactsViewController: UIViewController, ManagedObjectContextSettable, Ma
     weak var managedObjectContext: NSManagedObjectContext!
     weak var contactManager: Contactable!
     
-    private typealias Data = DefaultDataProvider<ContactsViewController>
-    private var dataSource:TableViewDataSource<ContactsViewController, Data, ContactTableViewCell>!
+    private typealias Data = FetchedResultsDataViewModelProvider<ContactsViewController, Contact>
+//    private typealias Data = DefaultDataProvider<ContactsViewController>
+    var pageCount = 40
+    var page = 1
+    
+    private var dataSource:PaginatingDataSource<ContactsViewController, Data, ContactTableViewCell>!
     private var dataProvider: Data!
    
     var remoteContactSelected:RemoteContact?
@@ -72,32 +76,52 @@ class ContactsViewController: UIViewController, ManagedObjectContextSettable, Ma
     }
     
     func receivedPicked() {
-        let received                                = managedObjectContext.fetchAllRecievedContacts()
+        page = 1
+        let count                                   = managedObjectContext.fetchRecievedContactsCount()
         theView.highlightRecieved()
         
-        if received.count == 0 {
-            theView.emptyForRight()
-            return
-        }
-        updateDataProvider(received)
-    }
-    
-    func sentPicked() {
-        let sent                                    = managedObjectContext.fetchAllSentContacts()
-        theView.highlightSent()
-        
-        if sent.count == 0 {
+        if count == 0 {
             theView.emptyForLeft()
             return
         }
-        updateDataProvider(sent)
+        let request                                 = NSFetchRequest(entityName: Contact.entityName)
+        request.predicate                           = Contact.allReceivedContactsPredicate
+        request.returnsObjectsAsFaults              = true
+        request.fetchLimit                          = page * pageCount
+        request.sortDescriptors                     = [NSSortDescriptor(key:"createdAt", ascending:true)]
+        
+        updateDataProvider(request)
+    }
+    
+    func sentPicked() {
+        page = 1
+        let count                                   = managedObjectContext.fetchSentContactsCount()
+        theView.highlightSent()
+
+        if count == 0 {
+            theView.emptyForLeft()
+            return
+        }
+        let request                                 = NSFetchRequest(entityName: Contact.entityName)
+        request.predicate                           = Contact.allSentContactsPredicate
+        request.returnsObjectsAsFaults              = true
+        request.fetchLimit                          = page * pageCount
+        request.sortDescriptors                     = [NSSortDescriptor(key:"createdAt", ascending:true)]
+       
+        updateDataProvider(request)
     }
    
     // MARK: Duplicate
-    func updateDataProvider(objects:[RemoteContact]) {
+    func updateDataProvider(request:NSFetchRequest) {
         theView.hideEmptyState()
-        dataProvider                                = DefaultDataProvider(items:objects, delegate :self)
-        dataSource                                  = TableViewDataSource(tableView:theView.tableView!, dataProvider: dataProvider, delegate:self)
+        let frc                                     = NSFetchedResultsController(
+            fetchRequest:request
+            ,managedObjectContext:managedObjectContext
+            ,sectionNameKeyPath:nil
+            ,cacheName:nil
+        )
+        dataProvider                                = FetchedResultsDataViewModelProvider(fetchedResultsController:frc, delegate:self)
+        dataSource                                  = PaginatingDataSource(tableView:theView.tableView!, dataProvider: dataProvider, delegate:self)
         theView.tableView?.delegate                 = self
     }
 
@@ -117,25 +141,48 @@ class ContactsViewController: UIViewController, ManagedObjectContextSettable, Ma
         }
     }
     
+    func loadMore() {
+        let count                                   = managedObjectContext.fetchSentContactsCount()
+        let limit                                   = page * pageCount
+        if limit < count {
+            dataSource.endReached                   = false
+            page                                    = page + 1
+            dataProvider.reconfigureFetchRequest { request in
+                request.fetchLimit                  = page * pageCount
+            }
+        } else {
+            dataSource.endReached                   = true
+            theView.tableView?.reloadData()
+        }
+    }
+    
 }
 
 extension ContactsViewController : UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let contact = dataProvider.objectAtIndexPath(indexPath)
+        let contact                         = dataProvider.objectAtIndexPath(indexPath)
         remoteContactSelected = contact
-        
         performSegue(.PushToContact)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return ContactTableViewCellHeight
     }
+ 
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let lastSectionIndex            = tableView.numberOfSections - 1;
+        let lastRowIndex                = tableView.numberOfRowsInSection(lastSectionIndex) - 1
+        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+            loadMore()
+        }
+    }
     
 }
 
 extension ContactsViewController : DataProviderDelegate {
     func dataProviderDidUpdate(updates:[DataProviderUpdate<RemoteContact>]?) {
+        dataSource.processUpdates(updates)
     }
 }
 

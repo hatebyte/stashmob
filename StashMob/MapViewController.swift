@@ -37,9 +37,9 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        locationPermissions = LocationPermissionsManager(locationManager: locationManager)
+        locationPermissions                         = LocationPermissionsManager(locationManager: locationManager)
         theView.didload()
-        gmController = GMMultiMarkerController(mapView: theView.mapView!)
+        gmController                                = GMMultiMarkerController(mapView: theView.mapView!)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,6 +52,7 @@ class MapViewController: UIViewController, ManagedObjectContextSettable, Managed
         dispatch_after(delayTime, dispatch_get_main_queue()) { [weak self] in
             self?.gmController.update(pandp.sent, received: pandp.received)
         }
+        
     }
     
     override func viewDidDisappear(animated: Bool) {

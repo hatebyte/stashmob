@@ -75,3 +75,10 @@ extension RemoteContact {
     }
     
 }
+
+extension Contact : TableViewCellModelType {
+    public typealias Model = RemoteContact
+    public func tableCellViewModel()->Model {
+        return RemoteContact(managedContact: self)
+    }
+}

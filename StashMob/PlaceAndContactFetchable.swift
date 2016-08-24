@@ -35,7 +35,7 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
     func fetchAllContacts()->[RemoteContact] {
         let contacts = Contact.fetchInContext(self) { request in
             request.predicate = Contact.defaultPredicate
-            request.fetchBatchSize = 500
+            request.fetchLimit = 500
             request.returnsObjectsAsFaults = false
         }
         return contacts.map { RemoteContact(managedContact:$0) }
@@ -44,7 +44,7 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
     func fetchAllSentPlaces()->[RemotePlace] {
         let places = Place.fetchInContext(self) { request in
             request.predicate = Place.allSentLocationsPredicate
-            request.fetchBatchSize = 500
+            request.fetchLimit = 500
             request.returnsObjectsAsFaults = false
         }
         return places.map { RemotePlace(managedPlace:$0) }
@@ -53,7 +53,7 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
     func fetchAllRecievedPlaces()->[RemotePlace] {
         let contacts = Place.fetchInContext(self) { request in
             request.predicate = Place.allReceivedLocationsPredicate
-            request.fetchBatchSize = 500
+            request.fetchLimit = 500
             request.returnsObjectsAsFaults = false
         }
         return contacts.map { RemotePlace(managedPlace:$0) }
@@ -62,7 +62,7 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
     func fetchAllSentContacts()->[RemoteContact] {
         let places = Contact.fetchInContext(self) { request in
             request.predicate = Contact.allSentContactsPredicate
-            request.fetchBatchSize = 500
+            request.fetchLimit = 500
             request.returnsObjectsAsFaults = false
         }
         return places.map { RemoteContact(managedContact:$0) }
@@ -71,7 +71,7 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
     func fetchAllRecievedContacts()->[RemoteContact] {
         let contacts = Contact.fetchInContext(self) { request in
             request.predicate = Contact.allReceivedContactsPredicate
-            request.fetchBatchSize = 500
+            request.fetchLimit = 500
             request.returnsObjectsAsFaults = false
         }
         return contacts.map { RemoteContact(managedContact:$0) }
@@ -144,8 +144,9 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
     func mapContactsToPersonAndPlaces()->(sent:[PersonAndPlaces], received:[PersonAndPlaces]) {
         let contacts = Contact.fetchInContext(self) { request in
             request.predicate = Contact.defaultPredicate
-            request.fetchBatchSize = 500
-            request.returnsObjectsAsFaults = false
+            request.fetchLimit = 500
+            request.includesPropertyValues = false
+            request.returnsObjectsAsFaults = true
         }
         let s:[PersonAndPlaces] = []
         let r:[PersonAndPlaces] = []
@@ -169,6 +170,19 @@ extension NSManagedObjectContext : ContactAndPlaceFetchable {
             let c = contact.insertIntoContext(self)
             let p = place.insertIntoContext(self)
             c.addToRecievedPlaces(p)
+        }
+    }
+    
+    func fetchRecievedContactsCount()->Int {
+        return Contact.countInContext(self) { request in
+            request.predicate = Contact.allReceivedContactsPredicate
+        }
+    }
+    
+    
+    func fetchSentContactsCount()->Int {
+        return Contact.countInContext(self) { request in
+            request.predicate = Contact.allSentContactsPredicate
         }
     }
 

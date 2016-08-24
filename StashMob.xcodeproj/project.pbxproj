@@ -61,6 +61,8 @@
 		6D472DD71D6CD2AB00BAACC3 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DBF1D6CD29A00BAACC3 /* URLTests.swift */; };
 		6D472DD81D6CD2AB00BAACC3 /* UserHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DC01D6CD29A00BAACC3 /* UserHelpers.swift */; };
 		6D472DD91D6CD2AB00BAACC3 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DC11D6CD29A00BAACC3 /* UserTests.swift */; };
+		6D472DDD1D6CDC6100BAACC3 /* FetchedResultsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DDC1D6CDC6100BAACC3 /* FetchedResultsDataProvider.swift */; };
+		6D472DDF1D6DD0C600BAACC3 /* PaginatingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D472DDE1D6DD0C600BAACC3 /* PaginatingDataSource.swift */; };
 		6D4E0FDA1D68A27100292208 /* NSFileManager+Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E0FD91D68A27100292208 /* NSFileManager+Avatar.swift */; };
 		6D4E0FDC1D68A3A000292208 /* RemoteContact+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E0FDB1D68A3A000292208 /* RemoteContact+Extensions.swift */; };
 		6D4E0FDE1D68A58500292208 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E0FDD1D68A58500292208 /* ContactManager.swift */; };
@@ -110,7 +112,6 @@
 		6D4E10551D6A307F00292208 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10541D6A307F00292208 /* PlaceView.swift */; };
 		6D4E10581D6A3A8F00292208 /* CreateContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10571D6A3A8F00292208 /* CreateContactView.swift */; };
 		6D4E105A1D6A3A9900292208 /* CreateContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E10591D6A3A9900292208 /* CreateContactViewController.swift */; };
-		6D99E2A71D6B52160072F1C3 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D99E2A61D6B52160072F1C3 /* Images-2.xcassets */; };
 		6DE0A7541D6B3F4A00E50D47 /* CMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0A7531D6B3F4A00E50D47 /* CMView.swift */; };
 		6DE0A7571D6B423400E50D47 /* CMLoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0A7551D6B423400E50D47 /* CMLoadingButton.swift */; };
 		6DE0A7581D6B423400E50D47 /* CMOnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0A7561D6B423400E50D47 /* CMOnboardingButton.swift */; };
@@ -223,6 +224,8 @@
 		6D472DC01D6CD29A00BAACC3 /* UserHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelpers.swift; sourceTree = "<group>"; };
 		6D472DC11D6CD29A00BAACC3 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		6D472DDA1D6CD2EA00BAACC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D472DDC1D6CDC6100BAACC3 /* FetchedResultsDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsDataProvider.swift; sourceTree = "<group>"; };
+		6D472DDE1D6DD0C600BAACC3 /* PaginatingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatingDataSource.swift; sourceTree = "<group>"; };
 		6D4E0FD91D68A27100292208 /* NSFileManager+Avatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Avatar.swift"; sourceTree = "<group>"; };
 		6D4E0FDB1D68A3A000292208 /* RemoteContact+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RemoteContact+Extensions.swift"; sourceTree = "<group>"; };
 		6D4E0FDD1D68A58500292208 /* ContactManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
@@ -274,7 +277,6 @@
 		6D4E10541D6A307F00292208 /* PlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		6D4E10571D6A3A8F00292208 /* CreateContactView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactView.swift; sourceTree = "<group>"; };
 		6D4E10591D6A3A9900292208 /* CreateContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactViewController.swift; sourceTree = "<group>"; };
-		6D99E2A61D6B52160072F1C3 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
 		6DE0A7531D6B3F4A00E50D47 /* CMView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMView.swift; sourceTree = "<group>"; };
 		6DE0A7551D6B423400E50D47 /* CMLoadingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMLoadingButton.swift; sourceTree = "<group>"; };
 		6DE0A7561D6B423400E50D47 /* CMOnboardingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMOnboardingButton.swift; sourceTree = "<group>"; };
@@ -448,7 +450,6 @@
 				6D35C1581D67B4FD0000D1D9 /* AppDelegate.swift */,
 				6D4E100D1D68E69200292208 /* supportingfiles */,
 				6D1CC9F51D6B22FE0001256A /* Images.xcassets */,
-				6D99E2A61D6B52160072F1C3 /* Images-2.xcassets */,
 			);
 			path = StashMob;
 			sourceTree = "<group>";
@@ -785,6 +786,7 @@
 		6D4E102B1D69FC4200292208 /* table */ = {
 			isa = PBXGroup;
 			children = (
+				6D472DDC1D6CDC6100BAACC3 /* FetchedResultsDataProvider.swift */,
 				6D4E10371D6A020F00292208 /* ConfigurableCell.swift */,
 				6D4E10321D69FCC800292208 /* DefaultDataProvider.swift */,
 				6D4E102C1D69FC8F00292208 /* DataProvider.swift */,
@@ -836,6 +838,7 @@
 			isa = PBXGroup;
 			children = (
 				6D4E10431D6A1E8E00292208 /* ContactTableViewCell.swift */,
+				6D472DDE1D6DD0C600BAACC3 /* PaginatingDataSource.swift */,
 			);
 			name = table;
 			sourceTree = "<group>";
@@ -878,13 +881,13 @@
 		6DE0A7591D6B4D1600E50D47 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				6DE0A75C1D6B4D1600E50D47 /* coredatahelpers */,
+				6DE0A76D1D6B4D1600E50D47 /* StashLocModel.xcdatamodeld */,
 				6DE0A75A1D6B4D1600E50D47 /* Binaryable.swift */,
 				6DE0A75B1D6B4D1600E50D47 /* Contact.swift */,
-				6DE0A75C1D6B4D1600E50D47 /* coredatahelpers */,
 				6DE0A76A1D6B4D1600E50D47 /* Info.plist */,
 				6DE0A76B1D6B4D1600E50D47 /* Mappable.swift */,
 				6DE0A76C1D6B4D1600E50D47 /* Place.swift */,
-				6DE0A76D1D6B4D1600E50D47 /* StashLocModel.xcdatamodeld */,
 				6DE0A76F1D6B4D1600E50D47 /* StashMobModel.h */,
 				6DE0A7701D6B4D1600E50D47 /* StashMobModelVersion.swift */,
 				6DE0A7711D6B4D1600E50D47 /* StashMobStack.swift */,
@@ -1018,7 +1021,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D99E2A71D6B52160072F1C3 /* Images-2.xcassets in Resources */,
 				6D4E0FF01D68C01E00292208 /* event_pin.png in Resources */,
 				6D4E0FEF1D68C01E00292208 /* defaultavatar.png in Resources */,
 				6D4E10231D692AB800292208 /* defaultavatar_pin@3x.png in Resources */,
@@ -1162,6 +1164,7 @@
 				6DE0A77E1D6B4D1600E50D47 /* NSManagedObjectContext+Extensions.swift in Sources */,
 				6DE0A7871D6B4D1600E50D47 /* StashMobModelVersion.swift in Sources */,
 				6D4E10011D68D47A00292208 /* CMValidator.m in Sources */,
+				6D472DDD1D6CDC6100BAACC3 /* FetchedResultsDataProvider.swift in Sources */,
 				6D4E10381D6A020F00292208 /* ConfigurableCell.swift in Sources */,
 				6DE0A7541D6B3F4A00E50D47 /* CMView.swift in Sources */,
 				6D4E10111D68F91E00292208 /* PlaceAndPerson.swift in Sources */,
@@ -1221,6 +1224,7 @@
 				6D4E0FFA1D68C76700292208 /* EmailDelegate.swift in Sources */,
 				6D4179931D682BB10080AC3E /* ContactPickerViewController.swift in Sources */,
 				6D4E0FE41D68B8B700292208 /* String+Extensions.swift in Sources */,
+				6D472DDF1D6DD0C600BAACC3 /* PaginatingDataSource.swift in Sources */,
 				6D1CCA271D6B3D690001256A /* CMActivatedButton.swift in Sources */,
 				6D4E103C1D6A0CD600292208 /* PlacesViewController.swift in Sources */,
 				6DE0A7791D6B4D1600E50D47 /* ManagedObjectObserver.swift in Sources */,
